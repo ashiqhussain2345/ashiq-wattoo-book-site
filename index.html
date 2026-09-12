@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Study Ghar — Digital Learning Library</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f6f8fb;color:#132033}button,input,select{font:inherit}button{cursor:pointer}
+.hidden{display:none!important}
+:root{--navy:#071321;--gold:#f5bd3f;--line:#e7ebf0;--muted:#687588}
+.welcome{min-height:100vh;position:relative;background:var(--navy) url("welcome-hero.png") center/cover no-repeat;color:#fff;overflow:hidden}
+.welcome:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#020b16f2 0%,#061323c7 48%,#07132155 100%)}
+.wc{position:relative;z-index:1;min-height:100vh;max-width:1180px;margin:auto;padding:30px 40px;display:flex;flex-direction:column}
+.wtop{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;font-size:23px;letter-spacing:2px;color:var(--gold)}.admin-pill{border:1px solid #ffffff66;background:#ffffff12;color:#fff;border-radius:30px;padding:11px 18px;font-weight:800}
+.wmain{max-width:720px;margin:auto 0}.eyebrow{color:var(--gold);font-size:13px;font-weight:900;letter-spacing:2px}.wmain h1{font:700 clamp(50px,8vw,86px)/.95 Georgia,serif;margin:18px 0 8px}.wmain h1 span{color:var(--gold)}.site{font-size:28px;font-weight:900;letter-spacing:8px;color:var(--gold)}.tag{font:22px Georgia,serif;margin:20px 0 8px}.desc{color:#e2e8f0;line-height:1.7;font-size:16px}.chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.chips span{padding:8px 12px;background:#ffffff12;border:1px solid #ffffff24;border-radius:20px;font-size:13px}.enter{background:var(--gold);color:#111;border:0;border-radius:15px;padding:16px 26px;font-weight:900;font-size:17px;box-shadow:0 0 35px #f5bd3f55}.wfeat{display:flex;gap:15px;margin-top:25px;font-size:13px;flex-wrap:wrap}.wfeat i{height:20px;width:1px;background:#ffffff44}.wfoot{text-align:center;color:var(--gold);letter-spacing:4px;font-size:10px;margin-top:auto}
+.topbar{height:76px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 5vw;gap:25px;position:sticky;top:0;z-index:10}.navbrand{margin-right:auto}.navbrand b{display:block}.navbrand small{color:var(--gold);letter-spacing:3px;font-weight:900}.navlinks{display:flex;gap:25px}.navlinks a{text-decoration:none;color:#5d6a79;font-size:14px;font-weight:700}.navlinks a.active{color:#111}.navact button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:8px 10px}
+.hero{background:linear-gradient(110deg,#071321,#10283e);color:#fff;padding:56px 7vw}.hero h2{font:700 clamp(40px,6vw,64px) Georgia,serif;margin:14px 0}.hero h2 span{color:var(--gold)}.hero p{max-width:720px;color:#cbd5df;line-height:1.65}.search{background:#fff;border-radius:14px;padding:7px;display:flex;max-width:800px;margin-top:22px}.search input{flex:1;border:0;outline:0;padding:12px}.search select{border:0;border-left:1px solid #ddd;padding:10px;background:#fff}.quick{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}.quick button{background:none;border:0;color:#fff;text-decoration:underline}
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;padding:20px 6vw;background:#fff}.cat{border:1px solid var(--line);background:#fff;border-radius:14px;padding:15px;text-align:left}.cat span{font-size:25px}.cat b,.cat small{display:block}.cat small{color:#778494;margin-top:5px}
+.wrap{max-width:1250px;margin:auto;padding:40px 6vw 60px}.title{display:flex;justify-content:space-between;align-items:center}.title h2{margin:0}.title p{color:#7b8794;font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:20px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px;box-shadow:0 5px 20px #1320330b}.cover{width:100%;height:220px;object-fit:cover;border-radius:12px;background:#edf1f5}.icon{height:220px;border-radius:12px;background:#edf1f5;display:grid;place-items:center;font-size:52px}.card h3{font-size:16px;margin:10px 0 5px}.card p{font-size:13px;color:#7a8592;min-height:18px}.read{width:100%;border:0;border-radius:10px;padding:11px;background:var(--navy);color:#fff;font-weight:800}
+.modal{position:fixed;inset:0;background:#020812bb;z-index:50;display:flex;align-items:center;justify-content:center;padding:15px}.box{background:#fff;border-radius:18px;width:min(1100px,96vw);height:min(90vh,850px);overflow:hidden;display:flex;flex-direction:column}.head{display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line)}.head button{border:0;background:#eef1f5;border-radius:8px;padding:8px}.pdf{flex:1;border:0;width:100%;background:#e9edf2}.actions{padding:12px;display:flex;gap:8px;justify-content:center}.actions a,.actions button,.loginbtn,.uploadbtn{background:var(--navy);color:#fff;border:0;border-radius:10px;padding:11px 17px;font-weight:800;text-decoration:none}
+.admin{width:min(720px,96vw);height:auto;max-height:92vh;padding-bottom:15px}
+.navact{display:flex;gap:7px}.navact button{font-weight:700}
+.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:18px 20px}.stat{border:1px solid var(--line);border-radius:12px;padding:14px;background:#f8fafc}.stat b{display:block;font-size:24px}.stat small{color:#738092}
+.form{padding:20px;display:grid;gap:10px}.form input,.form select{padding:12px;border:1px solid #dce3ea;border-radius:9px}.form label{font-size:13px;font-weight:700}.status{font-size:12px;color:#475467}.adminlist{padding:0 20px}.item{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #edf0f4;padding:11px 0}.danger{background:#b42318!important}
+@media(max-width:950px){.navlinks{display:none}.cats{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.navact button{font-size:11px;padding:7px}.statgrid{grid-template-columns:1fr 1fr}.wc{padding:20px}.wmain h1{font-size:50px}.site{font-size:20px;letter-spacing:5px}.wfeat i{display:none}.topbar{padding:0 18px}.hero{padding:40px 20px}.search{flex-direction:column}.search select{border-left:0;border-top:1px solid #ddd}.cats{grid-template-columns:repeat(2,1fr);padding:15px}.wrap{padding:28px 15px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<section id="welcome" class="welcome">
+<div class="wc">
+<div class="wtop"><div class="brand">📚 SG</div><button class="admin-pill" onclick="openAdmin()">🔐 Admin Login</button></div>
+<div class="wmain">
+<div class="eyebrow">✦ WELCOME TO YOUR DIGITAL LIBRARY ✦</div>
+<h1>Study <span>Ghar</span></h1>
+<div class="site">STUDY GHAR</div>
+<div class="tag">Parhai ka sab kuch, ek hi jagah.</div>
+<div class="desc">Books, notes, past papers and learning material — students ke liye ek hi jagah.</div>
+<div class="chips"><span>🏫 School</span><span>🎓 College</span><span>💻 Computer</span><span>📝 Old Papers</span><span>☪️ Islamic</span></div>
+<button class="enter" onclick="enterLibrary()">📚 ENTER LIBRARY →</button>
+<div class="wfeat"><span>📖 Free to Read</span><i></i><span>🔐 Login for Download</span><i></i><span>🔗 Share with Others</span></div>
+</div><div class="wfoot">LEARN • READ • PREPARE</div>
+</div></section>
+
+<main id="library" class="hidden">
+<nav class="topbar"><div class="navbrand"><b>📚 Study Ghar</b><small>DIGITAL LEARNING</small></div><div class="navlinks"><a class="active" href="#">Home</a><a href="#books">All Books</a><a href="#books">Categories</a><a href="#footer">About</a></div><div class="navact"><button onclick="openStudent()">👤 <span id="studentLabel">Login</span></button> <button onclick="openAdmin()">🔐 Admin</button></div></nav>
+<section class="hero"><div class="eyebrow">✦ YOUR DIGITAL LIBRARY</div><h2>Learn. Read. <span>Grow.</span></h2><p>Books, notes and past papers — organized for students and learners in one beautiful place.</p><div class="search"><span style="padding:12px">🔍</span><input id="search" placeholder="Search books, notes, subjects, authors..." oninput="renderBooks()"><select id="category" onchange="renderBooks()"><option>All</option><option>School Books</option><option>College Books</option><option>Computer Notes</option><option>Old Papers</option><option>Islamic Books</option><option>Other Books</option></select></div><div class="quick"><b>Popular:</b><button onclick="quickCat('School Books')">School</button><button onclick="quickCat('College Books')">College</button><button onclick="quickCat('Computer Notes')">Computer</button><button onclick="quickCat('Old Papers')">Old Papers</button><button onclick="quickCat('Islamic Books')">Islamic</button></div></section>
+<section class="cats">
+<button class="cat" onclick="quickCat('School Books')"><span>🏫</span><b>School Books</b><small>Classes 1–12</small></button>
+<button class="cat" onclick="quickCat('College Books')"><span>🎓</span><b>College Books</b><small>FA • FSc • ICS</small></button>
+<button class="cat" onclick="quickCat('Computer Notes')"><span>💻</span><b>Computer Notes</b><small>IT & Programming</small></button>
+<button class="cat" onclick="quickCat('Old Papers')"><span>📝</span><b>Old Papers</b><small>Past Exams</small></button>
+<button class="cat" onclick="quickCat('Islamic Books')"><span>☪️</span><b>Islamic Books</b><small>Quran • Hadith</small></button>
+<button class="cat" onclick="quickCat('Other Books')"><span>📚</span><b>Other Books</b><small>General Reading</small></button>
+</section>
+<section class="wrap" id="books"><div class="title"><div><h2>✨ Explore Books</h2><p>Find something useful to read today</p></div></div><div id="grid" class="grid"></div></section>
+<footer id="footer" style="background:#071321;color:#fff;padding:24px 7vw;display:flex;justify-content:space-between">📚 <b>Study Ghar</b><span style="color:#f5bd3f">Knowledge • Learning • Success</span></footer>
+</main>
+
+<div id="reader" class="modal hidden"><div class="box"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta" style="display:block;color:#738092;margin-top:3px"></small></div><button onclick="closeReader()">✕</button></div><iframe id="pdf" class="pdf"></iframe><div class="actions"><button id="download" onclick="downloadBook()">⬇️ Download</button><button onclick="shareBook()">🔗 Share</button></div></div></div>
+
+
+
+<div id="student" class="modal hidden"><div class="box admin"><div class="head"><div><b>👤 Student Account</b><small style="display:block;color:#738092;margin-top:3px">Register or login to download books</small></div><button onclick="closeStudent()">✕</button></div>
+<div id="studentAuth" class="form">
+<label>Full Name (registration)</label><input id="studentName" placeholder="Your name">
+<label>Email</label><input id="studentEmail" type="email" placeholder="Email">
+<label>Password</label><input id="studentPassword" type="password" placeholder="At least 6 characters">
+<div style="display:flex;gap:8px"><button class="loginbtn" onclick="studentSignup()">Create Account</button><button class="loginbtn" onclick="studentLogin()">Login</button></div>
+<div id="studentStatus" class="status"></div>
+</div>
+<div id="studentLogged" class="form hidden"><h3>Welcome, <span id="studentNameView"></span> 👋</h3><p class="status">Aap ab books download kar sakte hain.</p><button class="loginbtn" onclick="studentLogout()">Logout</button></div>
+</div></div>
+
+<div id="admin" class="modal hidden"><div class="box admin"><div class="head"><div><b>🔐 Admin Login</b><small style="display:block;color:#738092;margin-top:3px">Manage books, PDFs and covers</small></div><button onclick="closeAdmin()">✕</button></div>
+<div id="loginArea" class="form"><label>Email</label><input id="email" type="email" placeholder="Admin email" autocomplete="username"><label>Password</label><input id="password" type="password" placeholder="Password" autocomplete="current-password"><button class="loginbtn" onclick="login()">Login</button><div id="loginStatus" class="status"></div></div>
+<div id="panel" class="hidden"><div class="statgrid"><div class="stat"><b id="bookCount">0</b><small>Total Books</small></div><div class="stat"><b id="userCount">—</b><small>Students</small></div><div class="stat"><b>✓</b><small>Admin Access</small></div></div><form class="form" onsubmit="uploadBook(event)"><input id="title" required placeholder="Book title"><input id="author" placeholder="Author / Subject / Class"><select id="bookcat" required><option value="">Select category</option><option>School Books</option><option>College Books</option><option>Computer Notes</option><option>Old Papers</option><option>Islamic Books</option><option>Other Books</option></select><label>Book Cover</label><input id="cover" type="file" accept="image/*" required><label>PDF</label><input id="pdfFile" type="file" accept="application/pdf" required><button class="uploadbtn">📤 Upload Book</button><div id="uploadStatus" class="status"></div></form><div class="adminlist" id="adminList"></div></div>
+</div></div>
+
+<script>
+const SB_URL="https://ppjibzvskpmdufehkqvx.supabase.co";
+const SB_KEY="sb_publishable_IDS03s6m4fS50mYs5Uy7og_vE32749u";
+const db=supabase.createClient(SB_URL,SB_KEY);
+let books=[],current=null; db.auth.onAuthStateChange(()=>setTimeout(refreshStudent,0));
+
+async function enterLibrary(){welcome.classList.add('hidden');library.classList.remove('hidden');await loadBooks();}
+async function loadBooks(){const r=await db.from('books').select('*').order('created_at',{ascending:false});if(r.error){grid.innerHTML='<div class="card"><h3>Connection error</h3><p>'+esc(r.error.message)+'</p></div>';return}books=r.data||[];renderBooks();}
+function renderBooks(){const q=(search.value||'').toLowerCase(),c=category.value||'All';const list=books.filter(b=>(c==='All'||b.category===c)&&(`${b.title} ${b.author||''} ${b.category}`.toLowerCase().includes(q)));grid.innerHTML=list.length?list.map(b=>{const u=b.cover_path?db.storage.from('book-covers').getPublicUrl(b.cover_path).data.publicUrl:'';return `<article class="card">${u?`<img class="cover" src="${u}" alt="${esc(b.title)}">`:`<div class="icon">📘</div>`}<h3>${esc(b.title)}</h3><p>${esc(b.author||b.category)}</p><button class="read" onclick="readBook('${b.id}')">📖 Read Book</button></article>`}).join(''):'<div class="card"><h3>No books found</h3><p>Admin can upload a PDF book.</p></div>'}
+function quickCat(c){category.value=c;search.value='';renderBooks();document.getElementById('books').scrollIntoView({behavior:'smooth'})}
+
+let studentUser=null;
+
+async function refreshStudent(){
+ const r=await db.auth.getUser(); studentUser=r.data.user||null;
+ if(studentUser){
+   studentAuth.classList.add('hidden'); studentLogged.classList.remove('hidden');
+   studentNameView.textContent=studentUser.user_metadata?.full_name || studentUser.email.split('@')[0];
+   studentLabel.textContent='Account';
+ } else {
+   studentAuth.classList.remove('hidden'); studentLogged.classList.add('hidden'); studentLabel.textContent='Login';
+ }
+}
+async function openStudent(){student.classList.remove('hidden');await refreshStudent()}
+function closeStudent(){student.classList.add('hidden')}
+async function studentSignup(){
+ const name=studentName.value.trim(), em=studentEmail.value.trim(), pw=studentPassword.value;
+ if(!name||!em||pw.length<6){studentStatus.textContent='Name, email aur 6+ character password zaroori hai.';return}
+ studentStatus.textContent='Creating account…';
+ const {data,error}=await db.auth.signUp({email:em,password:pw,options:{data:{full_name:name}}});
+ if(error){studentStatus.textContent=error.message;return}
+ studentStatus.textContent=data.session?'✅ Account created.':'✅ Account created. Email verification agar enabled ho to email verify karein.';
+ await refreshStudent();
+}
+async function studentLogin(){
+ const em=studentEmail.value.trim(),pw=studentPassword.value;
+ studentStatus.textContent='Signing in…';
+ const {data,error}=await db.auth.signInWithPassword({email:em,password:pw});
+ if(error){studentStatus.textContent=error.message;return}
+ await refreshStudent();
+}
+async function studentLogout(){await db.auth.signOut();await refreshStudent()}
+async function downloadBook(){
+ if(!current)return;
+ const u=await db.auth.getUser();
+ if(!u.data.user){closeReader();openStudent();studentStatus.textContent='🔐 Download ke liye pehle account login/register karein.';return}
+ const publicUrl=db.storage.from('book-pdfs').getPublicUrl(current.pdf_path).data.publicUrl;
+ const a=document.createElement('a');a.href=publicUrl;a.download=current.title+'.pdf';a.target='_blank';document.body.appendChild(a);a.click();a.remove();
+}
+
+function openAdmin(){admin.classList.remove('hidden')}
+function closeAdmin(){admin.classList.add('hidden')}
+async function login(){loginStatus.textContent='Signing in…';const {data,error}=await db.auth.signInWithPassword({email:email.value.trim(),password:password.value});if(error){loginStatus.textContent=error.message;return}const u=data.user;const p=await db.from('profiles').select('role').eq('id',u.id).single();if(p.data?.role!=='admin'){await db.auth.signOut();loginStatus.textContent='This account is not an admin.';return}loginArea.classList.add('hidden');panel.classList.remove('hidden');renderAdmin()}
+async function uploadBook(e){e.preventDefault();const p=pdfFile.files[0],c=cover.files[0],s=uploadStatus;if(!p||p.type!=='application/pdf'){s.textContent='Please choose a PDF.';return}if(!c||!c.type.startsWith('image/')){s.textContent='Please choose a cover image.';return}const u=(await db.auth.getUser()).data.user;if(!u){s.textContent='Please login first.';return}s.textContent='Uploading…';const id=crypto.randomUUID(),safe=x=>x.replace(/[^a-z0-9._-]/gi,'_'),pp=`${u.id}/${id}-${safe(p.name)}`,cp=`${u.id}/${id}-${safe(c.name)}`;let r=await db.storage.from('book-pdfs').upload(pp,p,{contentType:'application/pdf'});if(r.error){s.textContent='PDF upload failed: '+r.error.message;return}r=await db.storage.from('book-covers').upload(cp,c);if(r.error){await db.storage.from('book-pdfs').remove([pp]);s.textContent='Cover upload failed: '+r.error.message;return}r=await db.from('books').insert({title:title.value,author:author.value,category:bookcat.value,cover_path:cp,pdf_path:pp});if(r.error){await db.storage.from('book-pdfs').remove([pp]);await db.storage.from('book-covers').remove([cp]);s.textContent='Database error: '+r.error.message;return}e.target.reset();s.textContent='✅ Book uploaded successfully.';await loadBooks();renderAdmin()}
+function renderAdmin(){bookCount.textContent=books.length;adminList.innerHTML=books.map(b=>`<div class="item"><span><b>${esc(b.title)}</b><small style="display:block;color:#7a8592">${esc(b.category)}</small></span><button class="danger" onclick="deleteBook('${b.id}')">Delete</button></div>`).join('')||'<p>No books uploaded yet.</p>'}
+async function deleteBook(id){const b=books.find(x=>x.id===id);if(!b||!confirm('Delete this book?'))return;await db.storage.from('book-pdfs').remove([b.pdf_path]);if(b.cover_path)await db.storage.from('book-covers').remove([b.cover_path]);const r=await db.from('books').delete().eq('id',id);if(r.error){alert(r.error.message);return}await loadBooks();renderAdmin()}
+function readBook(id){current=books.find(b=>b.id===id);if(!current)return;readerTitle.textContent=current.title;readerMeta.textContent=current.category+(current.author?' • '+current.author:'');const u=db.storage.from('book-pdfs').getPublicUrl(current.pdf_path).data.publicUrl;pdf.src=u;reader.classList.remove('hidden')}
+function closeReader(){reader.classList.add('hidden');pdf.src=''}
+async function shareBook(){if(!current)return;const u=db.storage.from('book-pdfs').getPublicUrl(current.pdf_path).data.publicUrl;if(navigator.share)await navigator.share({title:current.title,text:'Read this book',url:u});else{await navigator.clipboard.writeText(u);alert('PDF link copied.')}} 
+function esc(x){return String(x||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+</script>
+</body></html>
