@@ -55,7 +55,15 @@
 <button class="cat" onclick="quickCat('Other Books')"><span>📚</span><b>Other Books</b><small>General Reading</small></button>
 </section>
 <section class="wrap" id="books"><div class="title"><div><h2>✨ Explore Books</h2><p>Find something useful to read today</p></div></div><div id="grid" class="grid"></div></section>
-<footer id="footer" style="background:#071321;color:#fff;padding:24px 7vw;display:flex;justify-content:space-between">📚 <b>Study Ghar</b><span style="color:#f5bd3f">Knowledge • Learning • Success</span></footer>
+<footer id="footer" style="background:#071321;color:#fff;padding:28px 7vw;display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap">
+  <div>📚 <b>Study Ghar</b><div style="color:#aeb9c7;font-size:13px;margin-top:5px">Knowledge • Learning • Success</div></div>
+  <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:14px">
+    <a href="privacy-policy.html" style="color:#fff;text-decoration:none">Privacy Policy</a>
+    <a href="terms.html" style="color:#fff;text-decoration:none">Terms & Conditions</a>
+    <a href="cookie-policy.html" style="color:#fff;text-decoration:none">Cookie Policy</a>
+    <a href="mailto:contact@studyghar.co.uk" style="color:#fff;text-decoration:none">Contact</a>
+  </div>
+</footer>
 </main>
 
 <div id="reader" class="modal hidden"><div class="box"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta" style="display:block;color:#738092;margin-top:3px"></small></div><button onclick="closeReader()">✕</button></div><iframe id="pdf" class="pdf"></iframe><div class="actions"><button id="download" onclick="downloadBook()">⬇️ Download</button><button onclick="shareBook()">🔗 Share</button></div></div></div>

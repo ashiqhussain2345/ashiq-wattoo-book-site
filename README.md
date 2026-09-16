@@ -1,22 +1,16 @@
-# Ashiq Wattoo Book Site
+# Study Ghar — Upgraded
 
-This is the first working prototype for the requested library flow:
+Updated starter for the Study Ghar educational library.
 
-Welcome Screen → Library → Category/Search → Book → New PDF Reader Page → Share + Download
-
-Admin prototype:
-Admin → Password → PDF upload from mobile/desktop → Book listing → Delete
+## Included
+- Existing home/library experience preserved
+- Student login/register and download gate
+- Admin login and book upload/delete
+- Privacy Policy
+- Terms & Conditions
+- Cookie Policy
 
 ## Important
-This prototype stores PDFs in the browser's local storage, so it is for testing the design/flow only.
+The current PDF reader/download implementation uses the existing Supabase storage setup. If the PDF bucket is public, a direct public file URL can bypass a front-end download gate. For stronger download protection, use a private bucket with authenticated/signed URL delivery or a server/Edge Function.
 
-For the real website, the next step is to connect:
-- secure admin authentication
-- server/database
-- cloud or server PDF storage
-- resumable/chunked uploads for reliable mobile uploads
-- real public PDF URLs for sharing
-- access/security rules
-
-Demo admin password: `admin123`
-Change/remove it before any public deployment.
+The legal pages are a practical website draft, not legal advice. Review/update them for your actual business, data practices, contact details, and applicable laws before publishing.
