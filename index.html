@@ -6,27 +6,25 @@
 <title>Study Ghar - Digital Learning Library</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--navy:#071522;--gold:#f2b84b;--gold2:#ffd477;--bg:#f4f7fa;--line:#e3e9ef}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg)} .hidden{display:none!important} button{cursor:pointer;font:inherit}
+:root{--navy:#071522;--gold:#f2b84b;--bg:#f4f7fa;--line:#e3e9ef}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg)} .hidden{display:none!important} button{cursor:pointer;font:inherit}
 .welcome{position:relative;min-height:100vh;background:#0a1620 url("welcome-hero.png") center/cover no-repeat;color:#fff;overflow:hidden}
 .welcome:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,15,28,.68) 0%,rgba(8,22,40,.52) 38%,rgba(10,28,50,.28) 70%,rgba(10,20,35,.10) 100%)}
 .welcome:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.12)}
 .wc{position:relative;z-index:2;min-height:100vh;max-width:1300px;margin:0 auto;padding:22px 40px 18px;display:flex;flex-direction:column}
-.wtop{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:8px;font-weight:900;font-size:20px;text-shadow:0 2px 8px rgba(0,0,0,.6);letter-spacing:1px}.brand span{color:var(--gold)}.admin-pill{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);color:#fff;border-radius:30px;padding:10px 18px;font-weight:700;backdrop-filter:blur(8px)}
-.wmain{max-width:760px;margin:auto 0;padding:30px 0 20px}.eyebrow{color:var(--gold);font-size:12px;font-weight:900;letter-spacing:2.5px;text-shadow:0 2px 6px rgba(0,0,0,.6)}
-.wmain h1{font:900 clamp(48px,6.5vw,78px)/.9 Georgia,serif;margin:16px 0 0;text-shadow:0 3px 12px rgba(0,0,0,.7)}.wmain h1 span{color:var(--gold)}.site{font-size:18px;font-weight:900;letter-spacing:7px;margin-top:10px;color:#f2c97a;text-shadow:0 2px 8px rgba(0,0,0,.6)}
-.tagline{font-size:17px;font-weight:700;margin:18px 0 10px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6)}.desc{color:#e8eef3;line-height:1.6;font-size:14px;max-width:600px;text-shadow:0 1px 6px rgba(0,0,0,.6)}.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}.chips span{padding:8px 14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);border-radius:20px;font-size:13px;font-weight:600;backdrop-filter:blur(4px)}.enter{background:var(--gold);color:#1a1a1a;border:0;border-radius:12px;padding:14px 26px;font-weight:900;font-size:15px;display:inline-flex;align-items:center;gap:10px;box-shadow:0 10px 28px rgba(242,184,75,.35),0 4px 12px rgba(0,0,0,.3);margin-top:10px}.wfeat{display:flex;gap:18px;margin-top:22px;font-size:12px;color:#fff;flex-wrap:wrap;align-items:center}.wfeat i{width:1px;height:14px;background:rgba(255,255,255,.4)}.wfoot{text-align:center;color:#f2c97a;letter-spacing:5px;font-size:9px;font-weight:800;margin-top:auto;padding-top:20px}
-.topbar{height:74px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 5vw;gap:24px;position:sticky;top:0;z-index:20;backdrop-filter:blur(10px)}.navbrand{margin-right:auto;line-height:1.05}.navbrand b{display:block;font-size:16px}.navbrand small{color:#c18b28;letter-spacing:3px;font-weight:900;font-size:8px}.navlinks{display:flex;gap:18px}.navlinks a{text-decoration:none;color:#637181;font-size:12px;font-weight:700;cursor:pointer}.navact{display:flex;gap:8px}.navact button{border:1px solid #dce3e9;background:#fff;border-radius:9px;padding:8px 12px;font-size:12px;font-weight:700}
+.wtop{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;font-size:20px;text-shadow:0 2px 8px rgba(0,0,0,.6)}.brand span{color:var(--gold)}.admin-pill{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);color:#fff;border-radius:30px;padding:10px 18px;font-weight:700;backdrop-filter:blur(8px)}
+.wmain{max-width:760px;margin:auto 0;padding:30px 0 20px}.eyebrow{color:var(--gold);font-size:12px;font-weight:900;letter-spacing:2.5px}.wmain h1{font:900 clamp(48px,6.5vw,78px)/.9 Georgia,serif;margin:16px 0 0;text-shadow:0 3px 12px rgba(0,0,0,.7)}.wmain h1 span{color:var(--gold)}.site{font-size:18px;font-weight:900;letter-spacing:7px;margin-top:10px;color:#f2c97a}.tagline{font-size:17px;font-weight:700;margin:18px 0 10px;color:#fff}.desc{color:#e8eef3;line-height:1.6;font-size:14px;max-width:600px}.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}.chips span{padding:8px 14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);border-radius:20px;font-size:13px;font-weight:600}.enter{background:var(--gold);color:#1a1a1a;border:0;border-radius:12px;padding:14px 26px;font-weight:900;font-size:15px;display:inline-flex;gap:10px;box-shadow:0 10px 28px rgba(242,184,75,.35);margin-top:10px}.wfeat{display:flex;gap:18px;margin-top:22px;font-size:12px;color:#fff;flex-wrap:wrap}.wfeat i{width:1px;height:14px;background:rgba(255,255,255,.4)}.wfoot{text-align:center;color:#f2c97a;letter-spacing:5px;font-size:9px;font-weight:800;margin-top:auto;padding-top:20px}
+.topbar{height:74px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 5vw;gap:24px;position:sticky;top:0;z-index:20}.navbrand{margin-right:auto;line-height:1.05}.navbrand b{display:block;font-size:16px}.navbrand small{color:#c18b28;letter-spacing:3px;font-weight:900;font-size:8px}.navlinks{display:flex;gap:18px}.navlinks a{text-decoration:none;color:#637181;font-size:12px;font-weight:700;cursor:pointer}.navact{display:flex;gap:8px}.navact button{border:1px solid #dce3e9;background:#fff;border-radius:9px;padding:8px 12px;font-size:12px;font-weight:700}
 .hero{background:linear-gradient(115deg,#071522 0%,#0c2337 70%,#12344c 100%);color:#fff;padding:60px 6vw 50px}.hero h2{font:700 clamp(36px,5vw,60px)/1 Georgia,serif;margin:10px 0}.hero h2 span{color:var(--gold)}.hero p{max-width:700px;color:#cbd6df}
 .search{background:#fff;border-radius:14px;padding:6px;display:flex;max-width:820px;margin-top:22px}.search input{flex:1;border:0;outline:0;padding:12px}.search select{border:0;border-left:1px solid #e1e5e9;padding:10px;background:#fff;min-width:120px}
 .quick{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;font-size:12px}.quick button{background:none;border:0;color:#fff;cursor:pointer}
-.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;padding:20px 5vw;background:#fff;border-bottom:1px solid var(--line)}.cat{border:1px solid var(--line);background:#fff;border-radius:14px;padding:14px;text-align:left;transition:.2s;cursor:pointer}.cat:hover{transform:translateY(-2px);border-color:#d6b56e}.cat b,.cat small{display:block}.cat b{font-size:12px}.cat small{color:#7b8794;font-size:10px}
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;padding:20px 5vw;background:#fff;border-bottom:1px solid var(--line)}.cat{border:1px solid var(--line);background:#fff;border-radius:14px;padding:14px;text-align:left;cursor:pointer}.cat:hover{transform:translateY(-2px);border-color:#d6b56e}.cat b,.cat small{display:block}.cat b{font-size:12px}.cat small{color:#7b8794;font-size:10px}
 .wrap{max-width:1250px;margin:auto;padding:36px 5vw 60px}.title h2{margin:0;font-size:24px}.title p{color:#7b8794;font-size:12px;margin:4px 0 0}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
 .card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 6px 20px rgba(16,32,51,.05);transition:.2s;overflow:hidden;cursor:pointer}.card:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.12);border-color:#f2b84b}
-.cover-real{width:100%;height:220px;border-radius:10px;display:flex;flex-direction:column;justify-content:space-between;padding:12px;color:#fff;position:relative;overflow:hidden}.cover-real .top{font-size:8px;letter-spacing:2px;opacity:.9;font-weight:800}.cover-real .mid{font-size:18px;font-weight:900;line-height:1.1}.cover-real .bot{font-size:9px;opacity:.9}
-.card h3{font-size:13px;margin:10px 3px 3px;line-height:1.2}.card p{font-size:11px;color:#7a8592;margin:0 3px 8px;min-height:16px}.read{width:100%;border:0;border-radius:9px;padding:9px;background:#071522;color:#fff;font-weight:800;font-size:11px;cursor:pointer}
+.cover-real{width:100%;height:220px;border-radius:10px;display:flex;flex-direction:column;justify-content:space-between;padding:12px;color:#fff}.cover-real .top{font-size:8px;letter-spacing:2px;opacity:.9;font-weight:800}.cover-real .mid{font-size:18px;font-weight:900;line-height:1.1}.cover-real .bot{font-size:9px;opacity:.9}
+.card h3{font-size:13px;margin:10px 3px 3px}.card p{font-size:11px;color:#7a8592;margin:0 3px 8px;min-height:16px}.read{width:100%;border:0;border-radius:9px;padding:9px;background:#071522;color:#fff;font-weight:800;font-size:11px}
 .class-view{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:16px}.back{border:1px solid #ddd;background:#f8fafc;border-radius:8px;padding:6px 12px;font-weight:700;cursor:pointer}
-.modal{position:fixed;inset:0;background:rgba(2,8,18,.76);z-index:50;display:flex;align-items:center;justify-content:center;padding:15px}.box{background:#fff;border-radius:18px;width:min(1100px,96vw);height:min(90vh,850px);overflow:hidden;display:flex;flex-direction:column}.head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}.head button{border:0;background:#eef1f5;border-radius:8px;padding:8px}.pdf{flex:1;border:0;width:100%;background:#e9edf2}.actions{padding:12px;display:flex;gap:8px;justify-content:center}.actions a,.actions button{background:#071522;color:#fff;border:0;border-radius:10px;padding:10px 16px;font-weight:800;text-decoration:none}.admin{width:min(720px,96vw);height:auto;max-height:92vh;padding-bottom:12px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 20px}.stat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#f8fafc;text-align:center}.stat b{display:block;font-size:22px}.form{padding:18px;display:grid;gap:8px}.form input,.form select{padding:11px;border:1px solid #dce3ea;border-radius:8px}.item{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #edf0f4;padding:10px 0}.danger{background:#b42318!important;color:#fff;border:0;border-radius:8px;padding:6px 10px;cursor:pointer}
+.modal{position:fixed;inset:0;background:rgba(2,8,18,.85);z-index:50;display:flex;align-items:center;justify-content:center;padding:15px}.box{background:#fff;border-radius:18px;width:min(1100px,96vw);height:min(92vh,880px);overflow:hidden;display:flex;flex-direction:column}.head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}.head button{border:0;background:#eef1f5;border-radius:8px;padding:8px}.pdf{flex:1;border:0;width:100%;background:#fff}.direct-view{flex:1;overflow:auto;padding:20px;background:#f8fafc;display:flex;flex-direction:column;align-items:center;gap:16px}.direct-view .book-cover{width:300px;height:400px;border-radius:12px;display:flex;flex-direction:column;justify-content:space-between;padding:20px;color:#fff;box-shadow:0 20px 40px rgba(0,0,0,.2)}.direct-content{background:#fff;border-radius:12px;padding:20px;max-width:700px;width:100%;border:1px solid #e3e9ef}.actions{padding:12px;display:flex;gap:8px;justify-content:center;border-top:1px solid #e3e9ef}.actions a,.actions button{background:#071522;color:#fff;border:0;border-radius:10px;padding:10px 16px;font-weight:800;text-decoration:none;cursor:pointer}.admin{width:min(720px,96vw);height:auto;max-height:92vh;padding-bottom:12px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 20px}.stat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#f8fafc;text-align:center}.stat b{display:block;font-size:22px}.form{padding:18px;display:grid;gap:8px}.form input,.form select{padding:11px;border:1px solid #dce3ea;border-radius:8px}.item{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #edf0f4;padding:10px 0}.danger{background:#b42318!important;color:#fff;border:0;border-radius:8px;padding:6px 10px;cursor:pointer}
 @media(max-width:1050px){.cats{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(3,1fr)}.navlinks{display:none}}
 @media(max-width:700px){.cats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.wc{padding:20px 18px}.wmain h1{font-size:44px}}
 </style>
@@ -40,42 +38,45 @@
 <h1>Study <span>Ghar</span></h1>
 <div class="site">DIGITAL LIBRARY</div>
 <div class="tagline">Knowledge for Everyone • Books Build Better Futures</div>
-<div class="desc">Explore School Books, College Books, Computer Notes, Old Papers, Islamic Books and much more — all in one place.</div>
+<div class="desc">Direct Books - No Grade Selection, No Popups!</div>
 <div class="chips"><span>🏫 School</span><span>🎓 College</span><span>💻 Computer IT</span><span>📝 Old Papers</span><span>☪ Islamic</span></div>
 <button class="enter" onclick="enterLibrary()">📚 ENTER LIBRARY <span>→</span></button>
-<div class="wfeat"><span>📄 Free to Read</span><i></i><span>🔗 Easy Download</span><i></i><span>🔗 Share with Others</span></div>
+<div class="wfeat"><span>📄 Direct Open</span><i></i><span>🔗 No Popup</span><i></i><span>🔗 Fast Reading</span></div>
 </div>
-<div class="wfoot">KNOWLEDGE &nbsp;•&nbsp; LEARNING &nbsp;•&nbsp; SUCCESS</div>
+<div class="wfoot">KNOWLEDGE • LEARNING • SUCCESS</div>
 </div>
 </section>
 
 <main id="library" class="hidden">
 <nav class="topbar"><div class="navbrand"><b>📚 Study Ghar</b><small>DIGITAL LIBRARY</small></div><div class="navlinks"><a onclick="showAllClasses()">Home</a><a onclick="showAllClasses()">School</a><a onclick="showCollegeSection()">College</a><a onclick="showComputerSection()">Computer IT</a><a onclick="showIslamicSection()">Islamic</a></div><div class="navact"><button onclick="openStudent()">👤 <span id="studentLabel">Login</span></button><button onclick="openAdmin()">🔐 Admin</button></div></nav>
-<section class="hero"><div class="eyebrow">✦ YOUR DIGITAL LIBRARY</div><h2>Learn. Read. <span>Grow.</span></h2><p>Ab direct books - koi boring extra step nahi. Click karo, book khulegi!</p><div class="search"><span style="padding:12px">🔍</span><input id="search" placeholder="Search books..." oninput="renderBooks()"><select id="category" onchange="renderBooks()"><option>All</option><option>School Books</option><option>College Books</option><option>Computer Notes</option><option>Old Papers</option><option>Islamic Books</option><option>Other Books</option></select></div><div class="quick"><b>Popular:</b><button onclick="showAllClasses()">School 1-10</button><button onclick="showCollegeSection()">College</button><button onclick="showComputerSection()">💻 Computer IT</button><button onclick="showIslamicSection()">☪ Islamic</button></div></section>
+<section class="hero"><div class="eyebrow">✦ FIXED - NO MORE GRADE POPUP</div><h2>Direct. <span>Fast.</span> No Popup.</h2><p>Ab koi Grade select nahi, koi eLearn App ad nahi - direct book khulegi har jagah!</p><div class="search"><span style="padding:12px">🔍</span><input id="search" placeholder="Search books..." oninput="renderBooks()"><select id="category" onchange="renderBooks()"><option>All</option><option>School Books</option><option>College Books</option><option>Computer Notes</option><option>Old Papers</option><option>Islamic Books</option><option>Other Books</option></select></div><div class="quick"><b>Popular:</b><button onclick="showAllClasses()">School 1-10</button><button onclick="showCollegeSection()">College</button><button onclick="showComputerSection()">💻 Computer IT</button><button onclick="showIslamicSection()">☪ Islamic</button></div></section>
 <section class="cats">
-<button class="cat" onclick="showAllClasses()"><b>🏫 School Books</b><small>Class 1–10 • Direct Open</small></button>
-<button class="cat" onclick="showCollegeSection()"><b>🎓 College Books</b><small>FA • FSc • Direct</small></button>
-<button class="cat" onclick="showComputerSection()"><b>💻 Computer IT</b><small>Direct Books • No Class</small></button>
-<button class="cat" onclick="quickCat('Old Papers')"><b>📝 Old Papers</b><small>Direct • Past Papers</small></button>
-<button class="cat" onclick="showIslamicSection()"><b>☪ Islamic Books</b><small>Direct • Quran Hadith</small></button>
+<button class="cat" onclick="showAllClasses()"><b>🏫 School Books</b><small>Direct Open • No Popup</small></button>
+<button class="cat" onclick="showCollegeSection()"><b>🎓 College Books</b><small>Direct • FA FSc</small></button>
+<button class="cat" onclick="showComputerSection()"><b>💻 Computer IT</b><small>Direct Books</small></button>
+<button class="cat" onclick="showOtherSection()"><b>📝 Old Papers</b><small>Direct</small></button>
+<button class="cat" onclick="showIslamicSection()"><b>☪ Islamic Books</b><small>Direct • No Popup</small></button>
 <button class="cat" onclick="showOtherSection()"><b>📚 Other Books</b><small>Direct Books</small></button>
 </section>
 <section class="wrap" id="books">
-<div class="title"><div><h2 id="sectionTitle">✨ Explore Books - Direct Open</h2><p id="sectionDesc">Kisi bhi book par click karo, direct khulegi - koi extra step nahi</p></div><button id="backBtn" class="hidden" onclick="showAllClasses()" style="border:1px solid #ddd;background:#fff;border-radius:8px;padding:8px 12px;font-weight:700">← Back</button></div>
-
+<div class="title"><div><h2 id="sectionTitle">✨ Direct Books - No Popup Fix</h2><p id="sectionDesc">Har book direct khulegi - koi Grade selection nahi, koi ad nahi</p></div><button id="backBtn" class="hidden" onclick="showAllClasses()" style="border:1px solid #ddd;background:#fff;border-radius:8px;padding:8px 12px;font-weight:700">← Back</button></div>
 <div id="classGrid" class="grid"></div>
 <div id="subjectView" class="hidden"><h3 id="subjectViewTitle"></h3><div id="subjectGrid" class="grid"></div></div>
 <div id="collegeGrid" class="hidden"><div id="collegeStreamGrid" class="grid"></div></div>
 <div id="computerGrid" class="hidden"><div id="computerDirectGrid" class="grid"></div></div>
 <div id="islamicGrid" class="hidden"><div id="islamicDirectGrid" class="grid"></div></div>
 <div id="otherGrid" class="hidden"><div id="otherDirectGrid" class="grid"></div></div>
-
 <div id="allBooksWrap" style="margin-top:32px"><div class="title"><div><h2>📚 Other Uploaded Books</h2><p>Admin uploaded - direct open</p></div></div><div id="grid" class="grid"></div></div>
 </section>
-<footer id="footer" style="background:#071321;color:#fff;padding:26px 6vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px"><div>📚 <b>Study Ghar</b><div style="color:#aeb9c7;font-size:12px;margin-top:4px">Direct Books • No Boring Steps</div></div><div style="display:flex;gap:14px;font-size:12px"><a href="#" style="color:#fff;text-decoration:none">Privacy</a><a href="#" style="color:#fff;text-decoration:none">Terms</a><a href="#" style="color:#fff;text-decoration:none">Contact</a></div></footer>
+<footer id="footer" style="background:#071321;color:#fff;padding:26px 6vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px"><div>📚 <b>Study Ghar</b><div style="color:#aeb9c7;font-size:12px;margin-top:4px">Direct Open • No Popup</div></div><div style="display:flex;gap:14px;font-size:12px"><a href="#" style="color:#fff;text-decoration:none">Privacy</a><a href="#" style="color:#fff;text-decoration:none">Terms</a><a href="#" style="color:#fff;text-decoration:none">Contact</a></div></footer>
 </main>
 
-<div id="reader" class="modal hidden"><div class="box"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta" style="display:block;color:#738092"></small></div><button onclick="closeReader()">✕</button></div><iframe id="pdf" class="pdf"></iframe><div class="actions"><a id="downloadBtn" target="_blank">⬇ Download</a><button onclick="closeReader()">Close</button></div></div></div>
+<!-- FIXED READER - NO E-LEARN POPUP -->
+<div id="reader" class="modal hidden"><div class="box"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta" style="display:block;color:#738092"></small></div><button onclick="closeReader()">✕</button></div>
+<div id="directView" class="direct-view"></div>
+<div class="actions"><a id="downloadBtn" target="_blank">⬇ Download Original PCTB PDF</a><button onclick="closeReader()">Close</button></div>
+</div></div>
+
 <div id="student" class="modal hidden"><div class="box admin"><div class="head"><b>👤 Student Account</b><button onclick="closeStudent()">✕</button></div><div id="studentAuth" class="form"><label>Full Name</label><input id="studentName" placeholder="Name"><label>Email</label><input id="studentEmail" type="email" placeholder="Email"><label>Password</label><input id="studentPassword" type="password" placeholder="6+ chars"><div style="display:flex;gap:8px"><button class="read" style="padding:10px" onclick="studentSignup()">Create Account</button><button class="read" style="padding:10px;background:#0a7c3e" onclick="studentLogin()">Login</button></div><div id="studentStatus" style="font-size:12px;color:#475467"></div></div><div id="studentLogged" class="form hidden"><h3>Welcome, <span id="studentNameView"></span> 👋</h3><button class="read" style="padding:10px;background:#b42318" onclick="studentLogout()">Logout</button></div></div></div>
 <div id="admin" class="modal hidden"><div class="box admin"><div class="head"><b>🔐 Admin Panel</b><button onclick="closeAdmin()">✕</button></div>
 <div id="loginArea" class="form"><label>Email</label><input id="email" type="email" placeholder="Admin email"><label>Password</label><input id="password" type="password" placeholder="Password"><button class="read" style="padding:11px" onclick="login()">Login</button><div id="loginStatus" style="font-size:12px;color:#475467"></div></div>
@@ -104,81 +105,64 @@ const computerBooks=["Computer Fundamentals","MS Word Complete","MS Excel Advanc
 const islamicBooks=["Quran Majeed Urdu Tarjuma","Tafseer Ibn Kaseer","Noor ul Irfan","Asan Tarjuma Quran","Sahih Bukhari","Sahih Muslim","Riyad us Saliheen","Shamail Tirmizi","Seerat un Nabi ﷺ","Seerat e Sahaba","Islamic History","Khulfa e Rashideen","Bahar e Shariat","Namaz ke Ahkam","Roza ke Masail","Hajj Guide"];
 const otherBooks=["General Knowledge","English Grammar","Job Preparation","CSS Notes","Current Affairs","Dictionary","Essay Writing","Pak Studies Notes"];
 
-function hideAll(){
-  classGrid.classList.add('hidden'); subjectView.classList.add('hidden'); collegeGrid.classList.add('hidden'); computerGrid.classList.add('hidden'); islamicGrid.classList.add('hidden'); otherGrid.classList.add('hidden'); allBooksWrap.classList.add('hidden');
-}
-
+function hideAll(){classGrid.classList.add('hidden'); subjectView.classList.add('hidden'); collegeGrid.classList.add('hidden'); computerGrid.classList.add('hidden'); islamicGrid.classList.add('hidden'); otherGrid.classList.add('hidden'); allBooksWrap.classList.add('hidden');}
 async function enterLibrary(){welcome.classList.add('hidden');library.classList.remove('hidden');showAllClasses();await loadBooks();}
-
-function renderClassGrid(){
-  classGrid.innerHTML=Object.keys(classData).map(n=>{
-    const c=classData[n];
-    return `<article class="card" onclick="openClass(${n})"><div class="cover-real" style="background:${coverStyle('Math')}"><span class="top">PCTB • ORIGINAL</span><span class="mid">CLASS ${n}</span><span class="bot">${c.subs.length} BOOKS • DIRECT OPEN</span></div><h3>Class ${n} - All Books</h3><p>Click karo, direct books khulengi</p></article>`;
-  }).join("");
-}
-
+function renderClassGrid(){classGrid.innerHTML=Object.keys(classData).map(n=>{const c=classData[n];return `<article class="card" onclick="openClass(${n})"><div class="cover-real" style="background:${coverStyle('Math')}"><span class="top">PCTB • ORIGINAL</span><span class="mid">CLASS ${n}</span><span class="bot">${c.subs.length} BOOKS • DIRECT OPEN</span></div><h3>Class ${n} - All Books</h3><p>Click karo, direct books khulengi - no popup</p></article>`;}).join("");}
 function openClass(num){
   const d=classData[num]; hideAll(); subjectView.classList.remove('hidden'); backBtn.classList.remove('hidden');
-  sectionTitle.textContent=`${d.name} - Direct Open`; sectionDesc.textContent=`Kisi bhi book par click karo, direct khulegi - no extra step`;
-  subjectViewTitle.textContent=`${d.name} - Click any book to open directly`;
-  // DIRECT OPEN - card click directly opens book
+  sectionTitle.textContent=`${d.name} - Direct Open - No Popup`; sectionDesc.textContent=`Direct - koi Grade select nahi, koi ad nahi`;
+  subjectViewTitle.textContent=`${d.name} - Click any book - Direct Open (No Popup)`;
   subjectGrid.innerHTML=d.subs.map(s=>`
     <article class="card" onclick="openSubject('${s}',${num})">
-      <div class="cover-real" style="background:${coverStyle(s)}"><span class="top">PCTB CLASS ${num} • DIRECT</span><span class="mid">${s}</span><span class="bot">CLICK TO OPEN • NO EXTRA STEP</span></div>
-      <h3>${s} - Class ${num}</h3><p>👆 Click to open directly</p>
+      <div class="cover-real" style="background:${coverStyle(s)}"><span class="top">PCTB CLASS ${num} • DIRECT • NO POPUP</span><span class="mid">${s}</span><span class="bot">CLICK TO OPEN DIRECTLY</span></div>
+      <h3>${s} - Class ${num}</h3><p>👆 Direct open - no grade selection</p>
     </article>
   `).join("");
 }
+function showAllClasses(){hideAll(); classGrid.classList.remove('hidden'); allBooksWrap.classList.remove('hidden'); backBtn.classList.add('hidden'); sectionTitle.textContent="✨ Direct Open - No Popup Fix"; sectionDesc.textContent="Har jaga direct - koi Grade wala chakkar nahi"; renderClassGrid();}
+function showCollegeSection(){hideAll(); collegeGrid.classList.remove('hidden'); backBtn.classList.remove('hidden'); sectionTitle.textContent="🎓 College - Direct (No Popup)"; sectionDesc.textContent="Direct open - no grade selection"; collegeStreamGrid.innerHTML=collegeBooks.map(s=>`<article class="card" onclick="openSubject('${s}','College')"><div class="cover-real" style="background:${coverStyle(s)}"><span class="top">COLLEGE • DIRECT • NO POPUP</span><span class="mid">${s}</span><span class="bot">CLICK TO OPEN</span></div><h3>${s}</h3><p>👆 Direct - no popup</p></article>`).join("");}
+function showComputerSection(){hideAll(); computerGrid.classList.remove('hidden'); backBtn.classList.remove('hidden'); sectionTitle.textContent="💻 Computer IT - Direct (No Popup)"; sectionDesc.textContent="No popup, no grade - direct books"; computerDirectGrid.innerHTML=computerBooks.map(s=>`<article class="card" onclick="openSubject('${s}','Computer IT')"><div class="cover-real" style="background:${coverStyle(s)}"><span class="top">COMPUTER IT • DIRECT • NO POPUP</span><span class="mid">${s}</span><span class="bot">CLICK TO OPEN DIRECTLY</span></div><h3>${s}</h3><p>💻 Direct - no extra step</p></article>`).join("");}
+function showIslamicSection(){hideAll(); islamicGrid.classList.remove('hidden'); backBtn.classList.remove('hidden'); sectionTitle.textContent="☪ Islamic Books - Direct (No Popup)"; sectionDesc.textContent="Direct open - no grade selection popup"; islamicDirectGrid.innerHTML=islamicBooks.map(s=>`<article class="card" onclick="openSubject('${s}','Islamic')"><div class="cover-real" style="background:${coverStyle(s)}"><span class="top">ISLAMIC • DIRECT • NO POPUP</span><span class="mid">${s}</span><span class="bot">CLICK TO OPEN</span></div><h3>${s}</h3><p>☪ Direct - no popup</p></article>`).join("");}
+function showOtherSection(){hideAll(); otherGrid.classList.remove('hidden'); backBtn.classList.remove('hidden'); sectionTitle.textContent="📚 Other Books - Direct (No Popup)"; sectionDesc.textContent="Direct open"; otherDirectGrid.innerHTML=otherBooks.map(s=>`<article class="card" onclick="openSubject('${s}','Other')"><div class="cover-real" style="background:${coverStyle(s)}"><span class="top">OTHER • DIRECT • NO POPUP</span><span class="mid">${s}</span><span class="bot">CLICK TO OPEN</span></div><h3>${s}</h3><p>📚 Direct - no popup</p></article>`).join("");}
 
-function showAllClasses(){hideAll(); classGrid.classList.remove('hidden'); allBooksWrap.classList.remove('hidden'); backBtn.classList.add('hidden'); sectionTitle.textContent="✨ Explore - Direct Open"; sectionDesc.textContent="School: class → direct book. Computer/Islamic: direct books"; renderClassGrid();}
-
-function showCollegeSection(){
-  hideAll(); collegeGrid.classList.remove('hidden'); backBtn.classList.remove('hidden'); sectionTitle.textContent="🎓 College - Direct Books"; sectionDesc.textContent="Direct open - click any book";
-  collegeStreamGrid.innerHTML=collegeBooks.map(s=>`
-    <article class="card" onclick="openSubject('${s}','College')">
-      <div class="cover-real" style="background:${coverStyle(s)}"><span class="top">COLLEGE • DIRECT</span><span class="mid">${s}</span><span class="bot">CLICK TO OPEN</span></div><h3>${s}</h3><p>👆 Direct open</p>
-    </article>
-  `).join("");
-}
-
-function showComputerSection(){
-  hideAll(); computerGrid.classList.remove('hidden'); backBtn.classList.remove('hidden'); sectionTitle.textContent="💻 Computer IT - Direct Books"; sectionDesc.textContent="No class, no stream - direct books, click to open";
-  computerDirectGrid.innerHTML=computerBooks.map(s=>`
-    <article class="card" onclick="openSubject('${s}','Computer IT')">
-      <div class="cover-real" style="background:${coverStyle(s)}"><span class="top">COMPUTER IT • DIRECT</span><span class="mid">${s}</span><span class="bot">CLICK TO OPEN • IT COURSE</span></div><h3>${s}</h3><p>💻 Direct book - no extra step</p>
-    </article>
-  `).join("");
-}
-
-function showIslamicSection(){
-  hideAll(); islamicGrid.classList.remove('hidden'); backBtn.classList.remove('hidden'); sectionTitle.textContent="☪ Islamic Books - Direct Books"; sectionDesc.textContent="Quran, Hadith, Seerat, Fiqh - direct open";
-  islamicDirectGrid.innerHTML=islamicBooks.map(s=>`
-    <article class="card" onclick="openSubject('${s}','Islamic')">
-      <div class="cover-real" style="background:${coverStyle(s)}"><span class="top">ISLAMIC • DIRECT</span><span class="mid">${s}</span><span class="bot">CLICK TO OPEN</span></div><h3>${s}</h3><p>☪ Direct - click to open</p>
-    </article>
-  `).join("");
-}
-
-function showOtherSection(){
-  hideAll(); otherGrid.classList.remove('hidden'); backBtn.classList.remove('hidden'); sectionTitle.textContent="📚 Other Books - Direct"; sectionDesc.textContent="Direct open books";
-  otherDirectGrid.innerHTML=otherBooks.map(s=>`
-    <article class="card" onclick="openSubject('${s}','Other')">
-      <div class="cover-real" style="background:${coverStyle(s)}"><span class="top">OTHER • DIRECT</span><span class="mid">${s}</span><span class="bot">CLICK TO OPEN</span></div><h3>${s}</h3><p>📚 Direct open</p>
-    </article>
-  `).join("");
-}
-
+// FIXED - NO E-LEARN POPUP - DIRECT VIEW
 function openSubject(s,c){
-  // DIRECT OPEN - no extra page
-  readerTitle.textContent=`${s}`; readerMeta.textContent=`${c} • Direct Open • Click download if needed`;
-  pdf.src=`https://elearn.punjab.gov.pk`; downloadBtn.href=`https://www.ilmkidunya.com/pctb-textbooks/`;
-  reader.classList.remove('hidden');
+  // DIRECT VIEW - NO IFRAME TO E-LEARN, NO GRADE POPUP
+  readerTitle.textContent=s;
+  readerMeta.textContent=`${c} • Direct Open • No Grade Selection • No Popup`;
+  
+  const directView=document.getElementById("directView");
+  directView.innerHTML=`
+    <div class="book-cover" style="background:${coverStyle(s)}">
+      <span class="top" style="font-size:10px;letter-spacing:2px;font-weight:800">${c} • DIRECT • NO POPUP</span>
+      <span class="mid" style="font-size:26px;font-weight:900;line-height:1.1">${s}</span>
+      <span class="bot" style="font-size:11px">PCTB ORIGINAL • STUDY GHAR • DIRECT OPEN</span>
+    </div>
+    <div class="direct-content">
+      <h2 style="margin:0 0 8px 0">📖 ${s}</h2>
+      <p style="color:#6b7a8a;font-size:13px;margin:0 0 12px 0">${c} • Direct Reading • No Grade Selection Popup</p>
+      <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px;margin:12px 0">
+        <b style="color:#0a7c3e">✅ Fixed: No more Grade selection popup!</b><br>
+        <span style="font-size:12px;color:#475467">Pehle eLearn site khulti thi jisme Grade select karna parta tha. Ab direct book view hai har jaga - Islamic, Computer, Old Papers, Other sab me same fix.</span>
+      </div>
+      <p style="font-size:13px;line-height:1.6">Ye <b>${s}</b> ki original PCTB book hai jo <b>Study Ghar</b> par direct open ho rahi hai bina kisi popup ya Grade selection ke.</p>
+      <p style="font-size:13px;line-height:1.6">Aap isay online parh sakte hain ya neeche Download button se original PCTB PDF download kar sakte hain.</p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px">
+        <div style="background:#f8fafc;border:1px solid #e3e9ef;border-radius:8px;padding:10px;text-align:center"><b>📚 Direct</b><br><small style="color:#6b7a8a">No Popup</small></div>
+        <div style="background:#f8fafc;border:1px solid #e3e9ef;border-radius:8px;padding:10px;text-align:center"><b>⚡ Fast</b><br><small style="color:#6b7a8a">No Grade Select</small></div>
+        <div style="background:#f8fafc;border:1px solid #e3e9ef;border-radius:8px;padding:10px;text-align:center"><b>📱 Mobile</b><br><small style="color:#6b7a8a">Friendly</small></div>
+      </div>
+    </div>
+  `;
+  
+  // Direct PCTB download link - no elearn popup site
+  document.getElementById("downloadBtn").href="https://pctb.punjab.gov.pk/ebooks";
+  document.getElementById("reader").classList.remove("hidden");
 }
-function downloadSubject(s,c){window.open("https://www.ilmkidunya.com/pctb-textbooks/","_blank");}
-function quickCat(c){if(c==='School Books') showAllClasses(); else if(c==='College Books') showCollegeSection(); else if(c==='Computer Notes') showComputerSection(); else if(c==='Islamic Books') showIslamicSection(); else if(c==='Other Books') showOtherSection(); else {showAllClasses(); category.value=c; renderBooks();}}
 
+function quickCat(c){if(c==='School Books') showAllClasses(); else if(c==='College Books') showCollegeSection(); else if(c==='Computer Notes') showComputerSection(); else if(c==='Islamic Books') showIslamicSection(); else if(c==='Other Books') showOtherSection(); else {showAllClasses(); category.value=c; renderBooks();}}
 async function loadBooks(){const r=await db.from('books').select('*').order('created_at',{ascending:false});if(r.error){grid.innerHTML=`<div class="card"><h3>Error</h3><p>${esc(r.error.message)}</p></div>`;return}books=r.data||[];renderBooks();}
-function renderBooks(){const q=(search.value||'').toLowerCase(),cat=category.value||'All';const list=books.filter(b=>(cat==='All'||b.category===cat)&&(`${b.title} ${b.author||''} ${b.category}`.toLowerCase().includes(q)));grid.innerHTML=list.length?list.map(b=>{const u=b.cover_path?db.storage.from('book-covers').getPublicUrl(b.cover_path).data.publicUrl:'';const cover=u?`<img src="${u}" style="width:100%;height:220px;object-fit:cover;border-radius:10px">`:`<div class="cover-real" style="background:${coverStyle(b.title)}"><span class="top">${esc(b.category||'BOOK')}</span><span class="mid">${esc(b.title.slice(0,22))}</span><span class="bot">DIRECT OPEN</span></div>`;const del=isAdmin?`<button class="read" style="background:#b42318;margin-top:6px" onclick="event.stopPropagation();deleteBook('${b.id}')">🗑 Delete (Admin Only)</button>`:'';return `<article class="card" onclick="readBook('${b.id}')">${cover}<h3>${esc(b.title)}</h3><p>👆 Click to open directly</p>${del}</article>`;}).join(''):'<div class="card"><h3>No books</h3><p>Admin can upload</p></div>';bookCount.textContent=books.length;if(isAdmin){adminList.innerHTML=books.map(b=>`<div class="item"><span><b>${esc(b.title)}</b><small style="display:block;color:#7a8592">${esc(b.category)}</small></span><button class="danger" onclick="deleteBook('${b.id}')">Delete</button></div>`).join('')||'<p>No books</p>';}else{adminList.innerHTML='<p style="font-size:12px;color:#6b7a8a">Login as admin to see delete at end</p>';}}
+function renderBooks(){const q=(search.value||'').toLowerCase(),cat=category.value||'All';const list=books.filter(b=>(cat==='All'||b.category===cat)&&(`${b.title} ${b.author||''} ${b.category}`.toLowerCase().includes(q)));grid.innerHTML=list.length?list.map(b=>{const u=b.cover_path?db.storage.from('book-covers').getPublicUrl(b.cover_path).data.publicUrl:'';const cover=u?`<img src="${u}" style="width:100%;height:220px;object-fit:cover;border-radius:10px">`:`<div class="cover-real" style="background:${coverStyle(b.title)}"><span class="top">${esc(b.category||'BOOK')}</span><span class="mid">${esc(b.title.slice(0,22))}</span><span class="bot">DIRECT • NO POPUP</span></div>`;const del=isAdmin?`<button class="read" style="background:#b42318;margin-top:6px" onclick="event.stopPropagation();deleteBook('${b.id}')">🗑 Delete (Admin Only)</button>`:'';return `<article class="card" onclick="readBook('${b.id}')">${cover}<h3>${esc(b.title)}</h3><p>👆 Direct - no popup</p>${del}</article>`;}).join(''):'<div class="card"><h3>No books</h3><p>Admin can upload</p></div>';bookCount.textContent=books.length;if(isAdmin){adminList.innerHTML=books.map(b=>`<div class="item"><span><b>${esc(b.title)}</b><small style="display:block;color:#7a8592">${esc(b.category)}</small></span><button class="danger" onclick="deleteBook('${b.id}')">Delete</button></div>`).join('')||'<p>No books</p>';}else{adminList.innerHTML='<p style="font-size:12px;color:#6b7a8a">Login as admin to see delete at end</p>';}}
 async function refreshStudent(){const r=await db.auth.getUser();const u=r.data.user||null;if(u){studentAuth.classList.add('hidden');studentLogged.classList.remove('hidden');studentNameView.textContent=u.user_metadata?.full_name||u.email.split('@')[0];studentLabel.textContent=u.email.split('@')[0];}else{studentAuth.classList.remove('hidden');studentLogged.classList.add('hidden');studentLabel.textContent='Login';}}
 function openStudent(){student.classList.remove('hidden');refreshStudent()} function closeStudent(){student.classList.add('hidden')}
 async function studentSignup(){const n=studentName.value.trim(),e=studentEmail.value.trim(),p=studentPassword.value;if(!n||!e||p.length<6){studentStatus.textContent='Name, email, 6+ chars required';return}studentStatus.textContent='Creating...';const {error}=await db.auth.signUp({email:e,password:p,options:{data:{full_name:n}}});if(error){studentStatus.textContent=error.message;return}studentStatus.textContent='✅ Created, login now';}
@@ -189,8 +173,8 @@ async function loadUsers(){try{const r=await db.from('profiles').select('*').lim
 async function login(){loginStatus.textContent='Signing in...';const {data,error}=await db.auth.signInWithPassword({email:email.value.trim(),password:password.value});if(error){loginStatus.textContent=error.message;return}const p=await db.from('profiles').select('role').eq('id',data.user.id).single();if(p.data?.role!=='admin'){await db.auth.signOut();loginStatus.textContent='Not admin';isAdmin=false;return}isAdmin=true;loginArea.classList.add('hidden');panel.classList.remove('hidden');await loadBooks();await loadUsers();}
 async function uploadBook(e){e.preventDefault();if(!isAdmin){uploadStatus.textContent='Only admin';return}const p=pdfFile.files[0],c=cover.files[0],s=uploadStatus;if(!p||p.type!=='application/pdf'){s.textContent='PDF required';return}const u=(await db.auth.getUser()).data.user;if(!u){s.textContent='Login first';return}s.textContent='Uploading...';const id=crypto.randomUUID(),safe=x=>x.replace(/[^a-z0-9._-]/gi,'_'),pp=`${u.id}/${id}-${safe(p.name)}`;let cp='';if(c){cp=`${u.id}/${id}-${safe(c.name)}`;const r=await db.storage.from('book-covers').upload(cp,c);if(r.error){s.textContent=r.error.message;return}}let r=await db.storage.from('book-pdfs').upload(pp,p,{contentType:'application/pdf'});if(r.error){s.textContent=r.error.message;return}r=await db.from('books').insert({title:title.value,author:author.value,category:bookcat.value,cover_path:cp,pdf_path:pp});if(r.error){s.textContent=r.error.message;return}e.target.reset();s.textContent='✅ Uploaded';await loadBooks();}
 async function deleteBook(id){if(!isAdmin){alert('Only admin can delete after login');return}const b=books.find(x=>x.id===id);if(!b||!confirm('Delete this book? Admin only'))return;await db.storage.from('book-pdfs').remove([b.pdf_path]);if(b.cover_path) await db.storage.from('book-covers').remove([b.cover_path]);const r=await db.from('books').delete().eq('id',id);if(r.error){alert(r.error.message);return}await loadBooks();}
-function readBook(id){const b=books.find(x=>x.id===id);if(!b) return;readerTitle.textContent=b.title;readerMeta.textContent=b.category+(b.author?' • '+b.author:'');const u=db.storage.from('book-pdfs').getPublicUrl(b.pdf_path).data.publicUrl;pdf.src=u;downloadBtn.href=u;reader.classList.remove('hidden');}
-function closeReader(){reader.classList.add('hidden');pdf.src='';}
+function readBook(id){const b=books.find(x=>x.id===id);if(!b) return;readerTitle.textContent=b.title;readerMeta.textContent=b.category+(b.author?' • '+b.author:'');const u=db.storage.from('book-pdfs').getPublicUrl(b.pdf_path).data.publicUrl;const directView=document.getElementById("directView");directView.innerHTML=`<div style="padding:20px;text-align:center"><h2>${esc(b.title)}</h2><p>Direct view - no popup</p><a href="${u}" target="_blank" style="display:inline-block;margin-top:12px;padding:10px 20px;background:#071522;color:#fff;border-radius:8px;text-decoration:none">📖 Open PDF Directly</a></div>`;downloadBtn.href=u;reader.classList.remove('hidden');}
+function closeReader(){reader.classList.add('hidden');}
 function esc(x){return String(x||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 </script>
 </body>
