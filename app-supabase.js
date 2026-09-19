@@ -1,47 +1,31 @@
 const sb=supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY);
 let books=[],currentBook=null;
 
-// --- ORIGINAL PCTB BOOKS 1-12 - All Classes Official Links ---
-const originalBooks = [];
-
-// Function to add books for a class
-function addClassBooks(classNum, subjects){
-  subjects.forEach(sub=>{
-    originalBooks.push({
-      id: `orig-${classNum}-${sub.toLowerCase().replace(/ /g,'-')}`,
-      title: `${sub} - Class ${classNum} (Original)`,
-      author: "PCTB Punjab",
-      category: "School Books",
-      className: `Class ${classNum}`,
-      pdf_path: "https://pctb.punjab.gov.pk/E-Books",
-      isExternal: true,
-      cover_path: ""
-    });
-  });
-}
-
-const primarySubjects = ["Urdu", "English", "Mathematics", "Islamiat", "General Knowledge"];
-const middleSubjects = ["Urdu", "English", "Mathematics", "Islamiat", "Science", "Computer", "Geography", "History"];
-const matricSubjects = ["Physics", "Chemistry", "Biology", "Mathematics", "Computer Science", "English", "Urdu", "Islamiat", "Pak Studies"];
-const interSubjects = ["Physics", "Chemistry", "Biology", "Mathematics", "Computer Science", "English", "Urdu", "Islamiat", "Pak Studies"];
-
-// Class 1-5
-for(let i=1;i<=5;i++) addClassBooks(i, primarySubjects);
-// Class 6-8
-for(let i=6;i<=8;i++) addClassBooks(i, middleSubjects);
-// Class 9-10
-for(let i=9;i<=10;i++) addClassBooks(i, matricSubjects);
-// Class 11-12
-for(let i=11;i<=12;i++) addClassBooks(i, interSubjects);
+// --- ORIGINAL BOOKS CLASS 1 TO 10 ---
+const originalBooks = [
+  { id: "class-1", title: "Class 1 - All Books (Original)", author: "PCTB Punjab", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", isExternal: true, cover_path: "" },
+  { id: "class-2", title: "Class 2 - All Books (Original)", author: "PCTB Punjab", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", isExternal: true, cover_path: "" },
+  { id: "class-3", title: "Class 3 - All Books (Original)", author: "PCTB Punjab", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", isExternal: true, cover_path: "" },
+  { id: "class-4", title: "Class 4 - All Books (Original)", author: "PCTB Punjab", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", isExternal: true, cover_path: "" },
+  { id: "class-5", title: "Class 5 - All Books (Original)", author: "PCTB Punjab", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", isExternal: true, cover_path: "" },
+  { id: "class-6", title: "Class 6 - All Books (Original)", author: "PCTB Punjab", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", isExternal: true, cover_path: "" },
+  { id: "class-7", title: "Class 7 - All Books (Original)", author: "PCTB Punjab", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", isExternal: true, cover_path: "" },
+  { id: "class-8", title: "Class 8 - All Books (Original)", author: "PCTB Punjab", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", isExternal: true, cover_path: "" },
+  { id: "class-9", title: "Class 9 - All Books (Original)", author: "PCTB Punjab", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", isExternal: true, cover_path: "" },
+  { id: "class-10", title: "Class 10 - All Books (Original)", author: "PCTB Punjab", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", isExternal: true, cover_path: "" }
+];
 
 async function enterLibrary(){document.getElementById("welcome").classList.add("hidden");document.getElementById("library").classList.remove("hidden");await loadBooks();}
 async function loadBooks(){
-  const r=await sb.from("books").select("*").order("created_at",{ascending:false});
-  if(r.error){
-    console.error(r.error);
+  try {
+    const r=await sb.from("books").select("*").order("created_at",{ascending:false});
+    if(r.error || !r.data || r.data.length===0){
+      books = [...originalBooks];
+    } else {
+      books = [...originalBooks, ...r.data];
+    }
+  } catch(e){
     books = [...originalBooks];
-  } else {
-    books = [...originalBooks, ...(r.data||[])];
   }
   renderBooks();
   if(document.getElementById("adminBooks")) renderAdmin();
@@ -49,16 +33,12 @@ async function loadBooks(){
 function renderBooks(){
   const q=(document.getElementById("search")?.value||"").trim().toLowerCase();
   const c=(document.getElementById("category")?.value||"All");
-  const classFilter=document.getElementById("classFilter")?.value||"All";
-  let list=books.filter(b=>(c==="All"||b.category===c)&&(`${b.title} ${b.author||""} ${b.category} ${b.className||""}`).toLowerCase().includes(q));
-  if(classFilter!=="All"){
-    list=list.filter(b=>b.className===classFilter);
-  }
+  const list=books.filter(b=>(c==="All"||b.category===c)&&(`${b.title} ${b.author||""} ${b.category}`).toLowerCase().includes(q));
   document.getElementById("books").innerHTML=list.length?list.map(b=>{
     const cover=b.cover_path && !b.isExternal?sb.storage.from("book-covers").getPublicUrl(b.cover_path).data.publicUrl:"";
     const pdfUrl = b.isExternal ? b.pdf_path : sb.storage.from("book-pdfs").getPublicUrl(b.pdf_path).data.publicUrl;
-    return `<article class="card">${cover?`<img class="book-cover" src="${cover}" alt="${esc(b.title)}">`:`<div class="icon">📘</div>`}<h3>${esc(b.title)}</h3><p>${esc(b.author||"")}</p><small>${esc(b.category||"")} | ${esc(b.className||"")}</small><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button onclick="readBook('${b.id}')">Read</button><a href="${pdfUrl}" target="_blank" style="padding:6px 12px;background:#0a7c3e;color:#fff;border-radius:6px;text-decoration:none;">Download Original</a></div></article>`;
-  }).join(""):`<div class="card"><h3>No books in this category</h3><p>Try selecting Class 1-12 or search</p></div>`;
+    return `<article class="card">${cover?`<img class="book-cover" src="${cover}" alt="${esc(b.title)}">`:`<div class="icon">📘</div>`}<h3>${esc(b.title)}</h3><p>${esc(b.author||"")}</p><small>${esc(b.category||"")}</small><div style="margin-top:10px;display:flex;gap:8px"><button onclick="readBook('${b.id}')">Read</button><a href="${pdfUrl}" target="_blank" style="padding:6px 12px;background:#0a7c3e;color:#fff;border-radius:6px;text-decoration:none;">Download Original</a></div></article>`;
+  }).join(""):`<div class="card"><h3>No books</h3><p>No books in this category</p></div>`;
 }
 function quickCat(cat){document.getElementById("category").value=cat;document.getElementById("search").value="";renderBooks();document.getElementById("books")?.scrollIntoView({behavior:"smooth"})}
 function openAdmin(){document.getElementById("admin").classList.remove("hidden")}
