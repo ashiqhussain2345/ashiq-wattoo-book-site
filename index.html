@@ -3,311 +3,118 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Study Ghar — Digital Learning Library</title>
+<title>Study Ghar - Digital Learning Library</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
-:root{--navy:#071522;--gold:#f2b84b;--bg:#f4f7fa;--line:#e3e9ef}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg)} .hidden{display:none!important}
-.welcome{min-height:100vh;background:#071522;color:#fff;position:relative;display:flex;align-items:center;justify-content:center}
-.wc{text-align:center;padding:30px}.enter{background:var(--gold);border:0;border-radius:12px;padding:15px 28px;font-weight:900;font-size:16px;cursor:pointer}
-.topbar{height:70px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 5vw;gap:20px;position:sticky;top:0;z-index:20}
-.wrap{max-width:1280px;margin:auto;padding:24px 5vw}
-.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:14px 5vw;background:#fff;border-bottom:1px solid var(--line)}
-.cat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#fff;cursor:pointer;text-align:left}.cat:hover{border-color:var(--gold)}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:16px}
-.card{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.05);transition:.2s;cursor:pointer}.card:hover{transform:translateY(-4px)}
-.cover-real{height:220px;display:flex;flex-direction:column;justify-content:space-between;padding:14px;color:#fff;position:relative}
-.cover-real .top{font-size:10px;letter-spacing:2px;opacity:.9}
-.cover-real .mid{font-size:28px;font-weight:900;line-height:1.1}
-.cover-real .bot{font-size:11px;opacity:.9}
-.card h3{font-size:13px;margin:10px 12px 2px}.card p{font-size:11px;color:#6b7a8a;margin:0 12px 8px}
-.btns{display:flex;gap:6px;padding:8px 12px 12px}.btns button{flex:1;border:0;border-radius:8px;padding:8px;font-weight:800;font-size:11px;cursor:pointer}
-.read{background:var(--navy);color:#fff}.down{background:#0a7c3e;color:#fff}
-.modal{position:fixed;inset:0;background:rgba(2,8,18,.75);z-index:50;display:flex;align-items:center;justify-content:center;padding:14px}
-.box{background:#fff;border-radius:16px;width:min(1000px,95vw);height:min(90vh,850px);overflow:hidden;display:flex;flex-direction:column}
-.head{display:flex;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--line)}
-.pdf{flex:1;border:0}
-.class-view{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:16px}
-.back{border:1px solid #ddd;background:#f5f7fa;border-radius:8px;padding:6px 10px;cursor:pointer}
-.admin-box{width:min(800px,95vw);height:auto;max-height:92vh;overflow:auto}
-.form{display:grid;gap:8px;padding:16px}.form input,.form select{padding:10px;border:1px solid #dce3ea;border-radius:8px}
-.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 16px}
-.stat{border:1px solid var(--line);border-radius:10px;padding:10px;background:#f8fafc;text-align:center}
-.item{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eee;padding:10px 0;gap:10px}
-.danger{background:#b42318;color:#fff;border:0;border-radius:8px;padding:6px 10px;cursor:pointer}
-.user-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:13px}
-@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}.cats{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){.grid{grid-template-columns:repeat(2,1fr)}.cats{grid-template-columns:repeat(2,1fr)}}
+:root{--navy:#071522;--gold:#f2b84b;--gold2:#ffd477;--bg:#f4f7fa;--line:#e3e9ef}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg)} .hidden{display:none!important} button{cursor:pointer;font:inherit}
+/* BRIGHT FRONT WITH YOUR IMAGE - STUDY GHAR */
+.welcome{position:relative;min-height:100vh;background:#0a1620 url("welcome-hero.png") center/cover no-repeat;color:#fff;overflow:hidden}
+.welcome:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,15,28,.68) 0%,rgba(8,22,40,.52) 38%,rgba(10,28,50,.28) 70%,rgba(10,20,35,.10) 100%)}
+.welcome:after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.12)}
+.wc{position:relative;z-index:2;min-height:100vh;max-width:1300px;margin:0 auto;padding:22px 40px 18px;display:flex;flex-direction:column}
+.wtop{display:flex;justify-content:space-between;align-items:center}.brand{display:flex;align-items:center;gap:8px;font-weight:900;font-size:20px;text-shadow:0 2px 8px rgba(0,0,0,.6);letter-spacing:1px}.brand span{color:var(--gold)}.admin-pill{border:1px solid rgba(255,255,255,.4);background:rgba(255,255,255,.12);color:#fff;border-radius:30px;padding:10px 18px;font-weight:700;backdrop-filter:blur(8px);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.wmain{max-width:760px;margin:auto 0;padding:30px 0 20px}.eyebrow{color:var(--gold);font-size:12px;font-weight:900;letter-spacing:2.5px;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.wmain h1{font:900 clamp(48px,6.5vw,78px)/.9 Georgia,serif;margin:16px 0 0;text-shadow:0 3px 12px rgba(0,0,0,.7)}.wmain h1 span{color:var(--gold)}.site{font-size:18px;font-weight:900;letter-spacing:7px;margin-top:10px;color:#f2c97a;text-shadow:0 2px 8px rgba(0,0,0,.6)}
+.tagline{font-size:17px;font-weight:700;margin:18px 0 10px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.6)}.desc{color:#e8eef3;line-height:1.6;font-size:14px;max-width:600px;text-shadow:0 1px 6px rgba(0,0,0,.6)}.chips{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}.chips span{padding:8px 14px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.22);border-radius:20px;font-size:13px;font-weight:600;backdrop-filter:blur(4px);box-shadow:0 2px 8px rgba(0,0,0,.2)}.enter{background:var(--gold);color:#1a1a1a;border:0;border-radius:12px;padding:14px 26px;font-weight:900;font-size:15px;display:inline-flex;align-items:center;gap:10px;box-shadow:0 10px 28px rgba(242,184,75,.35),0 4px 12px rgba(0,0,0,.3);margin-top:10px}.wfeat{display:flex;gap:18px;margin-top:22px;font-size:12px;color:#fff;flex-wrap:wrap;align-items:center;text-shadow:0 1px 4px rgba(0,0,0,.6)}.wfeat i{width:1px;height:14px;background:rgba(255,255,255,.4)}.wfoot{text-align:center;color:#f2c97a;letter-spacing:5px;font-size:9px;font-weight:800;margin-top:auto;padding-top:20px;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.topbar{height:74px;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 5vw;gap:24px;position:sticky;top:0;z-index:20;backdrop-filter:blur(10px)}.navbrand{margin-right:auto;line-height:1.05}.navbrand b{display:block;font-size:16px}.navbrand small{color:#c18b28;letter-spacing:3px;font-weight:900;font-size:8px}.navlinks{display:flex;gap:22px}.navlinks a{text-decoration:none;color:#637181;font-size:13px;font-weight:700}.navact{display:flex;gap:8px}.navact button{border:1px solid #dce3e9;background:#fff;border-radius:9px;padding:8px 12px;font-size:12px;font-weight:700}
+.hero{background:linear-gradient(115deg,#071522 0%,#0c2337 70%,#12344c 100%);color:#fff;padding:60px 6vw 50px}.hero h2{font:700 clamp(36px,5vw,60px)/1 Georgia,serif;margin:10px 0}.hero h2 span{color:var(--gold)}.hero p{max-width:700px;color:#cbd6df}
+.search{background:#fff;border-radius:14px;padding:6px;display:flex;max-width:820px;margin-top:22px}.search input{flex:1;border:0;outline:0;padding:12px}.search select{border:0;border-left:1px solid #e1e5e9;padding:10px;background:#fff;min-width:120px}
+.quick{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;font-size:12px}.quick button{background:none;border:0;color:#fff}
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;padding:20px 5vw;background:#fff;border-bottom:1px solid var(--line)}.cat{border:1px solid var(--line);background:#fff;border-radius:14px;padding:14px;text-align:left;transition:.2s}.cat:hover{transform:translateY(-2px);border-color:#d6b56e}.cat b,.cat small{display:block}.cat b{font-size:12px}.cat small{color:#7b8794;font-size:10px}
+.wrap{max-width:1250px;margin:auto;padding:36px 5vw 60px}.title h2{margin:0;font-size:24px}.title p{color:#7b8794;font-size:12px;margin:4px 0 0}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;box-shadow:0 6px 20px rgba(16,32,51,.05);transition:.2s;overflow:hidden}.card:hover{transform:translateY(-3px)}
+.cover-real{width:100%;height:220px;border-radius:10px;display:flex;flex-direction:column;justify-content:space-between;padding:12px;color:#fff}.cover-real .top{font-size:8px;letter-spacing:2px;opacity:.9;font-weight:800}.cover-real .mid{font-size:20px;font-weight:900;line-height:1.1}.cover-real .bot{font-size:9px;opacity:.9}
+.card h3{font-size:13px;margin:10px 3px 3px}.card p{font-size:11px;color:#7a8592;margin:0 3px 8px;min-height:16px}.read{width:100%;border:0;border-radius:9px;padding:9px;background:#071522;color:#fff;font-weight:800;font-size:11px}.btns{display:flex;gap:6px}.btns button{flex:1}
+.class-view{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:16px}.back{border:1px solid #ddd;background:#f8fafc;border-radius:8px;padding:6px 12px;font-weight:700}
+.modal{position:fixed;inset:0;background:rgba(2,8,18,.76);z-index:50;display:flex;align-items:center;justify-content:center;padding:15px}.box{background:#fff;border-radius:18px;width:min(1100px,96vw);height:min(90vh,850px);overflow:hidden;display:flex;flex-direction:column}.head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}.head button{border:0;background:#eef1f5;border-radius:8px;padding:8px}.pdf{flex:1;border:0;width:100%;background:#e9edf2}.actions{padding:12px;display:flex;gap:8px;justify-content:center}.actions a,.actions button{background:#071522;color:#fff;border:0;border-radius:10px;padding:10px 16px;font-weight:800;text-decoration:none}.admin{width:min(720px,96vw);height:auto;max-height:92vh;padding-bottom:12px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:16px 20px}.stat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#f8fafc;text-align:center}.stat b{display:block;font-size:22px}.form{padding:18px;display:grid;gap:8px}.form input,.form select{padding:11px;border:1px solid #dce3ea;border-radius:8px}.item{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #edf0f4;padding:10px 0}.danger{background:#b42318!important;color:#fff;border:0;border-radius:8px;padding:6px 10px}
+@media(max-width:1050px){.cats{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(3,1fr)}.navlinks{display:none}}
+@media(max-width:700px){.cats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.wc{padding:20px 18px}.wmain h1{font-size:44px}}
 </style>
 </head>
 <body>
-<section id="welcome" class="welcome"><div class="wc"><h1 style="font-size:64px;margin:0">Study <span style="color:var(--gold)">Ghar</span></h1><p>Parhai ka sab kuch, ek hi jagah - Class 1 to College</p><button class="enter" onclick="enterLibrary()">📚 ENTER LIBRARY →</button></div></section>
+<section id="welcome" class="welcome">
+<div class="wc">
+<div class="wtop"><div class="brand">📚 Study <span>Ghar</span></div><button class="admin-pill" onclick="openAdmin()">🔐 Admin Login</button></div>
+<div class="wmain">
+<div class="eyebrow">✦ WELCOME TO YOUR DIGITAL LIBRARY ✦</div>
+<h1>Study <span>Ghar</span></h1>
+<div class="site">DIGITAL LIBRARY</div>
+<div class="tagline">Knowledge for Everyone • Books Build Better Futures</div>
+<div class="desc">Explore School Books, College Books, Computer Notes, Old Papers, Islamic Books and much more — all in one place.</div>
+<div class="chips"><span>🏫 School</span><span>🎓 College</span><span>💻 Computer</span><span>📝 Old Papers</span><span>☪ Islamic</span></div>
+<button class="enter" onclick="enterLibrary()">📚 ENTER LIBRARY <span>→</span></button>
+<div class="wfeat"><span>📄 Free to Read</span><i></i><span>🔗 Easy Download</span><i></i><span>🔗 Share with Others</span></div>
+</div>
+<div class="wfoot">KNOWLEDGE &nbsp;•&nbsp; LEARNING &nbsp;•&nbsp; SUCCESS</div>
+</div>
+</section>
 
 <main id="library" class="hidden">
-<nav class="topbar"><b>📚 Study Ghar</b><div style="margin-left:auto;display:flex;gap:8px"><button onclick="showSection('school')">🏫 School (1-10)</button><button onclick="showSection('college')">🎓 College</button><button onclick="openStudent()">👤 <span id="studentLabel">Login</span></button><button onclick="openAdmin()">🔐 Admin</button></div></nav>
-
-<section class="wrap">
-<div class="cats">
-<button class="cat" onclick="showSection('school')"><b>🏫 School</b><small>Class 1-10 Original</small></button>
-<button class="cat" onclick="showSection('college')"><b>🎓 College</b><small>FA, FSc, ICS, ICom</small></button>
-<button class="cat" onclick="quickCat('Computer Notes')"><b>💻 Computer</b><small>Notes</small></button>
-<button class="cat" onclick="quickCat('Old Papers')"><b>📝 Papers</b><small>Past Papers</small></button>
-<button class="cat" onclick="quickCat('Islamic Books')"><b>☪ Islamic</b><small>Books</small></button>
+<nav class="topbar"><div class="navbrand"><b>📚 Study Ghar</b><small>DIGITAL LIBRARY</small></div><div class="navlinks"><a class="active" href="#" onclick="showAllClasses()">Home</a><a href="#" onclick="showAllClasses()">All Books</a><a href="#" onclick="showCollegeSection()">College</a><a href="#footer">About</a></div><div class="navact"><button onclick="openStudent()">👤 <span id="studentLabel">Login</span></button><button onclick="openAdmin()">🔐 Admin</button></div></nav>
+<section class="hero"><div class="eyebrow">✦ YOUR DIGITAL LIBRARY</div><h2>Learn. Read. <span>Grow.</span></h2><p>Books, notes and past papers — organized for students and learners in one beautiful place.</p><div class="search"><span style="padding:12px">🔍</span><input id="search" placeholder="Search books, notes, subjects..." oninput="renderBooks()"><select id="category" onchange="renderBooks()"><option>All</option><option>School Books</option><option>College Books</option><option>Computer Notes</option><option>Old Papers</option><option>Islamic Books</option><option>Other Books</option></select></div><div class="quick"><b>Popular:</b><button onclick="quickCat('School Books')">School</button><button onclick="showCollegeSection()">College</button><button onclick="quickCat('Computer Notes')">Computer</button><button onclick="quickCat('Old Papers')">Old Papers</button><button onclick="quickCat('Islamic Books')">Islamic</button></div></section>
+<section class="cats">
+<button class="cat" onclick="showAllClasses()"><b>🏫 School Books</b><small>Class 1–10 • Real Covers</small></button>
+<button class="cat" onclick="showCollegeSection()"><b>🎓 College Books</b><small>FA • FSc • ICS • ICom</small></button>
+<button class="cat" onclick="quickCat('Computer Notes')"><b>💻 Computer</b><small>IT Notes</small></button>
+<button class="cat" onclick="quickCat('Old Papers')"><b>📝 Old Papers</b><small>Past Papers</small></button>
+<button class="cat" onclick="quickCat('Islamic Books')"><b>☪ Islamic</b><small>Quran • Hadith</small></button>
 <button class="cat" onclick="quickCat('Other Books')"><b>📚 Other</b><small>General</small></button>
-</div>
-
-<!-- SCHOOL SECTION -->
-<div id="schoolSection">
-<h2 style="margin:18px 0 4px 0">✨ School Books - Class 1 to 10</h2><p style="color:#6b7a8a;font-size:13px;margin:0">Class par click karo, uski sari books pics ke sath khulengi</p>
-<div id="classGrid" class="grid"></div>
-<div id="subjectView" class="class-view hidden">
-<button class="back" onclick="backToClasses()">← Back</button>
-<h2 id="subjectTitle"></h2>
-<div id="subjectGrid" class="grid"></div>
-</div>
-</div>
-
-<!-- COLLEGE SECTION -->
-<div id="collegeSection" class="hidden">
-<h2 style="margin:18px 0 4px 0">🎓 College Books - FA / FSc / ICS / ICom</h2><p style="color:#6b7a8a;font-size:13px;margin:0">Stream select karo</p>
-<div id="collegeStreamGrid" class="grid"></div>
-<div id="collegeSubjectView" class="class-view hidden">
-<button class="back" onclick="backToCollege()">← Back to College</button>
-<h2 id="collegeSubjectTitle"></h2>
-<div id="collegeSubjectGrid" class="grid"></div>
-</div>
-</div>
-
-<div id="allBooksWrap" style="margin-top:28px"><h3>📚 Admin Uploaded Books</h3><div id="grid" class="grid"></div></div>
 </section>
+<section class="wrap" id="books">
+<div class="title"><div><h2 id="sectionTitle">✨ Explore Books</h2><p id="sectionDesc">Class 1-10 + College - Select class to view all subjects with pics</p></div><button id="backBtn" class="hidden" onclick="showAllClasses()" style="border:1px solid #ddd;background:#fff;border-radius:8px;padding:8px 12px;font-weight:700">← Back to Classes</button></div>
+<div id="classGrid" class="grid"></div>
+<div id="subjectView" class="hidden"><h3 id="subjectViewTitle"></h3><div id="subjectGrid" class="grid"></div></div>
+<div id="collegeGrid" class="hidden"><h3>🎓 College Streams</h3><div id="collegeStreamGrid" class="grid"></div><div id="collegeSubjectView" class="hidden" style="margin-top:18px"><h3 id="collegeSubjectTitle"></h3><div id="collegeSubjectGrid" class="grid"></div></div></div>
+<div id="allBooksWrap" style="margin-top:32px"><div class="title"><div><h2>📚 Other Books</h2><p>Admin uploaded books</p></div></div><div id="grid" class="grid"></div></div>
+</section>
+<footer id="footer" style="background:#071321;color:#fff;padding:26px 6vw;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px"><div>📚 <b>Study Ghar</b><div style="color:#aeb9c7;font-size:12px;margin-top:4px">Knowledge • Learning • Success</div></div><div style="display:flex;gap:14px;font-size:12px"><a href="#" style="color:#fff;text-decoration:none">Privacy</a><a href="#" style="color:#fff;text-decoration:none">Terms</a><a href="#" style="color:#fff;text-decoration:none">Contact</a></div></footer>
 </main>
 
-<div id="reader" class="modal hidden"><div class="box"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta" style="display:block;color:#6b7a8a"></small></div><button onclick="closeReader()">✕</button></div><iframe id="pdf" class="pdf"></iframe><div style="padding:10px;display:flex;gap:8px;justify-content:center"><a id="downloadBtn" target="_blank" style="padding:10px 16px;background:#071522;color:#fff;border-radius:8px;text-decoration:none">⬇ Download</a><button onclick="closeReader()" style="padding:10px 16px">Close</button></div></div></div>
-
-<div id="student" class="modal hidden"><div class="box" style="height:auto"><div class="head"><b>👤 Student</b><button onclick="closeStudent()">✕</button></div><div class="form"><input id="studentName" placeholder="Full Name"><input id="studentEmail" placeholder="Email"><input id="studentPassword" type="password" placeholder="Password (6+ chars)"><div style="display:flex;gap:8px"><button onclick="studentSignup()" style="padding:10px;background:#071522;color:#fff;border:0;border-radius:8px;flex:1">Create Account</button><button onclick="studentLogin()" style="padding:10px;background:#0a7c3e;color:#fff;border:0;border-radius:8px;flex:1">Login</button></div><div id="studentStatus"></div></div></div></div>
-
-<div id="admin" class="modal hidden"><div class="box admin-box"><div class="head"><b>🔐 Admin Panel</b><button onclick="closeAdmin()">✕</button></div>
-<div id="loginArea" class="form"><input id="email" placeholder="Admin email"><input id="password" type="password" placeholder="Password"><button onclick="login()" style="padding:10px;background:#071522;color:#fff;border:0;border-radius:8px">Login</button><div id="loginStatus"></div></div>
+<div id="reader" class="modal hidden"><div class="box"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta" style="display:block;color:#738092"></small></div><button onclick="closeReader()">✕</button></div><iframe id="pdf" class="pdf"></iframe><div class="actions"><a id="downloadBtn" target="_blank">⬇ Download</a><button onclick="closeReader()">Close</button></div></div></div>
+<div id="student" class="modal hidden"><div class="box admin"><div class="head"><b>👤 Student Account</b><button onclick="closeStudent()">✕</button></div><div id="studentAuth" class="form"><label>Full Name</label><input id="studentName" placeholder="Name"><label>Email</label><input id="studentEmail" type="email" placeholder="Email"><label>Password</label><input id="studentPassword" type="password" placeholder="6+ chars"><div style="display:flex;gap:8px"><button class="read" style="padding:10px" onclick="studentSignup()">Create Account</button><button class="read" style="padding:10px;background:#0a7c3e" onclick="studentLogin()">Login</button></div><div id="studentStatus" style="font-size:12px;color:#475467"></div></div><div id="studentLogged" class="form hidden"><h3>Welcome, <span id="studentNameView"></span> 👋</h3><button class="read" style="padding:10px;background:#b42318" onclick="studentLogout()">Logout</button></div></div></div>
+<div id="admin" class="modal hidden"><div class="box admin"><div class="head"><b>🔐 Admin Panel - Only Admin Can Delete</b><button onclick="closeAdmin()">✕</button></div>
+<div id="loginArea" class="form"><label>Email</label><input id="email" type="email" placeholder="Admin email"><label>Password</label><input id="password" type="password" placeholder="Password"><button class="read" style="padding:11px" onclick="login()">Login</button><div id="loginStatus" style="font-size:12px;color:#475467"></div></div>
 <div id="panel" class="hidden">
-<!-- USER REGISTRATION ON TOP (as you asked) -->
-<div style="padding:16px;border-bottom:2px solid #eee;background:#f8fafc">
-<h3 style="margin:0 0 8px 0">👥 Registered Students (Top)</h3><div id="userListTop"><p style="font-size:13px;color:#6b7a8a">Loading users...</p></div>
-<button onclick="loadUsers()" style="margin-top:8px;padding:6px 10px;border:1px solid #ddd;border-radius:6px">🔄 Refresh Users</button>
-</div>
-
-<div class="statgrid"><div class="stat"><b id="bookCount">0</b><small>Total Books</small></div><div class="stat"><b id="userCount">—</b><small>Students</small></div><div class="stat"><b>✓</b><small>Admin</small></div></div>
-
-<form class="form" onsubmit="uploadBook(event)"><h4 style="margin:0">📤 Upload New Book</h4><input id="title" required placeholder="Book title"><input id="author" placeholder="Author / Class"><select id="bookcat"><option>School Books</option><option>College Books</option><option>Computer Notes</option><option>Old Papers</option><option>Islamic Books</option><option>Other Books</option></select><input id="cover" type="file" accept="image/*"><input id="pdfFile" type="file" accept="application/pdf" required><button style="padding:10px;background:#0a7c3e;color:#fff;border:0;border-radius:8px">Upload Book</button><div id="uploadStatus"></div></form>
-
-<!-- DELETE OPTION AT END (as you asked) -->
-<div style="padding:16px;border-top:2px solid #eee;margin-top:16px">
-<h3 style="margin:0 0 8px 0">🗑️ Manage Books - Delete at End</h3>
-<div id="adminList"></div>
-</div>
-
+<div style="padding:16px 20px;background:#f8fafc;border-bottom:2px solid #e3e9ef"><h3 style="margin:0 0 4px 0">👥 Registered Students - On Top</h3><div id="userListTop" style="max-height:160px;overflow:auto;background:#fff;border:1px solid #e3e9ef;border-radius:10px;padding:10px"></div><div style="display:flex;gap:8px;margin-top:8px"><button onclick="loadUsers()" style="padding:6px 10px;border:1px solid #ddd;border-radius:6px">🔄 Refresh</button><span id="userCountTop" style="font-size:12px;color:#738092;margin-left:auto"></span></div></div>
+<div class="statgrid"><div class="stat"><b id="bookCount">0</b><small>Total</small></div><div class="stat"><b id="userCount">—</b><small>Students</small></div><div class="stat"><b>✓</b><small>Admin</small></div></div>
+<form class="form" onsubmit="uploadBook(event)"><h4 style="margin:0">📤 Upload Book</h4><input id="title" required placeholder="Title"><input id="author" placeholder="Author"><select id="bookcat" required><option value="">Select category</option><option>School Books</option><option>College Books</option><option>Computer Notes</option><option>Old Papers</option><option>Islamic Books</option><option>Other Books</option></select><label>Cover (optional)</label><input id="cover" type="file" accept="image/*"><label>PDF *</label><input id="pdfFile" type="file" accept="application/pdf" required><button class="read" style="padding:11px;background:#0a7c3e">📤 Upload</button><div id="uploadStatus" style="font-size:12px;color:#475467"></div></form>
+<div style="padding:16px 20px;border-top:2px solid #e3e9ef;margin-top:8px;background:#fff8f8"><h3 style="margin:0 0 4px 0">🗑️ Delete Books - At End - Admin Only</h3><p style="margin:0 0 10px 0;font-size:11px;color:#b42318">Only admin after login can delete.</p><div id="adminList"></div></div>
 </div></div></div>
 
 <script>
 const SB_URL="https://ppjibzvskpmdufehkqvx.supabase.co";
 const SB_KEY="sb_publishable_IDS03s6m4fS50mYs5Uy7og_vE32749u";
 const db=supabase.createClient(SB_URL,SB_KEY);
-let books=[];
-
-function coverStyle(subject){
-  const map={
-    "Urdu":"linear-gradient(135deg,#ff6f00,#ff9e00)", "English":"linear-gradient(135deg,#1565c0,#42a5f5)",
-    "Math":"linear-gradient(135deg,#2e7d32,#66bb6a)", "Science":"linear-gradient(135deg,#006064,#26c6da)",
-    "Islamiat":"linear-gradient(135deg,#4a148c,#8e24aa)", "Physics":"linear-gradient(135deg,#0d47a1,#42a5f5)",
-    "Chemistry":"linear-gradient(135deg,#880e4f,#ec407a)", "Biology":"linear-gradient(135deg,#1b5e20,#81c784)",
-    "Computer":"linear-gradient(135deg,#263238,#78909c)", "Pak Studies":"linear-gradient(135deg,#1b5e20,#a5d6a7)",
-    "History":"linear-gradient(135deg,#bf360c,#ff7043)", "Geography":"linear-gradient(135deg,#827717,#c0ca33)",
-    "Arabic":"linear-gradient(135deg,#3e2723,#8d6e63)", "Social":"linear-gradient(135deg,#f57f17,#ffca28)",
-    "FA":"linear-gradient(135deg,#4a148c,#ab47bc)", "FSc":"linear-gradient(135deg,#0d47a1,#29b6f6)",
-    "ICS":"linear-gradient(135deg,#004d40,#26a69a)", "ICom":"linear-gradient(135deg,#bf360c,#ffa726)"
-  };
-  for(let k in map){ if(subject.includes(k)) return map[k]; }
-  return "linear-gradient(135deg,#37474f,#90a4ae)";
-}
-
-// SCHOOL DATA 1-10
-const classData={
-  1:{name:"Class 1", subs:["Urdu","English","Math","Islamiat","Waqfiyat Amma"]},
-  2:{name:"Class 2", subs:["Urdu","English","Math","Islamiat","Waqfiyat"]},
-  3:{name:"Class 3", subs:["Urdu","English","Math","Science","Islamiat","Social Studies"]},
-  4:{name:"Class 4", subs:["Urdu","English","Math","Science","Islamiat","Social Studies"]},
-  5:{name:"Class 5", subs:["Urdu","English","Math","Science","Islamiat","Social Studies"]},
-  6:{name:"Class 6", subs:["Urdu","English","Math","Science","Islamiat","History","Geography","Computer","Arabic"]},
-  7:{name:"Class 7", subs:["Urdu","English","Math","Science","Islamiat","History","Geography","Computer","Arabic"]},
-  8:{name:"Class 8", subs:["Urdu","English","Math","Science","Islamiat","History","Computer"]},
-  9:{name:"Class 9", subs:["Urdu","English","Math","Physics","Chemistry","Biology","Computer","Islamiat","Pak Studies","Tarjuma Quran"]},
-  10:{name:"Class 10", subs:["Urdu","English","Math","Physics","Chemistry","Biology","Computer","Islamiat","Pak Studies","Tarjuma Quran"]}
-};
-
-// COLLEGE DATA
-const collegeData={
-  "FA":{name:"FA - Faculty of Arts", subs:["FA Urdu Part 1","FA Urdu Part 2","FA English Part 1","FA English Part 2","FA Islamiat","FA Pak Studies","FA Civics","FA Economics"]},
-  "FSc-PreMedical":{name:"FSc Pre-Medical", subs:["Physics 11","Physics 12","Chemistry 11","Chemistry 12","Biology 11","Biology 12","Urdu 11-12","English 11-12"]},
-  "FSc-PreEng":{name:"FSc Pre-Engineering", subs:["Physics 11","Physics 12","Chemistry 11","Chemistry 12","Math 11","Math 12","Urdu 11-12","English 11-12"]},
-  "ICS":{name:"ICS - Computer Science", subs:["Computer 11","Computer 12","Physics 11","Math 11","Math 12","Urdu 11-12","English 11-12","Stats"]},
-  "ICom":{name:"ICom - Commerce", subs:["Accounting 11","Accounting 12","Commerce 11","Business Math","Economics","Urdu","English"]}
-};
-
-function enterLibrary(){welcome.classList.add('hidden');library.classList.remove('hidden');renderClassGrid();renderCollegeStreams();loadBooks();}
-
-function renderClassGrid(){
-  const g=document.getElementById("classGrid");
-  g.innerHTML=Object.keys(classData).map(n=>{
-    const c=classData[n];
-    return `<div class="card" onclick="openClass(${n})"><div class="cover-real" style="background:${coverStyle('Math')}"><div class="top">PCTB • ORIGINAL</div><div class="mid">CLASS ${n}</div><div class="bot">${c.subs.length} Books • School</div></div><h3>Class ${n} - All Books</h3><p>${c.subs.join(" • ").slice(0,60)}...</p><div class="btns"><button class="read">📖 View ${c.subs.length} Books</button></div></div>`;
-  }).join("");
-}
-
-function openClass(num){
-  const data=classData[num];
-  document.getElementById("classGrid").classList.add("hidden");
-  document.getElementById("collegeSection").classList.add("hidden");
-  document.getElementById("allBooksWrap").classList.add("hidden");
-  const v=document.getElementById("subjectView"); v.classList.remove("hidden");
-  document.getElementById("subjectTitle").textContent=`${data.name} - ${data.subs.length} Books`;
-  document.getElementById("subjectGrid").innerHTML=data.subs.map(s=>`
-    <div class="card"><div class="cover-real" style="background:${coverStyle(s)}"><div class="top">PCTB CLASS ${num}</div><div class="mid">${s}</div><div class="bot">Original • PCTB Punjab</div></div><h3>${s} - Class ${num}</h3><p>PCTB Original • ${data.name}</p><div class="btns"><button class="read" onclick="openSubject('${s}',${num})">📖 Read</button><button class="down" onclick="downloadSubject('${s}',${num})">⬇ Download</button></div></div>
-  `).join("");
-  v.scrollIntoView({behavior:"smooth"});
-}
-function backToClasses(){
-  document.getElementById("subjectView").classList.add("hidden");
-  document.getElementById("classGrid").classList.remove("hidden");
-  document.getElementById("collegeSection").classList.remove("hidden");
-  document.getElementById("allBooksWrap").classList.remove("hidden");
-}
-
-function renderCollegeStreams(){
-  const g=document.getElementById("collegeStreamGrid");
-  g.innerHTML=Object.keys(collegeData).map(k=>{
-    const c=collegeData[k];
-    return `<div class="card" onclick="openCollege('${k}')"><div class="cover-real" style="background:${coverStyle(k)}"><div class="top">PUNJAB BOARD</div><div class="mid">${k}</div><div class="bot">${c.name}</div></div><h3>${c.name}</h3><p>${c.subs.length} Books</p><div class="btns"><button class="read">📖 View ${c.subs.length} Books</button></div></div>`;
-  }).join("");
-}
-function openCollege(key){
-  const data=collegeData[key];
-  document.getElementById("collegeStreamGrid").classList.add("hidden");
-  document.getElementById("schoolSection").classList.add("hidden");
-  document.getElementById("allBooksWrap").classList.add("hidden");
-  const v=document.getElementById("collegeSubjectView"); v.classList.remove("hidden");
-  document.getElementById("collegeSubjectTitle").textContent=`${data.name} - ${data.subs.length} Books`;
-  document.getElementById("collegeSubjectGrid").innerHTML=data.subs.map(s=>`
-    <div class="card"><div class="cover-real" style="background:${coverStyle(s)}"><div class="top">${key} • ORIGINAL</div><div class="mid">${s}</div><div class="bot">PCTB Punjab • College</div></div><h3>${s}</h3><p>${data.name} • Original</p><div class="btns"><button class="read" onclick="openSubject('${s}','College')">📖 Read</button><button class="down" onclick="downloadSubject('${s}','College')">⬇ Download</button></div></div>
-  `).join("");
-}
-function backToCollege(){
-  document.getElementById("collegeSubjectView").classList.add("hidden");
-  document.getElementById("collegeStreamGrid").classList.remove("hidden");
-  document.getElementById("schoolSection").classList.remove("hidden");
-  document.getElementById("allBooksWrap").classList.remove("hidden");
-}
-function showSection(sec){
-  if(sec==='school'){document.getElementById("schoolSection").classList.remove("hidden");document.getElementById("collegeSection").classList.add("hidden");backToClasses();}
-  else{document.getElementById("collegeSection").classList.remove("hidden");document.getElementById("schoolSection").classList.add("hidden");backToCollege();document.getElementById("collegeSection").scrollIntoView({behavior:"smooth"});}
-}
-function openSubject(sub,cls){
-  document.getElementById("readerTitle").textContent=`${sub} - ${cls}`;
-  document.getElementById("readerMeta").textContent=`PCTB Original • ${cls}`;
-  document.getElementById("pdf").src=`https://elearn.punjab.gov.pk`;
-  document.getElementById("downloadBtn").href=`https://www.ilmkidunya.com/pctb-textbooks/`;
-  document.getElementById("reader").classList.remove("hidden");
-}
-function downloadSubject(sub,cls){ window.open("https://www.ilmkidunya.com/pctb-textbooks/","_blank"); }
-function closeReader(){document.getElementById("reader").classList.add("hidden");document.getElementById("pdf").src='';}
-function quickCat(c){showSection('school');}
-
-// SUPABASE
-async function loadBooks(){
-  try{const r=await db.from('books').select('*').order('created_at',{ascending:false}); if(!r.error) books=r.data||[]; }catch(e){books=[]}
-  renderBooks(); loadUsers();
-}
-function renderBooks(){
-  const g=document.getElementById("grid"); if(!g) return;
-  g.innerHTML=books.length?books.map(b=>{
-    const u=b.cover_path?db.storage.from('book-covers').getPublicUrl(b.cover_path).data.publicUrl:'';
-    return `<div class="card"><div class="cover-real" style="background:${coverStyle(b.title)};height:180px"><div class="mid" style="font-size:18px">${b.title.slice(0,30)}</div></div><h3>${esc(b.title)}</h3><p>${esc(b.author||'')}</p><div class="btns"><button class="read" onclick="readBook('${b.id}')">📖 Read</button><button class="down" onclick="deleteBook('${b.id}')">🗑 Delete</button></div></div>`;
-  }).join(''):'<div class="card" style="padding:16px"><h3>No extra books yet</h3><p>Admin can upload from panel</p></div>';
-  document.getElementById("bookCount").textContent=books.length;
-  // Admin list at END as you asked
-  document.getElementById("adminList").innerHTML=books.map(b=>`<div class="item"><span><b>${esc(b.title)}</b><small style="display:block;color:#6b7a8a">${esc(b.category||'')}</small></span><div style="display:flex;gap:6px"><button class="danger" onclick="deleteBook('${b.id}')">🗑 Delete</button></div></div>`).join('')||'<p style="font-size:13px;color:#6b7a8a">No books to delete</p>';
-}
-async function readBook(id){
-  const b=books.find(x=>x.id===id); if(!b) return;
-  document.getElementById("readerTitle").textContent=b.title;
-  const u=db.storage.from('book-pdfs').getPublicUrl(b.pdf_path).data.publicUrl;
-  document.getElementById("pdf").src=u; document.getElementById("downloadBtn").href=u;
-  document.getElementById("reader").classList.remove("hidden");
-}
-async function deleteBook(id){
-  if(!confirm("Delete this book?")) return;
-  const b=books.find(x=>x.id===id); if(!b) return;
-  await db.storage.from('book-pdfs').remove([b.pdf_path]); if(b.cover_path) await db.storage.from('book-covers').remove([b.cover_path]);
-  const r=await db.from('books').delete().eq('id',id); if(r.error){alert(r.error.message);return}
-  await loadBooks();
-}
-async function loadUsers(){
-  try{
-    // Try to get from profiles or auth (if RLS allows)
-    const r=await db.from('profiles').select('*').limit(50);
-    const top=document.getElementById("userListTop");
-    const countEl=document.getElementById("userCount");
-    if(!r.error && r.data){
-      countEl.textContent=r.data.length;
-      top.innerHTML=r.data.map(u=>`<div class="user-row"><span>👤 ${esc(u.email||u.id.slice(0,8))}</span><span style="color:#6b7a8a">${esc(u.role||'student')}</span></div>`).join('')||'<p>No users found</p>';
-    } else {
-      // fallback - count from auth not possible, show message
-      top.innerHTML='<p style="font-size:12px;color:#6b7a8a">Users are in Supabase Auth. To show list, enable profiles table. Currently you can see total count via Supabase Dashboard > Auth > Users.</p>';
-      countEl.textContent='—';
-    }
-  }catch(e){ console.log(e); }
-}
+let books=[],isAdmin=false; db.auth.onAuthStateChange(()=>setTimeout(refreshStudent,0));
+function coverStyle(s){const m={"Urdu":"linear-gradient(135deg,#ff6f00,#ffa000)","English":"linear-gradient(135deg,#0d47a1,#42a5f5)","Math":"linear-gradient(135deg,#2e7d32,#66bb6a)","Science":"linear-gradient(135deg,#006064,#26c6da)","Islamiat":"linear-gradient(135deg,#4a148c,#ab47bc)","Physics":"linear-gradient(135deg,#0d47a1,#29b6f6)","Chemistry":"linear-gradient(135deg,#880e4f,#ec407a)","Biology":"linear-gradient(135deg,#1b5e20,#81c784)","Computer":"linear-gradient(135deg,#263238,#78909c)","Pak":"linear-gradient(135deg,#1b5e20,#a5d6a7)","FA":"linear-gradient(135deg,#4a148c,#ce93d8)","FSc":"linear-gradient(135deg,#0d47a1,#90caf9)","ICS":"linear-gradient(135deg,#004d40,#80cbc4)","ICom":"linear-gradient(135deg,#bf360c,#ffab91)"};for(let k in m){if(s.includes(k)) return m[k];} return "linear-gradient(135deg,#071522,#1e3a5f)";}
+const classData={1:{name:"Class 1",subs:["Urdu","English","Math","Islamiat","Waqfiyat Amma"]},2:{name:"Class 2",subs:["Urdu","English","Math","Islamiat","Waqfiyat"]},3:{name:"Class 3",subs:["Urdu","English","Math","Science","Islamiat","Social Studies"]},4:{name:"Class 4",subs:["Urdu","English","Math","Science","Islamiat","Social Studies"]},5:{name:"Class 5",subs:["Urdu","English","Math","Science","Islamiat","Social Studies"]},6:{name:"Class 6",subs:["Urdu","English","Math","Science","Islamiat","History","Geography","Computer","Arabic"]},7:{name:"Class 7",subs:["Urdu","English","Math","Science","Islamiat","History","Geography","Computer","Arabic"]},8:{name:"Class 8",subs:["Urdu","English","Math","Science","Islamiat","History","Computer"]},9:{name:"Class 9",subs:["Urdu","English","Math","Physics","Chemistry","Biology","Computer","Islamiat","Pak Studies","Tarjuma Quran"]},10:{name:"Class 10",subs:["Urdu","English","Math","Physics","Chemistry","Biology","Computer","Islamiat","Pak Studies","Tarjuma Quran"]}};
+const collegeData={"FA":{name:"FA - Arts",subs:["FA Urdu Part 1","FA Urdu Part 2","FA English Part 1","FA English Part 2","FA Islamiat","FA Pak Studies","FA Civics","FA Economics"]},"FSc-Medical":{name:"FSc Pre-Medical",subs:["Physics 11","Physics 12","Chemistry 11","Chemistry 12","Biology 11","Biology 12","Urdu 11-12","English 11-12"]},"FSc-Eng":{name:"FSc Pre-Engineering",subs:["Physics 11","Physics 12","Chemistry 11","Chemistry 12","Math 11","Math 12","Urdu 11-12","English 11-12"]},"ICS":{name:"ICS - Computer",subs:["Computer 11","Computer 12","Physics 11","Math 11","Math 12","English 11-12"]},"ICom":{name:"ICom - Commerce",subs:["Accounting 11","Accounting 12","Commerce 11","Business Math","Economics","Urdu","English"]}};
+async function enterLibrary(){welcome.classList.add('hidden');library.classList.remove('hidden');renderClassGrid();renderCollegeStreams();await loadBooks();}
+function renderClassGrid(){document.getElementById("classGrid").innerHTML=Object.keys(classData).map(n=>{const c=classData[n];return `<article class="card" onclick="openClass(${n})"><div class="cover-real" style="background:${coverStyle('Math')}"><span class="top">PCTB • ORIGINAL</span><span class="mid">CLASS ${n}</span><span class="bot">${c.subs.length} SUBJECTS</span></div><h3>Class ${n} - All Books</h3><p>${c.subs.slice(0,3).join(" • ")}...</p><button class="read">📖 View ${c.subs.length} Books →</button></article>`;}).join("");}
+function openClass(num){const d=classData[num];document.getElementById("classGrid").classList.add("hidden");document.getElementById("collegeGrid").classList.add("hidden");document.getElementById("allBooksWrap").classList.add("hidden");document.getElementById("backBtn").classList.remove("hidden");const v=document.getElementById("subjectView");v.classList.remove("hidden");document.getElementById("sectionTitle").textContent=`${d.name} - All Subjects`;document.getElementById("sectionDesc").textContent=`${d.subs.length} books`;document.getElementById("subjectViewTitle").textContent=`${d.name} - ${d.subs.length} Books - Real Covers`;document.getElementById("subjectGrid").innerHTML=d.subs.map(s=>`<article class="card"><div class="cover-real" style="background:${coverStyle(s)}"><span class="top">PCTB CLASS ${num}</span><span class="mid">${s}</span><span class="bot">ORIGINAL • PCTB</span></div><h3>${s} - Class ${num}</h3><p>PCTB Original</p><div style="display:flex;gap:6px"><button class="read" style="flex:1" onclick="openSubject('${s}',${num})">📖 Read</button><button class="read" style="flex:1;background:#0a7c3e" onclick="downloadSubject('${s}',${num})">⬇ Download</button></div></article>`).join("");}
+function showAllClasses(){document.getElementById("classGrid").classList.remove("hidden");document.getElementById("collegeGrid").classList.add("hidden");document.getElementById("subjectView").classList.add("hidden");document.getElementById("collegeSubjectView").classList.add("hidden");document.getElementById("allBooksWrap").classList.remove("hidden");document.getElementById("backBtn").classList.add("hidden");document.getElementById("sectionTitle").textContent="✨ Explore Books";document.getElementById("sectionDesc").textContent="Class 1-10 + College";renderClassGrid();}
+function renderCollegeStreams(){document.getElementById("collegeStreamGrid").innerHTML=Object.keys(collegeData).map(k=>{const c=collegeData[k];return `<article class="card" onclick="openCollege('${k}')"><div class="cover-real" style="background:${coverStyle(k)}"><span class="top">PUNJAB BOARD</span><span class="mid">${k}</span><span class="bot">${c.name}</span></div><h3>${c.name}</h3><p>${c.subs.length} Books</p><button class="read">📖 View ${c.subs.length} Books →</button></article>`;}).join("");}
+function showCollegeSection(){document.getElementById("classGrid").classList.add("hidden");document.getElementById("subjectView").classList.add("hidden");document.getElementById("collegeGrid").classList.remove("hidden");document.getElementById("collegeStreamGrid").classList.remove("hidden");document.getElementById("collegeSubjectView").classList.add("hidden");document.getElementById("allBooksWrap").classList.add("hidden");document.getElementById("backBtn").classList.remove("hidden");document.getElementById("sectionTitle").textContent="🎓 College Books";document.getElementById("sectionDesc").textContent="FA, FSc, ICS, ICom";}
+function openCollege(k){const d=collegeData[k];document.getElementById("collegeStreamGrid").classList.add("hidden");const v=document.getElementById("collegeSubjectView");v.classList.remove("hidden");document.getElementById("collegeSubjectTitle").textContent=`${d.name} - ${d.subs.length} Books`;document.getElementById("collegeSubjectGrid").innerHTML=d.subs.map(s=>`<article class="card"><div class="cover-real" style="background:${coverStyle(s)}"><span class="top">${k} • ORIGINAL</span><span class="mid">${s}</span><span class="bot">PUNJAB BOARD</span></div><h3>${s}</h3><p>${d.name}</p><div style="display:flex;gap:6px"><button class="read" style="flex:1" onclick="openSubject('${s}','${k}')">📖 Read</button><button class="read" style="flex:1;background:#0a7c3e" onclick="downloadSubject('${s}','${k}')">⬇ Download</button></div></article>`).join("");}
+function openSubject(s,c){readerTitle.textContent=`${s} - ${c}`;readerMeta.textContent=`PCTB Original • ${c}`;pdf.src=`https://elearn.punjab.gov.pk`;downloadBtn.href=`https://www.ilmkidunya.com/pctb-textbooks/`;reader.classList.remove('hidden');}
+function downloadSubject(s,c){window.open("https://www.ilmkidunya.com/pctb-textbooks/","_blank");}
+function quickCat(c){if(c==='College Books') showCollegeSection(); else {showAllClasses(); category.value=c; renderBooks();}}
+async function loadBooks(){const r=await db.from('books').select('*').order('created_at',{ascending:false});if(r.error){grid.innerHTML=`<div class="card"><h3>Error</h3><p>${esc(r.error.message)}</p></div>`;return}books=r.data||[];renderBooks();}
+function renderBooks(){const q=(search.value||'').toLowerCase(),cat=category.value||'All';const list=books.filter(b=>(cat==='All'||b.category===cat)&&(`${b.title} ${b.author||''} ${b.category}`.toLowerCase().includes(q)));grid.innerHTML=list.length?list.map(b=>{const u=b.cover_path?db.storage.from('book-covers').getPublicUrl(b.cover_path).data.publicUrl:'';const cover=u?`<img class="cover" src="${u}">`:`<div class="cover-real" style="background:${coverStyle(b.title)}"><span class="top">${esc(b.category||'BOOK')}</span><span class="mid">${esc(b.title.slice(0,22))}</span><span class="bot">${esc(b.author||'Study Ghar')}</span></div>`;const del=isAdmin?`<button class="read" style="background:#b42318;margin-top:6px" onclick="deleteBook('${b.id}')">🗑 Delete (Admin Only)</button>`:'';return `<article class="card">${cover}<h3>${esc(b.title)}</h3><p>${esc(b.author||b.category)}</p><button class="read" onclick="readBook('${b.id}')">📖 Read Book</button>${del}</article>`;}).join(''):'<div class="card"><h3>No books</h3><p>Admin can upload</p></div>';bookCount.textContent=books.length;if(isAdmin){adminList.innerHTML=books.map(b=>`<div class="item"><span><b>${esc(b.title)}</b><small style="display:block;color:#7a8592">${esc(b.category)}</small></span><button class="danger" onclick="deleteBook('${b.id}')">Delete</button></div>`).join('')||'<p>No books</p>';}else{adminList.innerHTML='<p style="font-size:12px;color:#6b7a8a">Login as admin to see delete options at end (admin only)</p>';}}
+async function refreshStudent(){const r=await db.auth.getUser();const u=r.data.user||null;if(u){studentAuth.classList.add('hidden');studentLogged.classList.remove('hidden');studentNameView.textContent=u.user_metadata?.full_name||u.email.split('@')[0];studentLabel.textContent=u.email.split('@')[0];}else{studentAuth.classList.remove('hidden');studentLogged.classList.add('hidden');studentLabel.textContent='Login';}}
+function openStudent(){student.classList.remove('hidden');refreshStudent()} function closeStudent(){student.classList.add('hidden')}
+async function studentSignup(){const n=studentName.value.trim(),e=studentEmail.value.trim(),p=studentPassword.value;if(!n||!e||p.length<6){studentStatus.textContent='Name, email, 6+ chars required';return}studentStatus.textContent='Creating...';const {error}=await db.auth.signUp({email:e,password:p,options:{data:{full_name:n}}});if(error){studentStatus.textContent=error.message;return}studentStatus.textContent='✅ Created, login now';}
+async function studentLogin(){const e=studentEmail.value.trim(),p=studentPassword.value;studentStatus.textContent='Signing in...';const {data,error}=await db.auth.signInWithPassword({email:e,password:p});if(error){studentStatus.textContent=error.message;return}await refreshStudent();closeStudent();}
+async function studentLogout(){await db.auth.signOut();await refreshStudent();}
+function openAdmin(){admin.classList.remove('hidden')} function closeAdmin(){admin.classList.add('hidden')}
+async function loadUsers(){try{const r=await db.from('profiles').select('*').limit(100);const top=document.getElementById("userListTop");if(!r.error&&r.data&&r.data.length){document.getElementById("userCount").textContent=r.data.length;document.getElementById("userCountTop").textContent=`Total: ${r.data.length}`;top.innerHTML=r.data.map(u=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f0f0f0;font-size:13px"><span>👤 ${esc(u.email||u.id.slice(0,8))}</span><span style="background:#eef2ff;padding:2px 6px;border-radius:8px;font-size:11px">${esc(u.role||'student')}</span></div>`).join('');}else{top.innerHTML='<p style="font-size:12px;color:#6b7a8a">Users in Supabase Auth > Users.</p>';}}catch(e){}}
+async function login(){loginStatus.textContent='Signing in...';const {data,error}=await db.auth.signInWithPassword({email:email.value.trim(),password:password.value});if(error){loginStatus.textContent=error.message;return}const p=await db.from('profiles').select('role').eq('id',data.user.id).single();if(p.data?.role!=='admin'){await db.auth.signOut();loginStatus.textContent='Not admin';isAdmin=false;return}isAdmin=true;loginArea.classList.add('hidden');panel.classList.remove('hidden');await loadBooks();await loadUsers();}
+async function uploadBook(e){e.preventDefault();if(!isAdmin){uploadStatus.textContent='Only admin';return}const p=pdfFile.files[0],c=cover.files[0],s=uploadStatus;if(!p||p.type!=='application/pdf'){s.textContent='PDF required';return}const u=(await db.auth.getUser()).data.user;if(!u){s.textContent='Login first';return}s.textContent='Uploading...';const id=crypto.randomUUID(),safe=x=>x.replace(/[^a-z0-9._-]/gi,'_'),pp=`${u.id}/${id}-${safe(p.name)}`;let cp='';if(c){cp=`${u.id}/${id}-${safe(c.name)}`;const r=await db.storage.from('book-covers').upload(cp,c);if(r.error){s.textContent=r.error.message;return}}let r=await db.storage.from('book-pdfs').upload(pp,p,{contentType:'application/pdf'});if(r.error){s.textContent=r.error.message;return}r=await db.from('books').insert({title:title.value,author:author.value,category:bookcat.value,cover_path:cp,pdf_path:pp});if(r.error){s.textContent=r.error.message;return}e.target.reset();s.textContent='✅ Uploaded';await loadBooks();}
+async function deleteBook(id){if(!isAdmin){alert('Only admin can delete after login');return}const b=books.find(x=>x.id===id);if(!b||!confirm('Delete this book? Admin only'))return;await db.storage.from('book-pdfs').remove([b.pdf_path]);if(b.cover_path) await db.storage.from('book-covers').remove([b.cover_path]);const r=await db.from('books').delete().eq('id',id);if(r.error){alert(r.error.message);return}await loadBooks();}
+function readBook(id){const b=books.find(x=>x.id===id);if(!b) return;readerTitle.textContent=b.title;readerMeta.textContent=b.category+(b.author?' • '+b.author:'');const u=db.storage.from('book-pdfs').getPublicUrl(b.pdf_path).data.publicUrl;pdf.src=u;downloadBtn.href=u;reader.classList.remove('hidden');}
+function closeReader(){reader.classList.add('hidden');pdf.src='';}
 function esc(x){return String(x||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-
-// AUTH
-function openStudent(){document.getElementById("student").classList.remove("hidden")}
-function closeStudent(){document.getElementById("student").classList.add("hidden")}
-async function studentSignup(){
-  const name=studentName.value.trim(), em=studentEmail.value.trim(), pw=studentPassword.value;
-  if(!name||!em||pw.length<6){studentStatus.textContent='Name, email, 6+ char password required';return}
-  studentStatus.textContent='Creating...';
-  const {error}=await db.auth.signUp({email:em,password:pw,options:{data:{full_name:name}}});
-  if(error){studentStatus.textContent=error.message;return}
-  studentStatus.textContent='✅ Account created! Now login.';
-}
-async function studentLogin(){
-  const em=studentEmail.value.trim(),pw=studentPassword.value;
-  studentStatus.textContent='Signing in...';
-  const {data,error}=await db.auth.signInWithPassword({email:em,password:pw});
-  if(error){studentStatus.textContent=error.message;return}
-  studentStatus.textContent='✅ Logged in!'; studentLabel.textContent=data.user.email.split('@')[0]; closeStudent(); loadUsers();
-}
-function openAdmin(){document.getElementById("admin").classList.remove("hidden")}
-function closeAdmin(){document.getElementById("admin").classList.add("hidden")}
-async function login(){
-  loginStatus.textContent='Signing in...';
-  const {data,error}=await db.auth.signInWithPassword({email:email.value.trim(),password:password.value});
-  if(error){loginStatus.textContent=error.message;return}
-  const p=await db.from('profiles').select('role').eq('id',data.user.id).single();
-  if(p.data?.role!=='admin'){loginStatus.textContent='Not admin'; await db.auth.signOut(); return}
-  loginArea.classList.add('hidden'); panel.classList.remove('hidden'); loadBooks(); loadUsers();
-}
-async function uploadBook(e){
-  e.preventDefault();
-  const p=pdfFile.files[0],c=cover.files[0],s=uploadStatus;
-  if(!p||p.type!=='application/pdf'){s.textContent='PDF required';return}
-  const u=(await db.auth.getUser()).data.user; if(!u){s.textContent='Login first';return}
-  s.textContent='Uploading...';
-  const id=crypto.randomUUID(),safe=x=>x.replace(/[^a-z0-9._-]/gi,'_'),pp=`${u.id}/${id}-${safe(p.name)}`;
-  let cp=''; if(c){cp=`${u.id}/${id}-${safe(c.name)}`; const r=await db.storage.from('book-covers').upload(cp,c); if(r.error){s.textContent=r.error.message;return}}
-  let r=await db.storage.from('book-pdfs').upload(pp,p,{contentType:'application/pdf'}); if(r.error){s.textContent=r.error.message;return}
-  r=await db.from('books').insert({title:title.value,author:author.value,category:bookcat.value,cover_path:cp,pdf_path:pp});
-  if(r.error){s.textContent=r.error.message;return}
-  e.target.reset(); s.textContent='✅ Uploaded!'; loadBooks();
-}
 </script>
 </body>
 </html>
