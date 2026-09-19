@@ -1,24 +1,73 @@
 const sb=supabase.createClient(window.SUPABASE_URL,window.SUPABASE_PUBLISHABLE_KEY);
 let books=[],currentBook=null;
-async function enterLibrary(){document.getElementById("welcome").classList.add("hidden");document.getElementById("library").classList.remove("hidden");await loadBooks()}
-async function loadBooks(){const r=await sb.from("books").select("*").order("created_at",{ascending:false});if(r.error){console.error(r.error);document.getElementById("books").innerHTML=`<div class="card"><h3>Library connection error</h3><p>${esc(r.error.message)}</p></div>`;return}books=r.data||[];renderBooks();renderAdmin()}
-function renderBooks(){
- const q=(document.getElementById("search")?.value||"").trim().toLowerCase();
- const c=(document.getElementById("category")?.value||"All");
- const list=books.filter(b=>(c==="All"||b.category===c)&&(`${b.title} ${b.author||""} ${b.category}`.toLowerCase().includes(q)));
- document.getElementById("books").innerHTML=list.length?list.map(b=>{
-   const cover=b.cover_path?sb.storage.from("book-covers").getPublicUrl(b.cover_path).data.publicUrl:"";
-   return `<article class="card">${cover?`<img class="book-cover" src="${cover}" alt="${esc(b.title)}">`:`<div class="icon">📘</div>`}<h3>${esc(b.title)}</h3><p>${esc(b.author||"")}</p><small class="category-label">${esc(b.category)}</small><button onclick="readBook('${b.id}')">📖 Read Book</button></article>`;
- }).join(""):`<div class="card"><h3>No books in this category</h3><p>Choose another category or upload a book from Admin.</p></div>`;
+
+// --- ORIGINAL PCTB BOOKS 1-12 - All Classes Official Links ---
+const originalBooks = [];
+
+// Function to add books for a class
+function addClassBooks(classNum, subjects){
+  subjects.forEach(sub=>{
+    originalBooks.push({
+      id: `orig-${classNum}-${sub.toLowerCase().replace(/ /g,'-')}`,
+      title: `${sub} - Class ${classNum} (Original)`,
+      author: "PCTB Punjab",
+      category: "School Books",
+      className: `Class ${classNum}`,
+      pdf_path: "https://pctb.punjab.gov.pk/E-Books",
+      isExternal: true,
+      cover_path: ""
+    });
+  });
 }
-function quickCat(cat){document.getElementById("category").value=cat;document.getElementById("search").value="";renderBooks();document.getElementById("books").scrollIntoView({behavior:"smooth"})}
+
+const primarySubjects = ["Urdu", "English", "Mathematics", "Islamiat", "General Knowledge"];
+const middleSubjects = ["Urdu", "English", "Mathematics", "Islamiat", "Science", "Computer", "Geography", "History"];
+const matricSubjects = ["Physics", "Chemistry", "Biology", "Mathematics", "Computer Science", "English", "Urdu", "Islamiat", "Pak Studies"];
+const interSubjects = ["Physics", "Chemistry", "Biology", "Mathematics", "Computer Science", "English", "Urdu", "Islamiat", "Pak Studies"];
+
+// Class 1-5
+for(let i=1;i<=5;i++) addClassBooks(i, primarySubjects);
+// Class 6-8
+for(let i=6;i<=8;i++) addClassBooks(i, middleSubjects);
+// Class 9-10
+for(let i=9;i<=10;i++) addClassBooks(i, matricSubjects);
+// Class 11-12
+for(let i=11;i<=12;i++) addClassBooks(i, interSubjects);
+
+async function enterLibrary(){document.getElementById("welcome").classList.add("hidden");document.getElementById("library").classList.remove("hidden");await loadBooks();}
+async function loadBooks(){
+  const r=await sb.from("books").select("*").order("created_at",{ascending:false});
+  if(r.error){
+    console.error(r.error);
+    books = [...originalBooks];
+  } else {
+    books = [...originalBooks, ...(r.data||[])];
+  }
+  renderBooks();
+  if(document.getElementById("adminBooks")) renderAdmin();
+}
+function renderBooks(){
+  const q=(document.getElementById("search")?.value||"").trim().toLowerCase();
+  const c=(document.getElementById("category")?.value||"All");
+  const classFilter=document.getElementById("classFilter")?.value||"All";
+  let list=books.filter(b=>(c==="All"||b.category===c)&&(`${b.title} ${b.author||""} ${b.category} ${b.className||""}`).toLowerCase().includes(q));
+  if(classFilter!=="All"){
+    list=list.filter(b=>b.className===classFilter);
+  }
+  document.getElementById("books").innerHTML=list.length?list.map(b=>{
+    const cover=b.cover_path && !b.isExternal?sb.storage.from("book-covers").getPublicUrl(b.cover_path).data.publicUrl:"";
+    const pdfUrl = b.isExternal ? b.pdf_path : sb.storage.from("book-pdfs").getPublicUrl(b.pdf_path).data.publicUrl;
+    return `<article class="card">${cover?`<img class="book-cover" src="${cover}" alt="${esc(b.title)}">`:`<div class="icon">📘</div>`}<h3>${esc(b.title)}</h3><p>${esc(b.author||"")}</p><small>${esc(b.category||"")} | ${esc(b.className||"")}</small><div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap"><button onclick="readBook('${b.id}')">Read</button><a href="${pdfUrl}" target="_blank" style="padding:6px 12px;background:#0a7c3e;color:#fff;border-radius:6px;text-decoration:none;">Download Original</a></div></article>`;
+  }).join(""):`<div class="card"><h3>No books in this category</h3><p>Try selecting Class 1-12 or search</p></div>`;
+}
+function quickCat(cat){document.getElementById("category").value=cat;document.getElementById("search").value="";renderBooks();document.getElementById("books")?.scrollIntoView({behavior:"smooth"})}
 function openAdmin(){document.getElementById("admin").classList.remove("hidden")}
 function closeAdmin(){document.getElementById("admin").classList.add("hidden")}
-async function login(){const email=document.getElementById("adminEmail")?.value?.trim()||prompt("Admin email:");const pass=document.getElementById("adminPassword")?.value||"";const status=document.getElementById("loginStatus");if(!email||!pass){if(status)status.textContent="Enter email and password.";return}const r=await sb.auth.signInWithPassword({email,password:pass});if(r.error){status.textContent=r.error.message;return}const u=r.data.user;const p=await sb.from("profiles").select("role").eq("id",u.id).single();if(p.data?.role!=="admin"){await sb.auth.signOut();status.textContent="This account is not an admin.";return}document.getElementById("loginArea").classList.add("hidden");document.getElementById("panelArea").classList.remove("hidden");renderAdmin()}
-async function addBook(e){e.preventDefault();const pdf=document.getElementById("bookPdf").files[0],cover=document.getElementById("bookCover").files[0],status=document.getElementById("uploadStatus");if(!pdf||pdf.type!=="application/pdf"){status.textContent="Please select a PDF.";return}if(!cover||!cover.type.startsWith("image/")){status.textContent="Please select a cover image.";return}const u=(await sb.auth.getUser()).data.user;if(!u){status.textContent="Please login first.";return}status.textContent="Uploading…";const id=crypto.randomUUID(),safe=s=>s.replace(/[^a-z0-9._-]/gi,"_"),pp=`${u.id}/${id}-${safe(pdf.name)}`,cp=`${u.id}/${id}-${safe(cover.name)}`;let r=await sb.storage.from("book-pdfs").upload(pp,pdf,{contentType:"application/pdf",upsert:false});if(r.error){status.textContent="PDF upload failed: "+r.error.message;return}r=await sb.storage.from("book-covers").upload(cp,cover,{upsert:false});if(r.error){await sb.storage.from("book-pdfs").remove([pp]);status.textContent="Cover upload failed: "+r.error.message;return}r=await sb.from("books").insert({title:document.getElementById("bookTitle").value.trim(),author:document.getElementById("bookAuthor").value.trim(),category:document.getElementById("bookCategory").value,cover_path:cp,pdf_path:pp});if(r.error){await sb.storage.from("book-pdfs").remove([pp]);await sb.storage.from("book-covers").remove([cp]);status.textContent="Database save failed: "+r.error.message;return}e.target.reset();status.textContent="✅ Book uploaded successfully.";await loadBooks()}
-async function renderAdmin(){const box=document.getElementById("adminBooks");if(!box||document.getElementById("panelArea")?.classList.contains("hidden"))return;box.innerHTML=books.length?books.map(b=>`<div class="admin-item"><span><b>${esc(b.title)}</b><br><small>${esc(b.category)}</small></span><button class="danger" onclick="deleteBook('${b.id}')">Delete</button></div>`).join(""):"<p>No uploads.</p>"}
-async function deleteBook(id){const b=books.find(x=>x.id===id);if(!b||!confirm("Delete this book?"))return;await sb.storage.from("book-pdfs").remove([b.pdf_path]);if(b.cover_path)await sb.storage.from("book-covers").remove([b.cover_path]);const r=await sb.from("books").delete().eq("id",id);if(r.error){alert(r.error.message);return}await loadBooks()}
-function readBook(id){currentBook=books.find(b=>b.id===id);if(!currentBook)return;document.getElementById("readerTitle").textContent=currentBook.title;document.getElementById("readerMeta").textContent=currentBook.category+(currentBook.author?" • "+currentBook.author:"");const u=sb.storage.from("book-pdfs").getPublicUrl(currentBook.pdf_path).data.publicUrl;document.getElementById("pdfFrame").src=u;document.getElementById("downloadBtn").href=u;document.getElementById("downloadBtn").download=currentBook.title+".pdf";document.getElementById("reader").classList.remove("hidden")}
+async function login(){const email=document.getElementById("adminEmail")?.value.trim()||prompt("Admin email:");const pass=document.getElementById("adminPass")?.value||prompt("Admin password:");const {error}=await sb.auth.signInWithPassword({email,password:pass});if(error)alert(error.message);else alert("Logged in");closeAdmin();loadBooks()}
+async function addBook(e){e.preventDefault();const pdf=document.getElementById("bookPdf")?.files[0],cover=document.getElementById("bookCover")?.files[0];const title=document.getElementById("bookTitle")?.value;const author=document.getElementById("bookAuthor")?.value;const category=document.getElementById("bookCategory")?.value||"Other Books";if(!pdf||!title)return alert("Title and PDF required");const pdfName=`${Date.now()}_${pdf.name}`;let coverName="";const {error:pdfErr}=await sb.storage.from("book-pdfs").upload(pdfName,pdf);if(pdfErr)return alert(pdfErr.message);if(cover){coverName=`${Date.now()}_${cover.name}`;await sb.storage.from("book-covers").upload(coverName,cover);}const {error}=await sb.from("books").insert({title,author,category,pdf_path:pdfName,cover_path:coverName});if(error)alert(error.message);else {e.target.reset();loadBooks();alert("Book Added")}} 
+async function renderAdmin(){const box=document.getElementById("adminBooks");if(!box)return;box.innerHTML=books.filter(b=>!b.isExternal).map(b=>`<div>${esc(b.title)} - <button onclick="deleteBook('${b.id}')">Delete</button></div>`).join("")}
+async function deleteBook(id){const b=books.find(x=>x.id==id);if(b?.isExternal)return alert("Original book cannot be deleted");if(!b||!confirm("Delete this book?"))return;await sb.storage.from("book-pdfs").remove([b.pdf_path]);if(b.cover_path)await sb.storage.from("book-covers").remove([b.cover_path]);await sb.from("books").delete().eq("id",id);loadBooks()}
+function readBook(id){currentBook=books.find(b=>b.id==id);if(!currentBook)return;if(currentBook.isExternal){window.open(currentBook.pdf_path,"_blank");return;}document.getElementById("readerTitle").textContent=currentBook.title;document.getElementById("pdfFrame").src=sb.storage.from("book-pdfs").getPublicUrl(currentBook.pdf_path).data.publicUrl;document.getElementById("reader").classList.remove("hidden")}
 function closeReader(){document.getElementById("reader").classList.add("hidden");document.getElementById("pdfFrame").src=""}
-async function shareBook(){if(!currentBook)return;const u=sb.storage.from("book-pdfs").getPublicUrl(currentBook.pdf_path).data.publicUrl;if(navigator.share)await navigator.share({title:currentBook.title,text:"Read this book",url:u});else{await navigator.clipboard.writeText(u);alert("PDF link copied.")}}
-function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+async function shareBook(){if(!currentBook)return;const u=currentBook.isExternal?currentBook.pdf_path:sb.storage.from("book-pdfs").getPublicUrl(currentBook.pdf_path).data.publicUrl;if(navigator.share){try{await navigator.share({title:currentBook.title,url:u})}catch{}}else{await navigator.clipboard.writeText(u);alert("Link copied")}} 
+function esc(s){return String(s||"").replace(/[<>&"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]))}
