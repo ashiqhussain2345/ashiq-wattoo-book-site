@@ -31,7 +31,7 @@
 <div class="site">STUDY GHAR</div>
 <div class="tag">Parhai ka sab kuch, ek hi jagah.</div>
 <div class="desc">Books, notes, past papers and learning material — students ke liye ek hi jagah.</div>
-<div class="chips"><span>🏫 School</span><span>🎓 College</span><span>💻 Computer</span><span>📝 Old Papers</span><span>☪️ Islamic</span></div>
+<div class="chips"><span>🏫 School</span><span>🎓 College</span><span>💻 Computer</span><span>📝 Old Papers</span><span>☪ Islamic</span></div>
 <button class="enter" onclick="enterLibrary()">📚 ENTER LIBRARY →</button>
 <div class="wfeat"><span>📖 Free to Read</span><i></i><span>🔐 Login for Download</span><i></i><span>🔗 Share with Others</span></div>
 </div><div class="wfoot">LEARN • READ • PREPARE</div>
@@ -45,7 +45,7 @@
 <button class="cat" onclick="quickCat('College Books')"><span>🎓</span><b>College Books</b><small>FA • FSc • ICS</small></button>
 <button class="cat" onclick="quickCat('Computer Notes')"><span>💻</span><b>Computer Notes</b><small>IT & Programming</small></button>
 <button class="cat" onclick="quickCat('Old Papers')"><span>📝</span><b>Old Papers</b><small>Past Exams</small></button>
-<button class="cat" onclick="quickCat('Islamic Books')"><span>☪️</span><b>Islamic Books</b><small>Quran • Hadith</small></button>
+<button class="cat" onclick="quickCat('Islamic Books')"><span>☪</span><b>Islamic Books</b><small>Quran • Hadith</small></button>
 <button class="cat" onclick="quickCat('Other Books')"><span>📚</span><b>Other Books</b><small>General Reading</small></button>
 </section>
 <section class="wrap" id="books"><div class="title"><div><h2>✨ Explore Books</h2><p>Books, notes & papers — ready when you are</p></div></div><div id="grid" class="grid"></div></section>
@@ -60,9 +60,7 @@
 </footer>
 </main>
 
-<div id="reader" class="modal hidden"><div class="box"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta" style="display:block;color:#738092;margin-top:3px"></small></div><button onclick="closeReader()">✕</button></div><iframe id="pdf" class="pdf"></iframe><div class="actions"><button id="download" onclick="downloadBook()">⬇️ Download</button><button onclick="shareBook()">🔗 Share</button></div></div></div>
-
-
+<div id="reader" class="modal hidden"><div class="box"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta" style="display:block;color:#738092;margin-top:3px"></small></div><button onclick="closeReader()">✕</button></div><iframe id="pdf" class="pdf"></iframe><div class="actions"><button id="download" onclick="downloadBook()">⬇ Download</button><button onclick="shareBook()">🔗 Share</button></div></div></div>
 
 <div id="student" class="modal hidden"><div class="box admin"><div class="head"><div><b>👤 Student Account</b><small style="display:block;color:#738092;margin-top:3px">Register or login to download books</small></div><button onclick="closeStudent()">✕</button></div>
 <div id="studentAuth" class="form">
@@ -86,13 +84,57 @@ const SB_KEY="sb_publishable_IDS03s6m4fS50mYs5Uy7og_vE32749u";
 const db=supabase.createClient(SB_URL,SB_KEY);
 let books=[],current=null; db.auth.onAuthStateChange(()=>setTimeout(refreshStudent,0));
 
+// --- ADDED: ORIGINAL PCTB BOOKS 1 TO 10 ---
+const originalBooks = [
+  { id: "class-1", title: "Class 1 - All Books (Original)", author: "PCTB Punjab - Class 1", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", cover_path: "", isExternal: true },
+  { id: "class-2", title: "Class 2 - All Books (Original)", author: "PCTB Punjab - Class 2", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", cover_path: "", isExternal: true },
+  { id: "class-3", title: "Class 3 - All Books (Original)", author: "PCTB Punjab - Class 3", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", cover_path: "", isExternal: true },
+  { id: "class-4", title: "Class 4 - All Books (Original)", author: "PCTB Punjab - Class 4", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", cover_path: "", isExternal: true },
+  { id: "class-5", title: "Class 5 - All Books (Original)", author: "PCTB Punjab - Class 5", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", cover_path: "", isExternal: true },
+  { id: "class-6", title: "Class 6 - All Books (Original)", author: "PCTB Punjab - Class 6", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", cover_path: "", isExternal: true },
+  { id: "class-7", title: "Class 7 - All Books (Original)", author: "PCTB Punjab - Class 7", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", cover_path: "", isExternal: true },
+  { id: "class-8", title: "Class 8 - All Books (Original)", author: "PCTB Punjab - Class 8", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", cover_path: "", isExternal: true },
+  { id: "class-9", title: "Class 9 - All Books (Original)", author: "PCTB Punjab - Class 9", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", cover_path: "", isExternal: true },
+  { id: "class-10", title: "Class 10 - All Books (Original)", author: "PCTB Punjab - Class 10", category: "School Books", pdf_path: "https://pctb.punjab.gov.pk/E-Books", cover_path: "", isExternal: true }
+];
+
 async function enterLibrary(){welcome.classList.add('hidden');library.classList.remove('hidden');await loadBooks();}
-async function loadBooks(){const r=await db.from('books').select('*').order('created_at',{ascending:false});if(r.error){grid.innerHTML='<div class="card"><h3>Connection error</h3><p>'+esc(r.error.message)+'</p></div>';return}books=r.data||[];renderBooks();}
-function renderBooks(){const q=(search.value||'').toLowerCase(),c=category.value||'All';const list=books.filter(b=>(c==='All'||b.category===c)&&(`${b.title} ${b.author||''} ${b.category}`.toLowerCase().includes(q)));grid.innerHTML=list.length?list.map(b=>{const u=b.cover_path?db.storage.from('book-covers').getPublicUrl(b.cover_path).data.publicUrl:'';return `<article class="card">${u?`<img class="cover" src="${u}" alt="${esc(b.title)}">`:`<div class="icon">📘</div>`}<h3>${esc(b.title)}</h3><p>${esc(b.author||b.category)}</p><button class="read" onclick="readBook('${b.id}')">📖 Read Book</button></article>`}).join(''):'<div class="card"><h3>No books found</h3><p>Admin can upload a PDF book.</p></div>'}
+
+async function loadBooks(){
+  try{
+    const r=await db.from('books').select('*').order('created_at',{ascending:false});
+    if(r.error){
+      console.log("Supabase error, showing original books only", r.error);
+      books = [...originalBooks];
+    } else {
+      const dbBooks = r.data || [];
+      books = [...originalBooks, ...dbBooks];
+    }
+  } catch(e){
+    books = [...originalBooks];
+  }
+  renderBooks();
+}
+
+function renderBooks(){
+  const q=(search.value||'').toLowerCase(),c=category.value||'All';
+  const list=books.filter(b=>(c==='All'||b.category===c)&&(`${b.title} ${b.author||''} ${b.category}`.toLowerCase().includes(q)));
+  grid.innerHTML=list.length?list.map(b=>{
+    const isExt = b.isExternal;
+    const u = !isExt && b.cover_path ? db.storage.from('book-covers').getPublicUrl(b.cover_path).data.publicUrl : '';
+    const badge = isExt ? '<span style="background:#0a7c3e;color:#fff;font-size:9px;padding:3px 6px;border-radius:4px;margin-left:6px">ORIGINAL</span>' : '';
+    return `<article class="card">
+      ${u?`<img class="cover" src="${u}" alt="${esc(b.title)}">`:`<div class="icon">📘</div>`}
+      <h3>${esc(b.title)} ${badge}</h3>
+      <p>${esc(b.author||b.category)}</p>
+      <button class="read" onclick="readBook('${b.id}')">${isExt?'📥 Download / Read Original':'📖 Read Book'}</button>
+    </article>`
+  }).join(''):'<div class="card"><h3>No books found</h3><p>Try another category</p></div>';
+}
+
 function quickCat(c){category.value=c;search.value='';renderBooks();document.getElementById('books').scrollIntoView({behavior:'smooth'})}
 
 let studentUser=null;
-
 async function refreshStudent(){
  const r=await db.auth.getUser(); studentUser=r.data.user||null;
  if(studentUser){
@@ -124,21 +166,41 @@ async function studentLogin(){
 async function studentLogout(){await db.auth.signOut();await refreshStudent()}
 async function downloadBook(){
  if(!current)return;
+ if(current.isExternal){
+   window.open(current.pdf_path, '_blank');
+   return;
+ }
  const u=await db.auth.getUser();
  if(!u.data.user){closeReader();openStudent();studentStatus.textContent='🔐 Download ke liye pehle account login/register karein.';return}
  const publicUrl=db.storage.from('book-pdfs').getPublicUrl(current.pdf_path).data.publicUrl;
  const a=document.createElement('a');a.href=publicUrl;a.download=current.title+'.pdf';a.target='_blank';document.body.appendChild(a);a.click();a.remove();
 }
-
 function openAdmin(){admin.classList.remove('hidden')}
 function closeAdmin(){admin.classList.add('hidden')}
 async function login(){loginStatus.textContent='Signing in…';const {data,error}=await db.auth.signInWithPassword({email:email.value.trim(),password:password.value});if(error){loginStatus.textContent=error.message;return}const u=data.user;const p=await db.from('profiles').select('role').eq('id',u.id).single();if(p.data?.role!=='admin'){await db.auth.signOut();loginStatus.textContent='This account is not an admin.';return}loginArea.classList.add('hidden');panel.classList.remove('hidden');renderAdmin()}
 async function uploadBook(e){e.preventDefault();const p=pdfFile.files[0],c=cover.files[0],s=uploadStatus;if(!p||p.type!=='application/pdf'){s.textContent='Please choose a PDF.';return}if(!c||!c.type.startsWith('image/')){s.textContent='Please choose a cover image.';return}const u=(await db.auth.getUser()).data.user;if(!u){s.textContent='Please login first.';return}s.textContent='Uploading…';const id=crypto.randomUUID(),safe=x=>x.replace(/[^a-z0-9._-]/gi,'_'),pp=`${u.id}/${id}-${safe(p.name)}`,cp=`${u.id}/${id}-${safe(c.name)}`;let r=await db.storage.from('book-pdfs').upload(pp,p,{contentType:'application/pdf'});if(r.error){s.textContent='PDF upload failed: '+r.error.message;return}r=await db.storage.from('book-covers').upload(cp,c);if(r.error){await db.storage.from('book-pdfs').remove([pp]);s.textContent='Cover upload failed: '+r.error.message;return}r=await db.from('books').insert({title:title.value,author:author.value,category:bookcat.value,cover_path:cp,pdf_path:pp});if(r.error){await db.storage.from('book-pdfs').remove([pp]);await db.storage.from('book-covers').remove([cp]);s.textContent='Database error: '+r.error.message;return}e.target.reset();s.textContent='✅ Book uploaded successfully.';await loadBooks();renderAdmin()}
-function renderAdmin(){bookCount.textContent=books.length;adminList.innerHTML=books.map(b=>`<div class="item"><span><b>${esc(b.title)}</b><small style="display:block;color:#7a8592">${esc(b.category)}</small></span><button class="danger" onclick="deleteBook('${b.id}')">Delete</button></div>`).join('')||'<p>No books uploaded yet.</p>'}
-async function deleteBook(id){const b=books.find(x=>x.id===id);if(!b||!confirm('Delete this book?'))return;await db.storage.from('book-pdfs').remove([b.pdf_path]);if(b.cover_path)await db.storage.from('book-covers').remove([b.cover_path]);const r=await db.from('books').delete().eq('id',id);if(r.error){alert(r.error.message);return}await loadBooks();renderAdmin()}
-function readBook(id){current=books.find(b=>b.id===id);if(!current)return;readerTitle.textContent=current.title;readerMeta.textContent=current.category+(current.author?' • '+current.author:'');const u=db.storage.from('book-pdfs').getPublicUrl(current.pdf_path).data.publicUrl;pdf.src=u;reader.classList.remove('hidden')}
+function renderAdmin(){bookCount.textContent=books.length;adminList.innerHTML=books.map(b=>`<div class="item"><span><b>${esc(b.title)}</b><small style="display:block;color:#7a8592">${esc(b.category)} ${b.isExternal?'(Original)':''}</small></span>${b.isExternal?'':`<button class="danger" onclick="deleteBook('${b.id}')">Delete</button>`}</div>`).join('')||'<p>No books uploaded yet.</p>'}
+async function deleteBook(id){const b=books.find(x=>x.id===id);if(!b)return;if(b.isExternal){alert('Original PCTB book cannot be deleted');return}if(!confirm('Delete this book?'))return;await db.storage.from('book-pdfs').remove([b.pdf_path]);if(b.cover_path)await db.storage.from('book-covers').remove([b.cover_path]);const r=await db.from('books').delete().eq('id',id);if(r.error){alert(r.error.message);return}await loadBooks();renderAdmin()}
+function readBook(id){
+  current=books.find(b=>b.id===id);
+  if(!current)return;
+  if(current.isExternal){
+    window.open(current.pdf_path, '_blank');
+    return;
+  }
+  readerTitle.textContent=current.title;
+  readerMeta.textContent=current.category+(current.author?' • '+current.author:'');
+  const u=db.storage.from('book-pdfs').getPublicUrl(current.pdf_path).data.publicUrl;
+  pdf.src=u;
+  reader.classList.remove('hidden');
+}
 function closeReader(){reader.classList.add('hidden');pdf.src=''}
-async function shareBook(){if(!current)return;const u=db.storage.from('book-pdfs').getPublicUrl(current.pdf_path).data.publicUrl;if(navigator.share)await navigator.share({title:current.title,text:'Read this book',url:u});else{await navigator.clipboard.writeText(u);alert('PDF link copied.')}} 
+async function shareBook(){
+  if(!current)return;
+  const u = current.isExternal ? current.pdf_path : db.storage.from('book-pdfs').getPublicUrl(current.pdf_path).data.publicUrl;
+  if(navigator.share) await navigator.share({title:current.title,text:'Read this book',url:u});
+  else {await navigator.clipboard.writeText(u);alert('PDF link copied.')}
+} 
 function esc(x){return String(x||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 </script>
 </body></html>
