@@ -3,16 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Study Ghar - Fixed Book Open + Cozy Front</title>
+<title>Study Ghar - PECTAA Official Direct - Fixed</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{--navy:#0f172a;--gold:#fbbf24;--bg:#f8fafc;--line:#e2e8f0;--green:#16a34a;--blue:#2563eb;--shadow:0 4px 24px rgba(0,0,0,.06);--shadow-lg:0 20px 48px rgba(0,0,0,.12)}
 *{box-sizing:border-box}body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:#334155} .hidden{display:none!important} button{cursor:pointer;font:inherit;border:0}
-
-/* WELCOME - COZY BOOKSTORE PIC - FIXED */
 .welcome{position:relative;min-height:100vh;background:#0f172a;color:#fff;overflow:hidden}
-.welcome-bg{position:absolute;inset:0;background:url('Cozy_Bookstore_Scene') center/cover no-repeat, url('welcome-hero.png') center/cover no-repeat, url('Cozy_Bookstore_Scene.jpg') center/cover no-repeat; background-size:cover}
+.welcome-bg{position:absolute;inset:0;background:url('Cozy_Bookstore_Scene') center/cover no-repeat, url('Cozy_Bookstore_Scene.jpg') center/cover no-repeat, url('welcome-hero.png') center/cover no-repeat; background-size:cover}
 .welcome-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.80) 45%,rgba(15,23,42,.45) 75%,rgba(15,23,42,.25) 100%)}
 .wc{position:relative;z-index:2;min-height:100vh;max-width:1320px;margin:0 auto;padding:28px 48px 32px;display:flex;flex-direction:column}
 .wtop{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;font-size:24px;letter-spacing:-.5px}.brand span{color:var(--gold)}.admin-pill{border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:11px 22px;font-weight:700;backdrop-filter:blur(12px)}
@@ -20,16 +18,11 @@
 .wmain h1{font:900 clamp(56px,7.5vw,92px)/.88 'Inter',sans-serif;margin:22px 0 0;letter-spacing:-3.5px}.wmain h1 span{background:linear-gradient(135deg,var(--gold),#fde68a);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.site{font-size:12px;font-weight:800;letter-spacing:9px;margin-top:14px;color:#fde68a;opacity:.85}.tagline{font-size:21px;font-weight:700;margin:22px 0 14px;color:#fff;line-height:1.25}.desc{color:#e2e8f0;line-height:1.65;font-size:15.5px;max-width:620px}.chips{display:flex;flex-wrap:wrap;gap:10px;margin:32px 0}.chips span{display:inline-flex;gap:7px;padding:10px 18px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);border-radius:999px;font-size:13px;font-weight:600;backdrop-filter:blur(12px)}
 .enter{background:linear-gradient(135deg,var(--gold),#f59e0b);color:#0f172a;border:0;border-radius:16px;padding:18px 36px;font-weight:900;font-size:16.5px;display:inline-flex;gap:12px;margin-top:20px;box-shadow:0 16px 40px rgba(251,191,36,.35),0 6px 16px rgba(0,0,0,.2);transition:.25s}.enter:hover{transform:translateY(-3px);box-shadow:0 24px 48px rgba(251,191,36,.45)}
 .wfeat{display:flex;gap:22px;margin-top:32px;font-size:13.5px;color:#e2e8f0;flex-wrap:wrap}.wfeat i{width:1px;height:18px;background:rgba(255,255,255,.18)}.wfoot{text-align:center;color:#fde68a;letter-spacing:7px;font-size:10px;font-weight:800;margin-top:auto;padding-top:36px;opacity:.65}
-
 .topbar{height:76px;background:rgba(255,255,255,.96);backdrop-filter:blur(24px);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 48px;gap:32px;position:sticky;top:0;z-index:20}.navbrand{margin-right:auto}.navbrand b{display:block;font-size:19px;font-weight:900;color:var(--navy)}.navbrand small{color:var(--green);letter-spacing:3px;font-weight:800;font-size:9.5px;display:block;margin-top:3px}.navlinks{display:flex;gap:8px}.navlinks a{color:#64748b;font-size:13px;font-weight:600;cursor:pointer;padding:10px 16px;border-radius:10px;text-decoration:none}.navlinks a.active{background:var(--navy);color:#fff}.navact{display:flex;gap:10px}.navact button{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 18px;font-size:13px;font-weight:700;box-shadow:var(--shadow)}
-
 .hero{background:linear-gradient(115deg,#0f172a 0%,#14532d 55%,#16a34a 100%);color:#fff;padding:56px 48px 48px}.hero h2{font:800 clamp(32px,4.5vw,50px)/1.05 sans-serif;margin:12px 0;letter-spacing:-1.5px}.hero h2 span{color:var(--gold)}.hero p{max-width:720px;color:#bbf7d0;font-size:15px;line-height:1.6;margin:12px 0 0}
 .search-big{background:#fff;border-radius:20px;padding:10px 10px 10px 20px;display:flex;align-items:center;max-width:800px;margin-top:28px;box-shadow:0 16px 48px rgba(0,0,0,.18)}.search-big input{flex:1;border:0;outline:0;padding:14px 12px;font-size:16px;font-weight:600}.search-big button{background:var(--navy);color:#fff;border:0;border-radius:12px;padding:12px 24px;font-weight:800;font-size:14px}
-
 .cats{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;padding:28px 48px;background:#fff;border-bottom:1px solid var(--line)}.cat{border:1px solid var(--line);background:#fff;border-radius:18px;padding:20px;text-align:left;cursor:pointer;transition:.25s;box-shadow:var(--shadow)}.cat:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}.cat b{display:block;font-size:13.5px;font-weight:800;color:var(--navy);margin-bottom:6px}.cat small{color:#64748b;font-size:11.5px}
-
 .wrap{max-width:1320px;margin:auto;padding:40px 48px 96px}.title h2{margin:0;font-size:26px;font-weight:900;letter-spacing:-1px;color:var(--navy)}.title p{color:#64748b;font-size:13.5px;margin:8px 0 0}.back{border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 18px;font-weight:700;cursor:pointer;box-shadow:var(--shadow)}
-
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:24px}
 .card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:0;box-shadow:var(--shadow);transition:.3s;overflow:hidden;cursor:pointer;display:flex;flex-direction:column}.card:hover{transform:translateY(-8px);box-shadow:0 28px 56px rgba(0,0,0,.13)}
 .card-header{height:8px;background:var(--green)}.card-body{padding:22px;display:flex;flex-direction:column;flex:1;gap:14px}
@@ -40,11 +33,9 @@
 .card-footer{padding:0 22px 20px;display:flex;flex-direction:column;gap:10px}
 .card-action{width:100%;border:0;border-radius:12px;padding:12px 16px;background:var(--navy);color:#fff;font-weight:800;font-size:12.5px;display:flex;align-items:center;justify-content:center;gap:8px;transition:.25s}.card:hover .card-action{background:var(--green)}
 .card-stats{display:flex;justify-content:space-between;font-size:11px;color:#64748b;font-weight:600;padding-top:4px;border-top:1px solid #f1f5f9}
-
 .search-results{background:#fff;border:1px solid #bbf7d0;border-radius:18px;padding:20px;margin-top:24px;display:none}.search-results.active{display:block}
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.92);backdrop-filter:blur(16px);z-index:50;display:flex;align-items:center;justify-content:center;padding:24px}.box{background:#fff;border-radius:24px;width:min(640px,96vw);height:auto;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 32px 80px rgba(0,0,0,.4)}.head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line);background:#fff}.head button{border:0;background:#f1f5f9;border-radius:12px;padding:10px 16px;cursor:pointer;font-weight:700}.pdf-content{padding:32px 24px;text-align:center;flex:1;overflow:auto}.pdf-content h2{font-size:22px;font-weight:900;color:var(--navy);margin:0 0 8px}.pdf-content p{color:#64748b;font-size:14px;line-height:1.6;margin:0 0 20px}.big-btn{display:flex;flex-direction:column;gap:12px;margin-top:20px}.big-btn a{padding:16px 24px;border-radius:14px;font-weight:800;font-size:15px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:10px;transition:.2s}.big-btn a.primary{background:var(--green);color:#fff;box-shadow:0 8px 24px rgba(22,163,74,.3)}.big-btn a.secondary{background:var(--navy);color:#fff}.big-btn a:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(0,0,0,.15)}
 .actions{padding:18px 24px;display:flex;gap:12px;justify-content:center;border-top:1px solid var(--line);background:#f8fafc}
-
 .admin{width:min(740px,96vw);height:auto;max-height:92vh;padding-bottom:12px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:22px}.stat{border:1px solid var(--line);border-radius:16px;padding:18px;background:#f8fafc;text-align:center}.stat b{display:block;font-size:26px;font-weight:900;color:var(--navy)}.form{padding:22px;display:grid;gap:12px}.form input,.form select{padding:13px 16px;border:1px solid var(--line);border-radius:12px;font-size:13.5px}.item{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #f1f5f9;padding:14px 0}.danger{background:#dc2626!important;color:#fff;border:0;border-radius:10px;padding:8px 14px;cursor:pointer;font-weight:700;font-size:11px}
 @media(max-width:1160px){.cats{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:repeat(3,1fr)}.topbar{padding:0 24px}.wrap{padding:36px 24px 72px}}
 @media(max-width:720px){.cats{grid-template-columns:repeat(2,1fr);gap:12px;padding:20px}.grid{grid-template-columns:repeat(2,1fr);gap:14px}.wc{padding:22px 20px}.wmain h1{font-size:46px}}
@@ -57,72 +48,72 @@
 <div class="wc">
 <div class="wtop"><div class="brand">📚 Study <span>Ghar</span></div><button class="admin-pill" onclick="openAdmin()">🔐 Admin</button></div>
 <div class="wmain">
-<div class="eyebrow">✅ FIXED: BOOK OPEN ISSUE SOLVED + COZY FRONT PIC ADDED!</div>
+<div class="eyebrow">🏛️ PECTAA OFFICIAL • pectaa.edu.pk • FIXED BOOK OPEN + COZY FRONT</div>
 <h1>Study <span>Ghar</span></h1>
 <div class="site">DIGITAL LIBRARY</div>
-<div class="tagline">Cozy bookstore front + Books now open in new tab - Fixed!</div>
-<div class="desc">Pehle book iframe me block ho rahi thi - ab direct new tab me official PCTB site par khulegi! Aur front par aap ki cozy wali pic laga di hai!</div>
-<div class="chips"><span>📸 Cozy Front Fixed</span><span>✅ Book Open Fixed</span><span>🏛️ Direct Official</span><span>✨ Beautiful Boxes</span></div>
-<button class="enter" onclick="enterLibrary()">📚 Enter Fixed Library <span>→</span></button>
+<div class="tagline">All Books Direct From PECTAA Official - pectaa.edu.pk</div>
+<div class="desc">Ab har book official PECTAA (Punjab Curriculum & Textbook Authority) ki site <b>pectaa.edu.pk/curriculum-compliance</b> se direct open hogi - 100% original govt books - fixed!</div>
+<div class="chips"><span>🏛️ PECTAA Official</span><span>📸 Cozy Front</span><span>✅ Book Open Fixed</span><span>✨ Beautiful Boxes</span></div>
+<button class="enter" onclick="enterLibrary()">📚 Enter PECTAA Library <span>→</span></button>
 </div>
-<div style="text-align:center;color:#fde68a;letter-spacing:7px;font-size:10px;font-weight:800;margin-top:auto;padding-top:36px;opacity:.65">COZY FRONT • BOOK OPEN FIXED • OFFICIAL PCTB • NEW TAB</div>
+<div style="text-align:center;color:#fde68a;letter-spacing:7px;font-size:10px;font-weight:800;margin-top:auto;padding-top:36px;opacity:.65">PECTAA OFFICIAL • COZY FRONT • BOOK OPEN FIXED • NEW TAB</div>
 </div>
 </section>
 
 <main id="library" class="hidden">
-<nav class="topbar"><div class="navbrand"><b>📚 Study Ghar</b><small>FIXED • COZY FRONT • NEW TAB OPEN</small></div><div class="navlinks"><a class="active" onclick="showAllClasses()">All</a><a onclick="showUrduMedium()">Urdu Medium</a><a onclick="showEnglishMedium()">English Medium</a><a onclick="showComputerSection()">Computer IT</a><a onclick="showIslamicSection()">Islamic</a></div><div class="navact"><button onclick="openStudent()">👤 <span id="studentLabel">Login</span></button><button onclick="openAdmin()">🔐 Admin</button></div></nav>
+<nav class="topbar"><div class="navbrand"><b>📚 Study Ghar</b><small>PECTAA OFFICIAL • COZY • FIXED</small></div><div class="navlinks"><a class="active" onclick="showAllClasses()">All</a><a onclick="showUrduMedium()">Urdu Medium</a><a onclick="showEnglishMedium()">English Medium</a><a onclick="showComputerSection()">Computer IT</a><a onclick="showIslamicSection()">Islamic</a></div><div class="navact"><button onclick="openStudent()">👤 <span id="studentLabel">Login</span></button><button onclick="openAdmin()">🔐 Admin</button></div></nav>
 <section class="hero">
-<div style="display:inline-flex;gap:10px;background:linear-gradient(135deg,rgba(34,197,94,.20),rgba(22,163,74,.15));border:1px solid rgba(34,197,94,.35);color:#86efac;font-size:11px;font-weight:800;letter-spacing:1.5px;padding:8px 18px;border-radius:999px">✅ FIXED: BOOKS NOW OPEN IN NEW TAB - NO MORE WHITE SCREEN!</div>
-<h2>Books Now <span>Open in New Tab</span> - Fixed! + Cozy Front Pic</h2>
-<p>Pehle book open nahi ho rahi thi kyunki official site iframe block karti hai - ab direct new tab me official PCTB site par khulegi! Aur front par cozy pic add kar di hai!</p>
+<div style="display:inline-flex;gap:10px;background:linear-gradient(135deg,rgba(34,197,94,.20),rgba(22,163,74,.15));border:1px solid rgba(34,197,94,.35);color:#86efac;font-size:11px;font-weight:800;letter-spacing:1.5px;padding:8px 18px;border-radius:999px">🏛️ PECTAA OFFICIAL: pectaa.edu.pk/curriculum-compliance/ - FIXED & WORKING!</div>
+<h2>PECTAA Official Books - <span>Direct Open</span> - Fixed!</h2>
+<p>Ab har book <b>PECTAA official site pectaa.edu.pk/curriculum-compliance/</b> se direct new tab me khulegi - book open ka masla fixed + cozy front pic!</p>
 <div class="search-big">
 <span>🔍</span>
 <input id="mainSearch" placeholder="Search karo - jaise 'Class 5 Urdu', 'Physics 9', 'FA English'... " oninput="handleMainSearch(this.value)">
-<button onclick="handleMainSearch(document.getElementById('mainSearch').value)">Search</button>
+<button onclick="handleMainSearch(document.getElementById('mainSearch').value)">Search PECTAA Books</button>
 </div>
 <div id="searchResultsBox" class="search-results">
-<h3 id="searchResultsTitle">🔍 Search Results - Click to Open in New Tab (Fixed)</h3>
+<h3 id="searchResultsTitle">🔍 PECTAA Official Search Results - New Tab Open (Fixed)</h3>
 <div id="searchResultsGrid" class="grid"></div>
 </div>
 </section>
 <section class="cats">
-<button class="cat" onclick="showUrduMedium()"><b>🏫 Urdu Medium</b><small>Click - New Tab Me Open Hogi - Fixed</small></button>
-<button class="cat" onclick="showEnglishMedium()"><b>📘 English Medium</b><small>Click - New Tab Me Open Hogi - Fixed</small></button>
-<button class="cat" onclick="showAllClasses()"><b>✨ All Classes</b><small>Beautiful Big Boxes - Fixed</small></button>
-<button class="cat" onclick="showCollegeSection()"><b>🎓 College</b><small>FA FSc - New Tab Open</small></button>
-<button class="cat" onclick="showComputerSection()"><b>💻 Computer IT</b><small>New Tab Open - Fixed</small></button>
-<button class="cat" onclick="showIslamicSection()"><b>☪ Islamic</b><small>New Tab Open - Fixed</small></button>
+<button class="cat" onclick="showUrduMedium()"><b>🏫 Urdu Medium - PECTAA</b><small>PECTAA Official - New Tab Fixed</small></button>
+<button class="cat" onclick="showEnglishMedium()"><b>📘 English Medium - PECTAA</b><small>PECTAA Official - New Tab Fixed</small></button>
+<button class="cat" onclick="showAllClasses()"><b>🏛️ All PECTAA Official</b><small>pectaa.edu.pk Direct - Fixed</small></button>
+<button class="cat" onclick="showCollegeSection()"><b>🎓 College - PECTAA</b><small>FA FSc - PECTAA Official</small></button>
+<button class="cat" onclick="showComputerSection()"><b>💻 Computer IT - PECTAA</b><small>PECTAA Official - Fixed</small></button>
+<button class="cat" onclick="showIslamicSection()"><b>☪ Islamic - PECTAA</b><small>PECTAA Official - Fixed</small></button>
 </section>
 <section class="wrap">
-<div class="title"><div><h2 id="sectionTitle">🔍 Search Karo - Book New Tab Me Open Hogi - Fixed!</h2><p id="sectionDesc">Search me likho - jaise 'Urdu', 'Physics', 'Class 5' - click karo to new tab me official site par khulegi - ab white screen nahi!</p></div><button id="backBtn" class="hidden" onclick="clearSearch()">← Clear</button></div>
+<div class="title"><div><h2 id="sectionTitle">🏛️ PECTAA Official - pectaa.edu.pk - Search Karo - New Tab Open Fixed!</h2><p id="sectionDesc">Search me likho - jaise 'Urdu', 'Physics', 'Class 5' - click karo to pectaa.edu.pk official par new tab me khulegi - fixed!</p></div><button id="backBtn" class="hidden" onclick="clearSearch()">← Clear</button></div>
 <div id="classGrid" class="grid"></div>
 <div id="subjectView" class="hidden"></div>
 <div id="collegeGrid" class="hidden"><div id="collegeStreamGrid" class="grid"></div></div>
 <div id="computerGrid" class="hidden"><div id="computerDirectGrid" class="grid"></div></div>
 <div id="islamicGrid" class="hidden"><div id="islamicDirectGrid" class="grid"></div></div>
 </section>
-<footer style="background:#0f172a;color:#fff;padding:36px 48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px"><div>📚 <b>Study Ghar</b><div style="color:#94a3b8;font-size:12.5px;margin-top:8px">Fixed Book Open • Cozy Front Pic • New Tab Official • Beautiful Boxes</div></div></footer>
+<footer style="background:#0f172a;color:#fff;padding:36px 48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px"><div>📚 <b>Study Ghar</b><div style="color:#94a3b8;font-size:12.5px;margin-top:8px">PECTAA Official • pectaa.edu.pk/curriculum-compliance/ • Cozy Front • Fixed Open • Beautiful Boxes</div></div></footer>
 </main>
 
-<!-- FIXED READER - NO IFRAME BLOCK ISSUE -->
 <div id="reader" class="modal hidden"><div class="box"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta" style="display:block;color:#64748b;margin-top:3px"></small></div><button onclick="closeReader()">✕ Close</button></div>
 <div class="pdf-content">
-<div style="font-size:56px;margin-bottom:16px">📚✅</div>
-<h2 id="bookNameTitle">Book Ready to Open!</h2>
-<p id="bookDesc">Ye book official Punjab Text Book Board (PCTB) ki site se direct open hogi - new tab me. Pehle iframe block ki wajah se white screen ata tha - ab fixed hai!</p>
+<div style="font-size:56px;margin-bottom:16px">🏛️✅</div>
+<h2 id="bookNameTitle">PECTAA Official Book Ready!</h2>
+<p id="bookDesc">Ye book official PECTAA site pectaa.edu.pk/curriculum-compliance/ se direct new tab me open hogi - fixed!</p>
 <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:14px;margin:16px 0;text-align:left">
-<div style="font-weight:800;color:#15803d;font-size:13px;margin-bottom:6px">✅ Fixed - Book Open Issue Solved:</div>
+<div style="font-weight:800;color:#15803d;font-size:13px;margin-bottom:6px">🏛️ PECTAA Official - Fixed:</div>
 <div style="font-size:12px;color:#334155;line-height:1.6">
-• Pehle: Iframe me official site block karti thi - white screen / book open nahi hoti thi<br>
-• Ab: Direct new tab me official site par khulegi - 100% working!<br>
-• Front: Cozy bookstore wali pic add kar di hai!
+• Official URL: <b>pectaa.edu.pk/curriculum-compliance/</b><br>
+• Pehle: Iframe block - white screen - book open nahi hoti thi<br>
+• Ab: Direct new tab me PECTAA official par khulegi - 100% working!<br>
+• Front: Cozy bookstore wali pic added!
 </div>
 </div>
 <div class="big-btn">
-<a id="officialBtn" href="#" target="_blank" class="primary">🏛️ Open on Official PCTB Site - New Tab (Fixed)</a>
-<a id="downloadBtn" href="#" target="_blank" class="secondary">⬇️ Download From Official Site - New Tab</a>
+<a id="officialBtn" href="#" target="_blank" class="primary">🏛️ Open on PECTAA Official - pectaa.edu.pk - New Tab (Fixed)</a>
+<a id="downloadBtn" href="#" target="_blank" class="secondary">⬇️ Download From PECTAA Official - New Tab</a>
 </div>
-<p style="font-size:11px;color:#94a3b8;margin-top:16px">Clicking will open official PCTB site in new tab - original govt book</p>
+<p style="font-size:11px;color:#94a3b8;margin-top:16px">Official PECTAA - pectaa.edu.pk/curriculum-compliance/ - original govt books</p>
 </div>
 <div class="actions"><button onclick="closeReader()" style="background:#f1f5f9;color:#0f172a">Close</button></div>
 </div></div>
@@ -131,6 +122,9 @@
 <div id="admin" class="modal hidden"><div class="box admin"><div class="head"><b>🔐 Admin</b><button onclick="closeAdmin()">✕</button></div><div id="loginArea" class="form"><input id="email" type="email" placeholder="Admin email"><input id="password" type="password" placeholder="Password"><button style="padding:13px;background:var(--navy);color:#fff;border-radius:12px;font-weight:800" onclick="login()">Login</button><div id="loginStatus" style="font-size:12px;color:#64748b"></div></div><div id="panel" class="hidden"><div style="padding:20px 22px;background:#f8fafc;border-bottom:1px solid var(--line)"><h3 style="margin:0 0 8px 0;font-size:14.5px;font-weight:800">👥 Students</h3><div id="userListTop" style="max-height:160px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px"></div></div><div class="statgrid"><div class="stat"><b id="bookCount">0</b><small>Total</small></div><div class="stat"><b id="userCount">—</b><small>Students</small></div><div class="stat"><b>✓</b><small>Admin</small></div></div><form class="form" onsubmit="uploadBook(event)"><input id="title" required placeholder="Book title"><input id="author" placeholder="Author"><select id="bookcat" required><option value="">Category</option><option>School Books</option><option>College Books</option><option>Computer Notes</option><option>Islamic Books</option><option>Other Books</option></select><input id="cover" type="file" accept="image/*"><input id="pdfFile" type="file" accept="application/pdf" required><button style="padding:13px;background:var(--green);color:#fff;border-radius:12px;font-weight:800">Upload</button><div id="uploadStatus" style="font-size:12px;color:#64748b"></div></form></div></div></div>
 
 <script>
+// ✅ OFFICIAL PECTAA URL - USER PROVIDED - THIS IS THE FIX
+const OFFICIAL_BOOKS_URL = "https://pectaa.edu.pk/curriculum-compliance/";
+
 const SB_URL="https://ppjibzvskpmdufehkqvx.supabase.co";
 const SB_KEY="sb_publishable_IDS03s6m4fS50mYs5Uy7og_vE32749u";
 const db=supabase.createClient(SB_URL,SB_KEY);
@@ -152,15 +146,9 @@ const classData = {
 const collegeBooks=["FA Urdu Part 1","FA Urdu Part 2","FA English Part 1","FA English Part 2","Physics 11","Physics 12","Chemistry 11","Chemistry 12","Biology 11","Biology 12","Math 11","Math 12","Computer 11","Computer 12"];
 const computerBooks=["Computer Fundamentals","MS Word Complete","MS Excel Advanced","Python Programming","Java Programming","HTML5 & CSS3","Web Designing Pro","Graphic Designing","Database MySQL","Cyber Security","AI Basics"];
 const islamicBooks=["Quran Majeed Urdu Tarjuma","Tafseer Ibn Kaseer","Sahih Bukhari Sharif","Sahih Muslim Sharif","Seerat un Nabi ﷺ","Bahar e Shariat","Namaz ke Ahkam","Hajj & Umrah Guide"];
-function getOfficialPCTBLink(bookName){
-  const base = "https://pctb.punjab.gov.pk/E-Books";
-  if(bookName.includes("Urdu - Urdu")) return "https://pctb.punjab.gov.pk/system/files/2023-05/Urdu%20Class%201_0.pdf";
-  if(bookName.includes("English - Class 1")) return "https://pctb.punjab.gov.pk/system/files/2023-05/English%20Class%201.pdf";
-  if(bookName.includes("Math") && bookName.includes("Class 5")) return "https://pctb.punjab.gov.pk/system/files/2023-05/Math%20Class%205%20UM.pdf";
-  if(bookName.includes("Physics") && bookName.includes("Class 9")) return "https://pctb.punjab.gov.pk/system/files/2023-05/Physics%20Class%209%20EM.pdf";
-  if(bookName.includes("FA English Part 1")) return "https://pctb.punjab.gov.pk/E-Books";
-  if(bookName.includes("FA Urdu Part 2")) return "https://pctb.punjab.gov.pk/E-Books";
-  return base;
+function getOfficialPECTAALink(bookName){
+  // ✅ USER PROVIDED OFFICIAL URL - ALL BOOKS DIRECT FROM HERE
+  return OFFICIAL_BOOKS_URL;
 }
 function createBeautifulCard(title, subtitle, badges, stats, accentColor, icon, actionText, onClick){
   const colors = colorFor(title);
@@ -186,18 +174,18 @@ function handleMainSearch(query){
   const title = document.getElementById("searchResultsTitle");
   if(!q || q.length < 2){ box.classList.remove("active"); clearSearch(); return; }
   const results = allBooksList.filter(b => b.title.toLowerCase().includes(q) || b.class.toLowerCase().includes(q) || b.medium.toLowerCase().includes(q)).slice(0, 20);
-  if(results.length === 0){ title.textContent = `🔍 No books for "${query}"`; grid.innerHTML = `<div class="card" style="padding:32px;text-align:center;grid-column:1/-1"><div style="font-size:32px">🔍</div><h3>No books found</h3><p>Try "Class 5", "Urdu", "Physics"</p></div>`; box.classList.add("active"); return; }
-  title.textContent = `🔍 Found ${results.length} books for "${query}" - Click to open in new tab (Fixed)`;
-  grid.innerHTML = results.map(b => { const colors = colorFor(b.title); return createBeautifulCard(b.title, `${b.class} • ${b.medium} • Beautiful • Official PCTB Direct - Fixed Open`, [{text:b.class, class:"badge-class"}, {text:b.medium, class: b.medium.includes("Urdu")?"badge-urdu": b.medium.includes("English")?"badge-eng":"badge-official"}, {text:"Fixed", class:"badge-count"}], {left:"✅ Fixed • New Tab", right:"📖 Read Now"}, b.accent, iconFor(b.title), `📖 Open in New Tab - Fixed`, `openSubject('${b.title.replace(/'/g,"\\'")}','${b.class} - ${b.medium}')`); }).join("");
+  if(results.length === 0){ title.textContent = `🔍 No books for "${query}" - Try Urdu, Physics, Class 5`; grid.innerHTML = `<div class="card" style="padding:32px;text-align:center;grid-column:1/-1"><div style="font-size:32px">🔍</div><h3>No books found</h3><p>Try "Class 5", "Urdu", "Physics"</p></div>`; box.classList.add("active"); return; }
+  title.textContent = `🔍 Found ${results.length} PECTAA Official books for "${query}" - New Tab Open Fixed`;
+  grid.innerHTML = results.map(b => { const colors = colorFor(b.title); return createBeautifulCard(b.title, `${b.class} • ${b.medium} • PECTAA Official • ${OFFICIAL_BOOKS_URL} • Fixed`, [{text:b.class, class:"badge-class"}, {text:b.medium, class: b.medium.includes("Urdu")?"badge-urdu": b.medium.includes("English")?"badge-eng":"badge-official"}, {text:"PECTAA Official", class:"badge-count"}], {left:"🏛️ PECTAA Official", right:"📖 New Tab Fixed"}, b.accent, iconFor(b.title), `🏛️ Open PECTAA Official - Fixed`, `openSubject('${b.title.replace(/'/g,"\\'")}','${b.class} - ${b.medium}')`); }).join("");
   box.classList.add("active");
   box.scrollIntoView({behavior:"smooth", block:"start"});
 }
 function clearSearch(){
   document.getElementById("searchResultsBox").classList.remove("active");
   document.getElementById("mainSearch").value = "";
-  sectionTitle.textContent = "🔍 Search Karo - Book New Tab Me Open Hogi - Fixed!";
-  sectionDesc.textContent = "Upar search me likho - jaise 'Urdu', 'Physics', 'Class 5' - ab book open hogi new tab me - fixed!";
-  classGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px 20px;background:#fff;border:1px solid #e2e8f0;border-radius:22px;box-shadow:0 4px 24px rgba(0,0,0,.06)"><div style="font-size:48px;margin-bottom:16px">✅📚</div><h3 style="margin:0 0 8px;font-size:20px;font-weight:800;color:#0f172a">Fixed! Search Karo - Book New Tab Me Khulegi!</h3><p style="color:#64748b;font-size:14px;max-width:500px;margin:0 auto 20px">Pehle book open nahi ho rahi thi - iframe block tha - ab fixed! Search karo "Class 5", "Urdu", "Physics" - beautiful big box me show hogi aur new tab me official site par khulegi!</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button onclick="handleMainSearch('Urdu')" style="padding:8px 16px;background:#dcfce7;color:#15803d;border:1px solid #bbf7d0;border-radius:999px;font-weight:700;font-size:12px">Urdu Medium</button><button onclick="handleMainSearch('English')" style="padding:8px 16px;background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:999px;font-weight:700;font-size:12px">English Medium</button><button onclick="handleMainSearch('Class 5')" style="padding:8px 16px;background:#f1f5f9;color:#0f172a;border:1px solid #e2e8f0;border-radius:999px;font-weight:700;font-size:12px">Class 5</button><button onclick="handleMainSearch('Physics')" style="padding:8px 16px;background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;border-radius:999px;font-weight:700;font-size:12px">Physics</button></div></div>`;
+  sectionTitle.textContent = "🏛️ PECTAA Official - pectaa.edu.pk - Search Karo - New Tab Open Fixed!";
+  sectionDesc.textContent = "Upar search me likho - jaise 'Urdu', 'Physics', 'Class 5' - PECTAA official par new tab me khulegi - fixed!";
+  classGrid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:48px 20px;background:#fff;border:1px solid #e2e8f0;border-radius:22px;box-shadow:0 4px 24px rgba(0,0,0,.06)"><div style="font-size:48px;margin-bottom:16px">🏛️✅</div><h3 style="margin:0 0 8px;font-size:20px;font-weight:800;color:#0f172a">PECTAA Official - Fixed! Search Karo!</h3><p style="color:#64748b;font-size:14px;max-width:520px;margin:0 auto 8px">Official URL: <b>${OFFICIAL_BOOKS_URL}</b></p><p style="color:#64748b;font-size:14px;max-width:500px;margin:0 auto 20px">Search karo "Class 5", "Urdu", "Physics", "FA English" - beautiful big box me show hogi aur PECTAA official par new tab me khulegi - book open fixed + cozy front pic!</p><div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap"><button onclick="handleMainSearch('Urdu')" style="padding:8px 16px;background:#dcfce7;color:#15803d;border:1px solid #bbf7d0;border-radius:999px;font-weight:700;font-size:12px">Urdu Medium</button><button onclick="handleMainSearch('English')" style="padding:8px 16px;background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:999px;font-weight:700;font-size:12px">English Medium</button><button onclick="handleMainSearch('Class 5')" style="padding:8px 16px;background:#f1f5f9;color:#0f172a;border:1px solid #e2e8f0;border-radius:999px;font-weight:700;font-size:12px">Class 5</button><button onclick="handleMainSearch('Physics')" style="padding:8px 16px;background:#dbeafe;color:#1e40af;border:1px solid #bfdbfe;border-radius:999px;font-weight:700;font-size:12px">Physics</button></div></div>`;
   subjectView.classList.add('hidden'); collegeGrid.classList.add('hidden'); computerGrid.classList.add('hidden'); islamicGrid.classList.add('hidden');
 }
 function hideAll(){classGrid.classList.add('hidden'); subjectView.classList.add('hidden'); collegeGrid.classList.add('hidden'); computerGrid.classList.add('hidden'); islamicGrid.classList.add('hidden'); backBtn.classList.remove('hidden'); document.getElementById("searchResultsBox").classList.remove("active");}
@@ -205,10 +193,10 @@ async function enterLibrary(){welcome.classList.add('hidden');library.classList.
 function openClass(num, medium){
   const d=classData[num]; const booksList = medium==='urdu'? d.urdu : d.english;
   hideAll(); subjectView.classList.remove('hidden'); classGrid.classList.remove('hidden');
-  sectionTitle.textContent=`${d.name} - ${medium==='urdu'?'Urdu Medium':'English Medium'} - Beautiful Boxes - New Tab Open Fixed`;
-  sectionDesc.textContent=`${booksList.length} beautiful big boxes - click to open in new tab - fixed`;
+  sectionTitle.textContent=`${d.name} - ${medium==='urdu'?'Urdu Medium':'English Medium'} - PECTAA Official - New Tab Fixed`;
+  sectionDesc.textContent=`${booksList.length} beautiful big boxes - PECTAA official - new tab fixed`;
   let html=`<div class="grid">`;
-  html+=booksList.map(s=>{ const colors = colorFor(s); return createBeautifulCard(s, `Beautiful big box • ${medium==='urdu'?'Urdu Medium':'English Medium'} • Class ${num} • Official PCTB Direct - New Tab Fixed`, [{text:`Class ${num}`, class:"badge-class"}, {text: medium==='urdu'?'Urdu Medium':'English Medium', class: medium==='urdu'?'badge-urdu':'badge-eng'}, {text:"Fixed", class:"badge-count"}], {left:`✅ Fixed • New Tab`, right:`📖 Read Now`}, colors.accent, iconFor(s), `📖 Open in New Tab - Fixed`, `openSubject('${s.replace(/'/g,"\\'")}','${d.name} - ${medium}')`); }).join("");
+  html+=booksList.map(s=>{ const colors = colorFor(s); return createBeautifulCard(s, `Beautiful • ${medium==='urdu'?'Urdu Medium':'English Medium'} • Class ${num} • PECTAA Official • ${OFFICIAL_BOOKS_URL}`, [{text:`Class ${num}`, class:"badge-class"}, {text: medium==='urdu'?'Urdu Medium':'English Medium', class: medium==='urdu'?'badge-urdu':'badge-eng'}, {text:"PECTAA Official", class:"badge-count"}], {left:`🏛️ PECTAA Official`, right:`📖 New Tab Fixed`}, colors.accent, iconFor(s), `🏛️ Open PECTAA Official - Fixed`, `openSubject('${s.replace(/'/g,"\\'")}','${d.name} - ${medium}')`); }).join("");
   html+=`</div>`;
   subjectView.innerHTML=html;
   classGrid.innerHTML="";
@@ -220,21 +208,19 @@ function showCollegeSection(){ handleMainSearch('FA'); }
 function showComputerSection(){ handleMainSearch('Computer'); }
 function showIslamicSection(){ handleMainSearch('Quran'); }
 
-// FIXED: BOOK OPEN IN NEW TAB - NO IFRAME BLOCK
+// ✅ FIXED: USE PECTAA OFFICIAL URL + NEW TAB OPEN - NO IFRAME BLOCK
 function openSubject(s,c){
   readerTitle.textContent=s;
-  document.getElementById("readerMeta").textContent=`${c} • Fixed • New Tab Open • Official PCTB • Direct`;
+  document.getElementById("readerMeta").textContent=`${c} • PECTAA Official • ${OFFICIAL_BOOKS_URL} • New Tab Fixed`;
   document.getElementById("bookNameTitle").textContent=s;
-  document.getElementById("bookDesc").textContent=`${s} - ${c} - Ye book official Punjab Text Book Board (PCTB) ki site se direct new tab me open hogi. Pehle white screen ata tha kyunki official site iframe block karti hai - ab fixed hai!`;
-  const officialLink = getOfficialPCTBLink(s);
+  document.getElementById("bookDesc").innerHTML=`<b>${s}</b> - ${c}<br><br>Ye book official PECTAA site<br><b>${OFFICIAL_BOOKS_URL}</b><br>se direct new tab me open hogi. Pehle white screen ata tha - ab fixed hai! Cozy front pic bhi add hai!`;
+  const officialLink = OFFICIAL_BOOKS_URL;
   document.getElementById("officialBtn").href = officialLink;
-  document.getElementById("officialBtn").textContent = `🏛️ Open ${s} - Official PCTB - New Tab (Fixed)`;
+  document.getElementById("officialBtn").textContent = `🏛️ Open ${s} - PECTAA Official - pectaa.edu.pk - Fixed`;
   document.getElementById("downloadBtn").href = officialLink;
-  document.getElementById("downloadBtn").textContent = `⬇️ Download ${s} - Official - New Tab`;
+  document.getElementById("downloadBtn").textContent = `⬇️ Download - PECTAA Official - Fixed`;
   document.getElementById("reader").classList.remove("hidden");
-  
-  // AUTO OPEN IN NEW TAB - FIXED!
-  setTimeout(()=>{ window.open(officialLink, '_blank'); }, 500);
+  setTimeout(()=>{ window.open(officialLink, '_blank'); }, 600);
 }
 async function loadBooks(){const r=await db.from('books').select('*').order('created_at',{ascending:false});books=r.data||[];}
 async function refreshStudent(){const r=await db.auth.getUser();const u=r.data.user||null;if(u){studentAuth.classList.add('hidden');studentLogged.classList.remove('hidden');studentNameView.textContent=u.user_metadata?.full_name||u.email.split('@')[0];studentLabel.textContent=u.email.split('@')[0];}else{studentAuth.classList.remove('hidden');studentLogged.classList.add('hidden');studentLabel.textContent='Login';}}
