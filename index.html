@@ -3,147 +3,378 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Study Ghar - PECTAA Official | Taleem360 Style Books</title>
-<meta name="description" content="Study Ghar - PECTAA Official Books Taleem360 style - pectaa.edu.pk - School College Computer IT History Geography Islamic">
-<meta name="keywords" content="PECTAA, Study Ghar, Taleem360 style, Punjab Textbooks">
+<title>Study Ghar - Learn Today, Build Tomorrow | PECTAA Official Books</title>
+<meta name="description" content="Study Ghar - Free Online Study Resources - Books, notes and past papers organized for students - PECTAA Official pectaa.edu.pk/curriculum-compliance/ - School College Computer IT Islamic">
+<meta name="keywords" content="Study Ghar, PECTAA Official, School Books, College Books, Computer Notes, Islamic Books">
 <meta name="author" content="ah2129643@gmail.com">
 <meta name="robots" content="index,follow">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0f172a;--gold:#fbbf24;--bg:#f5f7fb;--line:#e2e8f0;--green:#16a34a;--blue:#1d4ed8;--red:#dc2626;--shadow:0 2px 12px rgba(0,0,0,.06);--shadow-lg:0 12px 32px rgba(0,0,0,.12)}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:#334155} .hidden{display:none!important} button{cursor:pointer;border:0;font:inherit}
-.welcome{position:relative;min-height:100vh;background:#0f172a;color:#fff;overflow:hidden}
-.welcome-bg{position:absolute;inset:0;background:url('Cozy_Bookstore_Scene') center/cover no-repeat,url('welcome-hero.png') center/cover no-repeat;background-size:cover}
-.welcome-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.78) 45%,rgba(15,23,42,.4) 75%,rgba(15,23,42,.15) 100%)}
-.wc{position:relative;z-index:2;min-height:100vh;max-width:1320px;margin:0 auto;padding:28px 48px 32px;display:flex;flex-direction:column}
-.wtop{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;font-size:24px}.brand span{color:var(--gold)}.admin-pill{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:11px 22px;font-weight:700}
-.wmain{max-width:720px;margin:auto 0;padding:48px 0 36px}.eyebrow{display:inline-flex;background:rgba(22,163,74,.18);border:1px solid rgba(34,197,94,.3);color:#86efac;font-size:11px;font-weight:800;padding:8px 16px;border-radius:999px;letter-spacing:1px}
-.wmain h1{font:900 clamp(52px,7vw,86px)/.88 sans-serif;margin:20px 0 0;letter-spacing:-3px}.wmain h1 span{color:var(--gold)}.site{font-size:12px;font-weight:800;letter-spacing:9px;margin-top:12px;color:#fde68a;opacity:.85}.tagline{font-size:20px;font-weight:700;margin:20px 0 12px}.desc{color:#e2e8f0;line-height:1.6;font-size:14px;max-width:620px}.chips{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}.chips span{padding:10px 16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:12px;font-weight:600}
-.enter{background:linear-gradient(135deg,var(--gold),#f59e0b);color:#0f172a;border-radius:14px;padding:16px 32px;font-weight:900;font-size:15px;display:inline-flex;gap:10px;margin-top:18px;box-shadow:0 12px 32px rgba(251,191,36,.3)}
-.topbar{height:72px;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 32px;gap:24px;position:sticky;top:0;z-index:20}.navbrand{margin-right:auto}.navbrand b{display:block;font-size:18px;font-weight:900;color:var(--navy)}.navbrand small{color:var(--green);letter-spacing:2px;font-weight:800;font-size:8px;display:block;margin-top:2px}.navlinks{display:flex;gap:6px}.navlinks a{color:#64748b;font-size:11.5px;font-weight:600;padding:8px 12px;border-radius:9px;cursor:pointer;text-decoration:none}.navlinks a.active{background:var(--navy);color:#fff}.navact{display:flex;gap:8px}.navact button{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 16px;font-size:12px;font-weight:700;box-shadow:var(--shadow)}
-.hero{background:linear-gradient(115deg,#0f172a 0%,#14532d 55%,#16a34a 100%);color:#fff;padding:44px 32px 36px}.hero h2{font:800 clamp(28px,4vw,44px)/1.05 sans-serif;margin:12px 0}.hero h2 span{color:var(--gold)}.hero p{max-width:720px;color:#bbf7d0;font-size:13px;line-height:1.6;margin:10px 0 0}
-.search-big{background:#fff;border-radius:14px;padding:6px 6px 6px 14px;display:flex;align-items:center;max-width:760px;margin-top:20px;box-shadow:0 12px 40px rgba(0,0,0,.15)}.search-big input{flex:1;border:0;outline:0;padding:11px 10px;font-size:14px;font-weight:600;color:var(--navy)}.search-big button{background:var(--navy);color:#fff;border-radius:10px;padding:10px 18px;font-weight:800;font-size:12px}
-.cats{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;padding:18px 32px;background:#fff;border-bottom:1px solid var(--line)}.cat{border:1px solid var(--line);background:#fff;border-radius:14px;padding:14px;text-align:left;cursor:pointer;box-shadow:var(--shadow);transition:.25s}.cat:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}.cat b{display:block;font-size:11px;font-weight:800;color:var(--navy);margin-bottom:3px}.cat small{color:#64748b;font-size:9px;line-height:1.3}
-.wrap{max-width:1320px;margin:auto;padding:28px 32px 80px}.title h2{margin:0;font-size:21px;font-weight:900;color:var(--navy)}.title p{color:#64748b;font-size:12px;margin:6px 0 0}.back{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 16px;font-weight:700}
+:root{--navy:#0f172a;--blue:#2563eb;--blue-light:#eff6ff;--green:#16a34a;--bg:#f8fafc;--line:#e2e8f0;--text:#1e293b;--muted:#64748b;--gold:#fbbf24;--shadow:0 2px 12px rgba(0,0,0,.06);--shadow-lg:0 12px 32px rgba(0,0,0,.12)}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,sans-serif;background:#fff;color:var(--text);-webkit-font-smoothing:antialiased} .hidden{display:none!important} button{cursor:pointer;border:0;font:inherit} a{text-decoration:none;color:inherit}
 
-/* BEAUTIFUL BIG BOXES FOR CLASS CATEGORIES - SQUARE TYPE */
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:20px}
-.card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:.3s;cursor:pointer;display:flex;flex-direction:column;position:relative;aspect-ratio:1 / 1}
-.card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}.card-header{height:6px;background:var(--green)}.card-body{padding:16px;display:flex;flex-direction:column;flex:1;gap:10px;justify-content:space-between}.card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}.card-content h3{font-size:13px;margin:0 0 4px;font-weight:800;color:var(--navy);line-height:1.3;min-height:32px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.card-content .subtitle{font-size:10px;color:#64748b;min-height:24px}.card-meta{display:flex;flex-wrap:wrap;gap:5px}.badge{padding:4px 8px;border-radius:999px;font-size:8px;font-weight:800;border:1px solid}.badge-urdu{background:#dcfce7;color:#15803d}.badge-eng{background:#dbeafe;color:#1d4ed8}.badge-class{background:#f1f5f9;color:var(--navy)}.badge-count{background:var(--navy);color:#fff}.card-footer{padding:0 14px 14px}.card-action{width:100%;border-radius:8px;padding:9px;background:var(--navy);color:#fff;font-weight:800;font-size:10px;display:flex;align-items:center;justify-content:center;gap:5px}
-.section-head{margin:28px 0 14px 0;padding:12px 16px;background:#fff;border:1px solid var(--line);border-radius:12px;display:flex;align-items:center;gap:10px;box-shadow:var(--shadow);position:sticky;top:80px;z-index:5}.section-head h3{margin:0;font-size:13px;font-weight:900;color:var(--navy)}
+/* HEADER - LIKE SCREENSHOT */
+.header{height:64px;background:#fff;border-bottom:1px solid #f1f5f9;display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;z-index:30;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.header-left{display:flex;align-items:center;gap:10px}
+.logo-icon{width:44px;height:44px;background:linear-gradient(135deg,#1e40af,#3b82f6);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;position:relative}
+.logo-icon::after{content:"⌂";position:absolute;top:2px;font-size:14px;font-weight:900}
+.logo-text b{display:block;font-size:18px;font-weight:900;color:#0f172a;letter-spacing:-.5px;line-height:1}.logo-text b span{color:#2563eb}.logo-text small{display:block;font-size:10px;color:#64748b;font-weight:500;margin-top:1px;letter-spacing:.2px}
+.header-nav{display:flex;align-items:center;gap:28px}
+.header-nav a{font-size:13px;font-weight:600;color:#475569;position:relative;padding:4px 0}.header-nav a.active{color:#0f172a;font-weight:700}.header-nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--blue);border-radius:2px}
+.header-right{display:flex;align-items:center;gap:12px}
+.register-btn{background:var(--blue);color:#fff;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:6px;box-shadow:0 2px 8px rgba(37,99,235,.25)}
 
-/* TALEEM360 STYLE BOOK CARDS - LIKE SCREENSHOT */
-.taleem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
-.taleem-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08);transition:.25s;cursor:pointer;display:flex;flex-direction:column}
-.taleem-card:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(0,0,0,.12);border-color:#cbd5e1}
-.taleem-img-wrap{position:relative;width:100%;aspect-ratio:3 / 4;background:#f8fafc;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.taleem-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
-.taleem-img-wrap .taleem-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:36px;color:#fff;background:linear-gradient(135deg,#0f172a,#334155)}
-.taleem-badge{position:absolute;bottom:-14px;right:14px;width:36px;height:36px;background:var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;box-shadow:0 4px 12px rgba(220,38,38,.35);border:3px solid #fff}
-.taleem-body{padding:16px 14px 12px;display:flex;flex-direction:column;flex:1;gap:6px}
-.taleem-title{font-size:13px;font-weight:700;color:#1e40af;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:36px;text-decoration:none}
-.taleem-title:hover{color:#1e3a8a}
-.taleem-cat{display:flex;align-items:center;gap:5px;font-size:11px;color:#64748b;font-weight:500;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.taleem-cat svg{width:12px;height:12px;flex-shrink:0}
-.taleem-stars{color:#f59e0b;font-size:13px;letter-spacing:1px;margin:4px 0 0}
-.taleem-footer{margin-top:auto;padding-top:10px;border-top:1px solid #f1f5f9;display:flex;align-items:center;gap:6px;font-size:11px;color:#64748b;font-weight:500}
-.taleem-footer .eye{font-size:12px}
-.taleem-actions{display:flex;gap:6px;margin-top:8px}
-.taleem-actions button{flex:1;padding:7px 8px;border-radius:6px;font-size:10px;font-weight:700;border:1px solid var(--line);background:#fff}
-.taleem-actions button.primary{background:var(--navy);color:#fff;border-color:var(--navy)}
-.taleem-actions button.green{background:var(--green);color:#fff;border-color:var(--green)}
+/* HERO - LIKE SCREENSHOT */
+.hero{position:relative;height:420px;background:#0f172a;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('Cozy_Bookstore_Scene') center/cover no-repeat,url('Cozy_Bookstore_Scene.jpg') center/cover no-repeat,linear-gradient(90deg,#0f172a,#1e3a5f);background-size:cover}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(15,23,42,.85) 0%,rgba(15,23,42,.55) 45%,rgba(15,23,42,.15) 75%,rgba(15,23,42,.05) 100%)}
+.hero-content{position:relative;z-index:2;max-width:1320px;margin:0 auto;padding:48px 32px 0;height:100%;display:flex;flex-direction:column}
+.hero-badge{display:inline-flex;align-items:center;gap:7px;background:#1e3a8a;color:#bfdbfe;font-size:11px;font-weight:700;padding:7px 14px;border-radius:999px;border:1px solid rgba(59,130,246,.3);width:fit-content}
+.hero-badge svg{width:14px;height:14px}
+.hero h1{font:900 56px/1.05 sans-serif;color:#fff;margin:18px 0 0;letter-spacing:-1.5px}.hero h1 span{color:#60a5fa;position:relative}.hero h1 span::after{content:"";position:absolute;left:0;right:0;bottom:2px;height:4px;background:#60a5fa;border-radius:2px;opacity:.8}
+.hero p{color:#cbd5e1;font-size:14px;line-height:1.6;max-width:420px;margin:14px 0 0;font-weight:400}
+.hero-books{position:absolute;right:8%;top:50%;transform:translateY(-45%);z-index:2;width:380px;height:260px;pointer-events:none}
+.hero-books img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 20px 40px rgba(0,0,0,.3))}
+.hero-handwritten{position:absolute;right:32px;top:28px;z-index:3;color:#fff;font-family:'Comic Sans MS',cursive;font-size:16px;font-weight:700;line-height:1.2;transform:rotate(4deg);text-shadow:0 2px 8px rgba(0,0,0,.3);text-align:right}
+.hero-handwritten span{display:block}.hero-handwritten::before{content:"✨";position:absolute;left:-18px;top:-6px;font-size:12px}.hero-handwritten::after{content:"✨";position:absolute;right:-12px;top:-4px;font-size:10px}
 
-.search-results{background:#fff;border:1px solid #bbf7d0;border-radius:14px;padding:16px;margin-top:16px;display:none}.search-results.active{display:block}
-.modal{position:fixed;inset:0;background:rgba(15,23,42,.88);backdrop-filter:blur(12px);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}.box{background:#fff;border-radius:18px;width:min(680px,96vw);max-height:92vh;overflow:hidden;display:flex;flex-direction:column}.box.large{width:min(860px,96vw);height:min(90vh,840px)}.box.reader{width:min(600px,96vw)}.head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);background:#fff}.head b{font-size:13px;font-weight:800}.head button{background:#f1f5f9;border-radius:8px;padding:6px 10px;font-weight:700}.pdf-content{padding:20px;text-align:center;flex:1;overflow:auto}.big-btn{display:flex;flex-direction:column;gap:8px;margin-top:14px}.big-btn a,.big-btn button{padding:12px 16px;border-radius:10px;font-weight:800;font-size:12px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;border:0}.big-btn a.primary{background:var(--green);color:#fff}.big-btn a.secondary{background:var(--navy);color:#fff}.form{padding:16px;display:grid;gap:9px}.form input,.form select{padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:12px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px}.stat{border:1px solid var(--line);border-radius:12px;padding:12px;background:#f8fafc;text-align:center}.stat b{font-size:18px;font-weight:900}.footer{background:var(--navy);color:#fff;padding:24px 32px}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:20px;max-width:1320px;margin:0 auto}.footer b{font-size:12px;font-weight:800;display:block;margin-bottom:8px}.footer a{color:#94a3b8;font-size:10px;display:block;padding:2px 0;cursor:pointer}.footer small{color:#64748b;font-size:9px;display:block;margin-top:6px}
-@media(max-width:1100px){.cats{grid-template-columns:repeat(4,1fr)}.grid{grid-template-columns:repeat(3,1fr)}.taleem-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:700px){.cats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.taleem-grid{grid-template-columns:repeat(2,1fr);gap:12px}.navlinks{display:none}}
+/* SEARCH BAR - LIKE SCREENSHOT - OVERLAPPING HERO */
+.search-wrap{position:relative;z-index:4;max-width:1320px;margin:0 auto;padding:0 32px;margin-top:-32px}
+.search-bar{background:#fff;border-radius:20px;padding:10px;display:flex;align-items:center;gap:0;box-shadow:0 12px 32px rgba(0,0,0,.12),0 2px 8px rgba(0,0,0,.06);border:1px solid #f1f5f9;max-width:760px}
+.search-input{flex:1;display:flex;align-items:center;gap:12px;padding:0 16px}
+.search-input svg{width:18px;height:18px;color:#64748b;flex-shrink:0}
+.search-input input{flex:1;border:0;outline:0;font-size:13px;font-weight:500;color:var(--text);background:transparent}.search-input input::placeholder{color:#94a3b8}
+.search-divider{width:1px;height:28px;background:#e2e8f0;flex-shrink:0}
+.search-cat{display:flex;align-items:center;gap:8px;padding:0 16px;min-width:160px;position:relative}
+.search-cat svg{width:18px;height:18px;color:var(--blue)}
+.search-cat select{border:0;outline:0;font-size:13px;font-weight:600;color:#334155;background:transparent;appearance:none;cursor:pointer;flex:1}
+.search-cat::after{content:"⌄";font-size:12px;color:#64748b;margin-left:6px}
+.search-btn{background:var(--blue);color:#fff;border-radius:12px;padding:12px 24px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:0 4px 12px rgba(37,99,235,.25);flex-shrink:0}
+.search-btn:hover{background:#1d4ed8}
 
-/* Screenshot-style Study Ghar front */
-.home-dashboard{background:#fff;padding-bottom:24px}.home-hero{min-height:300px;position:relative;overflow:hidden;background:linear-gradient(110deg,#0b2745 0%,#123d61 45%,#d9b98a 100%);color:#fff;padding:40px max(7vw,42px) 34px;display:flex;align-items:center}.home-hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,25,45,.72),rgba(5,25,45,.32) 58%,rgba(5,25,45,.12));pointer-events:none}.hero-content{position:relative;z-index:2;max-width:720px}.hero-pill{display:inline-block;background:#1265a5;border-radius:20px;padding:8px 16px;font-size:12px;font-weight:800}.home-hero h1{font-size:clamp(42px,5.5vw,68px);line-height:.98;margin:18px 0 12px;font-weight:900;letter-spacing:-2px}.home-hero h1 span{color:#1687f5}.home-hero p{font-size:17px;line-height:1.5;max-width:640px;margin:0 0 24px;color:#f8fafc}.home-search{height:62px;max-width:980px;background:#fff;border-radius:34px;padding:7px 10px 7px 20px;display:flex;align-items:center;box-shadow:0 10px 30px rgba(0,0,0,.22);color:#64748b}.home-search span{font-size:30px;line-height:1;color:#0b64c0}.home-search input{border:0;outline:0;flex:1;padding:0 16px;font-size:15px}.home-search button{border:0;background:#0878e8;color:#fff;border-radius:28px;padding:14px 30px;font-weight:800}.hero-art{position:absolute;right:4%;bottom:-5px;width:43%;height:100%;z-index:1;opacity:.95}.book-stack{position:absolute;right:22%;bottom:34px;width:300px;height:170px}.book-stack i{position:absolute;left:0;width:300px;height:38px;border-radius:8px 10px 10px 4px;transform:skew(-7deg);box-shadow:0 7px 8px rgba(0,0,0,.18)}.book-stack i:nth-child(1){bottom:0;background:#183b62}.book-stack i:nth-child(2){bottom:34px;background:#efe5ce}.book-stack i:nth-child(3){bottom:68px;background:#a74c36}.book-stack i:nth-child(4){bottom:102px;background:#d6e0e8}.open-book{position:absolute;right:23%;bottom:20px;font-size:92px;filter:drop-shadow(0 12px 12px rgba(0,0,0,.2))}.art-laptop{position:absolute;right:0;bottom:15px;font-size:180px;transform:rotate(-4deg);color:#18293a}.home-section-head{max-width:1320px;margin:0 auto;padding:28px 32px 12px;display:flex;justify-content:space-between;align-items:center}.home-section-head h2{margin:0;color:#102f55;font-size:21px}.home-section-head p{margin:4px 0 0;color:#7184a0;font-size:13px}.home-section-head a{color:#0878e8;font-size:13px;cursor:pointer}.home-categories{max-width:1320px;margin:0 auto;padding:0 32px 18px;display:grid;grid-template-columns:repeat(6,1fr);gap:16px}.home-categories button{position:relative;text-align:left;background:#fff;border:1px solid #e3ebf4;border-radius:14px;padding:14px 12px 15px;min-height:134px;box-shadow:0 5px 18px rgba(16,47,85,.06);cursor:pointer}.home-categories button:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(16,47,85,.12)}.ci{display:flex;width:48px;height:48px;border-radius:50%;align-items:center;justify-content:center;font-size:23px;margin-bottom:11px}.ci.blue{background:#e2efff}.ci.teal{background:#e0f4f0}.ci.violet{background:#e9e7ff}.ci.gold{background:#fff1d2}.ci.green{background:#dcf4ea}.ci.pink{background:#ffe4ea}.home-categories b{display:block;color:#102f55;font-size:13px;margin-bottom:5px}.home-categories small{color:#6680a0;font-size:11px}.home-categories em{position:absolute;right:12px;bottom:15px;width:31px;height:31px;border:1px solid #dbe7f3;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#0878e8;font-style:normal;font-size:18px}.home-section-head.popular{padding-top:22px}.popular-grid{max-width:1320px;margin:0 auto;padding:0 32px 8px;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.popular-card{border:1px solid #e1e9f2;background:#fff;border-radius:9px;overflow:hidden;box-shadow:0 4px 14px rgba(16,47,85,.06);display:flex;flex-direction:column}.popular-cover{height:178px;padding:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e8f1fb,#f8fbff)}.fake-book{width:112px;height:148px;border-radius:4px;padding:12px 9px;color:#fff;box-shadow:7px 8px 13px rgba(0,0,0,.2);display:flex;flex-direction:column;justify-content:space-between;text-align:center;font-weight:900}.fake-book span{font-size:9px;opacity:.9}.fake-book strong{font-size:15px;line-height:1.1}.popular-info{padding:11px}.popular-badge{display:inline-block;background:#e4f1ff;color:#0878e8;border-radius:14px;padding:5px 9px;font-size:9px;font-weight:800;margin-bottom:8px}.popular-info h3{font-size:12px;color:#102f55;margin:0 0 5px;line-height:1.35}.popular-info p{font-size:10px;color:#7184a0;margin:0 0 8px}.popular-actions{display:flex;gap:7px}.popular-actions button{flex:1;border-radius:6px;padding:8px 5px;font-size:10px;font-weight:800;border:1px solid #dbe7f3;background:#fff;color:#0878e8;cursor:pointer}.popular-actions .read{background:#0878e8;color:#fff;border-color:#0878e8}
-@media(max-width:1050px){.home-categories{grid-template-columns:repeat(3,1fr)}.popular-grid{grid-template-columns:repeat(3,1fr)}.hero-art{opacity:.35;width:55%}}@media(max-width:700px){.home-hero{padding:30px 18px}.home-hero h1{font-size:42px}.home-hero p{font-size:14px}.home-search{height:auto;border-radius:16px;padding:7px;flex-wrap:wrap}.home-search input{min-width:0;padding:12px}.home-search button{width:100%}.home-categories{grid-template-columns:repeat(2,1fr);padding:0 14px}.popular-grid{grid-template-columns:repeat(2,1fr);padding:0 14px}.home-section-head{padding:22px 14px 12px}.home-section-head h2{font-size:17px}.popular-cover{height:145px}.fake-book{width:86px;height:120px}.hero-art{display:none}}
+/* BROWSE BY CATEGORY - LIKE SCREENSHOT */
+.browse{max-width:1320px;margin:0 auto;padding:42px 32px 28px}
+.browse-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
+.browse-head-left{display:flex;gap:12px;align-items:flex-start}
+.browse-icon{width:32px;height:32px;background:#eff6ff;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--blue);font-size:16px}
+.browse-head-left h2{margin:0;font-size:18px;font-weight:800;color:var(--navy);letter-spacing:-.3px}.browse-head-left p{margin:3px 0 0;font-size:12px;color:#64748b;font-weight:400}
+.browse-head-right a{font-size:12px;font-weight:600;color:var(--blue);display:flex;align-items:center;gap:4px}
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.cat-card{background:#fff;border:1px solid #f1f5f9;border-radius:14px;padding:16px;transition:.25s;cursor:pointer;position:relative;overflow:hidden}
+.cat-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.08);border-color:#e2e8f0}
+.cat-card.school{background:#f0f7ff}.cat-card.college{background:#f0fdf4}.cat-card.computer{background:#f5f3ff}.cat-card.oldpapers{background:#fffbeb}.cat-card.islamic{background:#f0fdf4}.cat-card.other{background:#fdf2f8}
+.cat-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px}
+.cat-card.school .cat-icon{background:#dbeafe;color:#1e40af}.cat-card.college .cat-icon{background:#dbeafe;color:#1e40af}.cat-card.computer .cat-icon{background:#ddd6fe;color:#5b21b6}.cat-card.oldpapers .cat-icon{background:#fde68a;color:#92400e}.cat-card.islamic .cat-icon{background:#bbf7d0;color:#065f46}.cat-card.other .cat-icon{background:#fbcfe8;color:#9d174d}
+.cat-card b{display:block;font-size:13px;font-weight:700;color:var(--navy);margin-bottom:2px}.cat-card small{display:block;font-size:11px;color:#64748b;font-weight:400;margin-bottom:12px}
+.cat-arrow{width:28px;height:28px;background:#fff;border:1px solid #e2e8f0;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:#64748b;position:absolute;right:12px;bottom:12px;transition:.2s}
+.cat-card:hover .cat-arrow{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+/* POPULAR BOOKS - LIKE SCREENSHOT */
+.popular{max-width:1320px;margin:0 auto;padding:16px 32px 48px}
+.popular-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:18px}
+.popular-head-left{display:flex;gap:12px;align-items:flex-start}
+.popular-icon{width:32px;height:32px;background:#fef3c7;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.popular-head-left h2{margin:0;font-size:18px;font-weight:800;color:var(--navy);display:flex;align-items:center;gap:6px}.popular-head-left p{margin:3px 0 0;font-size:12px;color:#64748b}
+.popular-head-right a{font-size:12px;font-weight:600;color:var(--blue);display:flex;align-items:center;gap:4px}
+.books-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.book-card{background:#fff;border:1px solid #f1f5f9;border-radius:12px;padding:12px;transition:.25s;cursor:pointer;display:flex;flex-direction:column}
+.book-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.08)}
+.book-top{display:flex;gap:12px;margin-bottom:10px}
+.book-cover{width:72px;height:96px;border-radius:6px;overflow:hidden;background:#f8fafc;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff}
+.book-cover img{width:100%;height:100%;object-fit:cover}
+.book-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.book-badge{display:inline-flex;padding:3px 8px;border-radius:999px;font-size:9px;font-weight:700;border:1px solid;width:fit-content}
+.badge-school{background:#eff6ff;color:#1d4ed8;border-color:#dbeafe}.badge-college{background:#eff6ff;color:#1e40af;border-color:#dbeafe}.badge-computer{background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe}.badge-old{background:#fffbeb;color:#92400e;border-color:#fde68a}.badge-islamic{background:#f0fdf4;color:#065f46;border-color:#bbf7d0}.badge-other{background:#fdf2f8;color:#9d174d;border-color:#fbcfe8}
+.book-heart{margin-left:auto;width:20px;height:20px;display:flex;align-items:center;justify-content:center;color:#cbd5e1;font-size:14px;transition:.2s}.book-heart:hover{color:#ef4444}
+.book-title{font-size:12px;font-weight:700;color:var(--navy);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:32px}
+.book-author{font-size:10px;color:#64748b;font-weight:400;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.book-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:4px}
+.book-tag{padding:3px 7px;background:#f1f5f9;border-radius:999px;font-size:9px;font-weight:600;color:#475569;border:1px solid #f1f5f9}
+.book-actions{display:flex;gap:6px;margin-top:auto;padding-top:10px}
+.btn-read{flex:1;background:var(--blue);color:#fff;border-radius:7px;padding:8px 10px;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:5px;border:0}
+.btn-download{flex:1;background:#fff;color:#475569;border:1px solid #e2e8f0;border-radius:7px;padding:8px 10px;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:5px}
+
+/* FOOTER - LIKE SCREENSHOT */
+.footer{background:#0f2a4a;color:#fff;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.footer-left{display:flex;align-items:center;gap:10px}
+.footer-logo{width:40px;height:40px;background:linear-gradient(135deg,#3b82f6,#60a5fa);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:20px}
+.footer-left b{display:block;font-size:16px;font-weight:800}.footer-left b span{color:#60a5fa}.footer-left small{display:block;font-size:10px;color:#94a3b8;margin-top:1px}
+.footer-nav{display:flex;align-items:center;gap:16px;font-size:12px;font-weight:500;color:#cbd5e1}
+.footer-nav span{width:1px;height:12px;background:rgba(255,255,255,.15)}
+.footer-right{display:flex;align-items:center;gap:16px;font-size:11px;color:#94a3b8}
+.footer-right a{color:#94a3b8}.footer-right a:hover{color:#fff}
+.footer-heart{display:flex;align-items:center;gap:5px}.footer-heart span{color:#f87171}
+.login-btn{background:#3b82f6;color:#fff;border-radius:999px;padding:7px 14px;font-size:11px;font-weight:700;display:flex;align-items:center;gap:5px}
+
+/* MODALS & OTHER PAGES - KEEP FUNCTIONAL */
+.wrap{max-width:1320px;margin:auto;padding:24px 32px 80px}.title h2{margin:0;font-size:20px;font-weight:900;color:var(--navy)}.title p{color:#64748b;font-size:12px;margin:6px 0 0}.back{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 14px;font-weight:700;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+.taleem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+.taleem-card{background:#fff;border:1px solid #e5e7eb;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06);transition:.25s;cursor:pointer;display:flex;flex-direction:column}
+.taleem-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.1)}
+.taleem-img-wrap{position:relative;width:100%;aspect-ratio:3/4;background:#f8fafc;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.taleem-img-wrap img{width:100%;height:100%;object-fit:cover}
+.taleem-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:32px;color:#fff}
+.taleem-badge{position:absolute;bottom:-12px;right:12px;width:32px;height:32px;background:#dc2626;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;border:2px solid #fff;box-shadow:0 3px 10px rgba(220,38,38,.3)}
+.taleem-body{padding:12px;display:flex;flex-direction:column;flex:1;gap:5px}
+.taleem-title{font-size:12px;font-weight:700;color:#1e40af;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:32px}
+.taleem-cat{font-size:10px;color:#64748b;display:flex;align-items:center;gap:4px}
+.taleem-stars{color:#f59e0b;font-size:12px}.taleem-footer{margin-top:auto;padding-top:8px;border-top:1px solid #f1f5f9;display:flex;align-items:center;gap:5px;font-size:10px;color:#64748b}
+.search-results{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:16px;margin:20px 32px 0;display:none;max-width:1320px;margin-left:auto;margin-right:auto}.search-results.active{display:block}
+.modal{position:fixed;inset:0;background:rgba(15,23,42,.88);backdrop-filter:blur(12px);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}.box{background:#fff;border-radius:16px;width:min(640px,96vw);max-height:92vh;overflow:hidden;display:flex;flex-direction:column}.box.large{width:min(860px,96vw);height:min(90vh,840px)}.box.reader{width:min(560px,96vw)}.head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}.head b{font-size:13px;font-weight:800}.head button{background:#f1f5f9;border-radius:8px;padding:6px 10px;font-weight:700}.pdf-content{padding:20px;text-align:center;flex:1;overflow:auto}.big-btn{display:flex;flex-direction:column;gap:8px;margin-top:14px}.big-btn a,.big-btn button{padding:11px 14px;border-radius:8px;font-weight:800;font-size:12px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;border:0}.big-btn a.primary{background:var(--green);color:#fff}.big-btn a.secondary{background:var(--navy);color:#fff}.form{padding:16px;display:grid;gap:9px}.form input,.form select{padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:12px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px}.stat{border:1px solid var(--line);border-radius:10px;padding:12px;background:#f8fafc;text-align:center}.stat b{font-size:18px;font-weight:900}
+@media(max-width:1200px){.cat-grid{grid-template-columns:repeat(3,1fr)}.books-grid{grid-template-columns:repeat(3,1fr)}.taleem-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.header{padding:0 16px}.header-nav{display:none}.hero{height:360px}.hero h1{font-size:36px}.hero-books{display:none}.search-wrap{padding:0 16px}.search-bar{flex-direction:column;align-items:stretch;padding:12px;gap:10px;border-radius:16px}.search-divider{display:none}.search-cat{border-top:1px solid #f1f5f9;padding-top:10px}.browse{padding:28px 16px 20px}.popular{padding:12px 16px 32px}.cat-grid{grid-template-columns:repeat(2,1fr)}.books-grid{grid-template-columns:repeat(2,1fr)}.footer{flex-direction:column;align-items:flex-start;padding:16px}}
 </style>
 </head>
 <body>
-<section id="welcome" class="welcome"><div class="welcome-bg"></div><div class="welcome-overlay"></div><div class="wc"><div class="wtop"><div class="brand">📚 Study <span>Ghar</span></div></div><div class="wmain"><div class="eyebrow">🏛️ PECTAA OFFICIAL • TALEEM360 STYLE BOOKS • COZY FRONT • BEAUTIFUL</div><h1>Study <span>Ghar</span></h1><div class="site">DIGITAL LIBRARY</div><div class="tagline">Taleem360 Style Books - PECTAA Official</div><div class="desc">Official PECTAA Books from <b>pectaa.edu.pk/curriculum-compliance/</b> - School 1-10, College, Computer IT, History, Geography - Taleem360 style book cards with cover image, title, stars, Added by Admin - Islamic library admin will add.</div><div class="chips"><span>🏫 School Books</span><span>📘 Taleem360 Style</span><span>📖 Cover + Title + Stars</span><span>☪️ Islamic Admin Add</span><span>📸 Cozy Front</span></div><button class="enter" onclick="enterLibrary()">📚 Enter Library <span>→</span></button></div><div style="text-align:center;color:#fde68a;letter-spacing:6px;font-size:10px;font-weight:800;margin-top:auto;padding-top:28px;opacity:.6">PECTAA OFFICIAL • TALEEM360 STYLE • SQUARE CATEGORIES • BOOK COVERS • VERCEL</div></div></section>
-<main id="library" class="hidden"><nav class="topbar"><div class="navbrand"><b>▰ Study <span style="color:#0878e8">Ghar</span></b><small>Learn Today, Build Tomorrow</small></div><div class="navlinks"><a class="active" id="navAll" onclick="showAllClasses()">All Classes</a><a id="navUrdu" onclick="showUrduMedium()">Urdu Medium</a><a id="navEng" onclick="showEnglishMedium()">English Medium</a><a id="navIslamic" onclick="showIslamicProper()">Islamic</a><a onclick="showComputerSection()">Computer IT</a><a onclick="showHistorySection()">History/Geography</a></div><div class="navact"><button onclick="openStudent()">👤 <span id="studentLabel">Register</span></button></div></nav>
-<section id="homeDashboard" class="home-dashboard">
-  <div class="home-hero">
-    <div class="hero-content">
-      <div class="hero-pill">📖 Free Online Study Resources</div>
-      <h1>Learn. Read. <span>Grow.</span></h1>
-      <p>Books, notes and past papers — organized for students and learners in one beautiful place.</p>
-      <div class="home-search"><span>⌕</span><input id="homeSearch" placeholder="Search for books, notes, subjects, authors..." oninput="handleMainSearch(this.value)"><button onclick="handleMainSearch(document.getElementById('homeSearch').value)">Search</button></div>
-    </div>
-    <div class="hero-art" aria-hidden="true"><div class="book-stack"><i></i><i></i><i></i><i></i></div><div class="open-book">📖</div><div class="art-laptop">▱</div></div>
-  </div>
-  <div class="home-section-head"><div><h2>▦ &nbsp;Browse by Category</h2><p>Choose your category and start learning</p></div><a onclick="showAllClasses()">View All Categories&nbsp; →</a></div>
-  <div class="home-categories">
-    <button onclick="showUrduMedium()"><span class="ci blue">🎓</span><b>School Books</b><small>Classes 1 – 12</small><em>→</em></button>
-    <button onclick="showCollegeSection()"><span class="ci teal">📘</span><b>College Books</b><small>FA - FSc - ICS</small><em>→</em></button>
-    <button onclick="showComputerSection()"><span class="ci violet">💻</span><b>Computer Notes</b><small>IT & Programming</small><em>→</em></button>
-    <button onclick="showHistorySection()"><span class="ci gold">📝</span><b>Old Papers</b><small>Past Exams</small><em>→</em></button>
-    <button onclick="showIslamicProper()"><span class="ci green">🕌</span><b>Islamic Books</b><small>Quran • Hadith</small><em>→</em></button>
-    <button onclick="showAllClasses()"><span class="ci pink">📚</span><b>Other Books</b><small>General Reading</small><em>→</em></button>
-  </div>
-  <div class="home-section-head popular"><div><h2>🔥 &nbsp;Popular Books</h2><p>Most viewed and downloaded books</p></div><a onclick="showAllClasses()">View All Books&nbsp; →</a></div>
-  <div class="popular-grid" id="popularBooksGrid"></div>
+<!-- HEADER - EXACT LIKE SCREENSHOT -->
+<header class="header">
+<div class="header-left">
+<div class="logo-icon">📚</div>
+<div class="logo-text"><b>Study <span>Ghar</span></b><small>Learn Today, Build Tomorrow</small></div>
+</div>
+<nav class="header-nav">
+<a class="active" onclick="showHome()">Home</a>
+<a onclick="showAllBooks()">All Books</a>
+<a onclick="showCategories()">Categories</a>
+<a onclick="openPolicy('about')">About</a>
+</nav>
+<div class="header-right">
+<button class="register-btn" onclick="openStudent()">👤 Register</button>
+<button onclick="openAdmin()" style="background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:8px 12px;font-size:12px;font-weight:700">🔐 Admin</button>
+</div>
+</header>
+
+<!-- HERO - EXACT LIKE SCREENSHOT -->
+<section class="hero" id="heroSection">
+<div class="hero-bg"></div>
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<div class="hero-badge">📖 Free Online Study Resources</div>
+<h1>Learn. Read. <span>Grow.</span></h1>
+<p>Books, notes and past papers — organized for students<br>and learners in one beautiful place.</p>
+</div>
+<div class="hero-books">
+<!-- Stacked books visual like screenshot -->
+<div style="position:relative;width:100%;height:100%">
+<div style="position:absolute;right:20px;bottom:0;width:220px;height:140px;background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:4px;box-shadow:0 8px 24px rgba(0,0,0,.2);transform:rotate(-2deg)"></div>
+<div style="position:absolute;right:30px;bottom:20px;width:220px;height:28px;background:#dc2626;border-radius:2px;box-shadow:0 4px 12px rgba(0,0,0,.15)"></div>
+<div style="position:absolute;right:30px;bottom:48px;width:220px;height:28px;background:#1e40af;border-radius:2px"></div>
+<div style="position:absolute;right:30px;bottom:76px;width:220px;height:28px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:2px"></div>
+<div style="position:absolute;right:30px;bottom:104px;width:220px;height:28px;background:#fef3c7;border-radius:2px"></div>
+<div style="position:absolute;right:10px;bottom:0;width:40px;height:100px;background:#f1f5f9;border-radius:2px;box-shadow:0 4px 12px rgba(0,0,0,.1)"></div>
+</div>
+</div>
+<div class="hero-handwritten">Better<br>Books<br>Brighter<br>Future</div>
 </section>
-<section class="hero"><div style="display:inline-flex;background:rgba(34,197,94,.18);border:1px solid rgba(34,197,94,.3);color:#86efac;font-size:10px;font-weight:800;padding:5px 12px;border-radius:999px;letter-spacing:1px">🏛️ PECTAA OFFICIAL • TALEEM360 STYLE BOOKS • COVER + TITLE + STARS + ADDED BY ADMIN</div><h2>Taleem360 Style - <span>PECTAA Official Books</span></h2><p>School Class 1-10 Urdu English Medium, College, Computer IT, History, Geography - Book cards like Taleem360.com with big cover image, PECTAA title, category, stars, Added by Admin - Islamic section admin will add himself. Beautiful square category boxes + Taleem360 book style.</p><div class="search-big"><span>🔍</span><input id="mainSearch" placeholder="Search - Class 11 Computer, Pak Study, Mathematics..." oninput="handleMainSearch(this.value)"><button onclick="handleMainSearch(document.getElementById('mainSearch').value)">Search</button></div><div id="searchResultsBox" class="search-results"><h3 id="searchResultsTitle">Search Results - Taleem360 Style</h3><div id="searchResultsGrid" class="taleem-grid"></div></div></section>
-<section class="cats">
-<button class="cat" style="--cat-color:#16a34a" onclick="showUrduMedium()"><b>🏫 Urdu Medium</b><small>Class 1-10 • Square • Beautiful</small></button>
-<button class="cat" style="--cat-color:#2563eb" onclick="showEnglishMedium()"><b>📘 English Medium</b><small>Class 1-10 • Square • Beautiful</small></button>
-<button class="cat" style="--cat-color:#7c3aed" onclick="showCollegeSection()"><b>🎓 College</b><small>FA FSc ICS • Taleem360 Style Books</small></button>
-<button class="cat" style="--cat-color:#0891b2" onclick="showComputerSection()"><b>💻 Computer & IT</b><small>Taleem360 Style • Cover + Title + Stars</small></button>
-<button class="cat" style="--cat-color:#d97706" onclick="showHistorySection()"><b>📜 History</b><small>Taleem360 Style Books</small></button>
-<button class="cat" style="--cat-color:#0d9488" onclick="showGeographySection()"><b>🌍 Geography</b><small>Taleem360 Style Books</small></button>
-<button class="cat" style="--cat-color:#047857" onclick="showIslamicProper()"><b>☪️ Islamic Library</b><small>Admin Will Add • Taleem360 Style</small></button>
+
+<!-- SEARCH BAR - EXACT LIKE SCREENSHOT - OVERLAPPING -->
+<div class="search-wrap" id="searchWrap">
+<div class="search-bar">
+<div class="search-input">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+<input id="mainSearch" placeholder="Search for books, notes, subjects, authors..." oninput="handleMainSearch(this.value)">
+</div>
+<div class="search-divider"></div>
+<div class="search-cat">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+<select id="searchCategory" onchange="handleCategoryFilter(this.value)">
+<option>All Categories</option>
+<option>School Books</option>
+<option>College Books</option>
+<option>Computer Notes</option>
+<option>Old Papers</option>
+<option>Islamic Books</option>
+<option>Other Books</option>
+</select>
+</div>
+<button class="search-btn" onclick="handleMainSearch(document.getElementById('mainSearch').value)">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+Search
+</button>
+</div>
+</div>
+
+<!-- BROWSE BY CATEGORY - EXACT LIKE SCREENSHOT -->
+<section class="browse" id="browseSection">
+<div class="browse-head">
+<div class="browse-head-left">
+<div class="browse-icon">⊞</div>
+<div><h2>Browse by Category</h2><p>Choose your category and start learning</p></div>
+</div>
+<div class="browse-head-right"><a onclick="showCategories()">View All Categories →</a></div>
+</div>
+<div class="cat-grid">
+<div class="cat-card school" onclick="showUrduMedium()">
+<div class="cat-icon">🎓</div>
+<b>School Books</b>
+<small>Classes 1 – 12</small>
+<div class="cat-arrow">→</div>
+</div>
+<div class="cat-card college" onclick="showCollegeSection()">
+<div class="cat-icon">📚</div>
+<b>College Books</b>
+<small>FA - FSc - ICS</small>
+<div class="cat-arrow">→</div>
+</div>
+<div class="cat-card computer" onclick="showComputerSection()">
+<div class="cat-icon">💻</div>
+<b>Computer Notes</b>
+<small>IT & Programming</small>
+<div class="cat-arrow">→</div>
+</div>
+<div class="cat-card oldpapers" onclick="showHistorySection()">
+<div class="cat-icon">📝</div>
+<b>Old Papers</b>
+<small>Past Exams</small>
+<div class="cat-arrow">→</div>
+</div>
+<div class="cat-card islamic" onclick="showIslamicProper()">
+<div class="cat-icon">🕌</div>
+<b>Islamic Books</b>
+<small>Quran • Hadith</small>
+<div class="cat-arrow">→</div>
+</div>
+<div class="cat-card other" onclick="showGeographySection()">
+<div class="cat-icon">📚</div>
+<b>Other Books</b>
+<small>General Reading</small>
+<div class="cat-arrow">→</div>
+</div>
+</div>
 </section>
-<section class="wrap"><div class="title"><div><h2 id="sectionTitle">🏫 School Classes - Square Type - Beautiful</h2><p id="sectionDesc">Square type category boxes - Click to see Taleem360 style books with cover + title + stars + Added by Admin</p></div><button id="backBtn" class="hidden" onclick="showAllClasses()">← Back to All</button></div>
-<div id="classGrid" class="grid"></div><div id="subjectView" class="hidden"></div>
+
+<!-- POPULAR BOOKS - EXACT LIKE SCREENSHOT -->
+<section class="popular" id="popularSection">
+<div class="popular-head">
+<div class="popular-head-left">
+<div class="popular-icon">🔥</div>
+<div><h2>Popular Books</h2><p>Most viewed and downloaded books</p></div>
+</div>
+<div class="popular-head-right"><a onclick="showAllBooks()">View All Books →</a></div>
+</div>
+<div class="books-grid" id="popularGrid">
+<!-- Popular books will be injected here - like screenshot -->
+</div>
+</section>
+
+<!-- SEARCH RESULTS -->
+<div id="searchResultsBox" class="search-results">
+<h3 id="searchResultsTitle" style="margin:0 0 12px;font-size:14px;font-weight:800">Search Results</h3>
+<div id="searchResultsGrid" class="books-grid"></div>
+</div>
+
+<!-- DETAILED PAGES (HIDDEN INITIALLY - FOR BROWSING) -->
+<section class="wrap hidden" id="detailSection">
+<div class="title"><div><h2 id="sectionTitle">All Books - PECTAA Official</h2><p id="sectionDesc">Beautiful books - Cover + Title + Author + Read + Download</p></div><button class="back" id="backBtn" onclick="showHome()">← Back to Home</button></div>
+<div id="classGrid" class="grid hidden"></div>
+<div id="subjectView" class="hidden"></div>
 <div id="collegeGrid" class="hidden"><div id="collegeStreamGrid" class="taleem-grid"></div></div>
 <div id="computerGrid" class="hidden"><div id="computerDirectGrid" class="taleem-grid"></div></div>
-<div id="islamicGrid" class="hidden"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px" id="islamicSubCatGrid"></div><div id="islamicDirectGrid" class="taleem-grid"></div><div id="islamicAdminNote" style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:16px;margin-top:16px;text-align:center"><div style="font-size:28px">☪️</div><h3 style="margin:8px 0 4px;font-size:14px;font-weight:800">Islamic Library - Admin Will Add Books</h3><p style="font-size:11px;color:#64748b;margin:0">Aap khud Islamic books add karenge - Admin panel se - Taleem360 style me show hongi - Original cover + title + stars</p></div></div>
+<div id="islamicGrid" class="hidden"><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px" id="islamicSubCatGrid"></div><div id="islamicDirectGrid" class="taleem-grid"></div><div id="islamicAdminNote" style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:16px;margin-top:16px;text-align:center"><div style="font-size:28px">☪️</div><h3 style="margin:8px 0 4px;font-size:14px;font-weight:800">Islamic Library - Admin Will Add Books</h3><p style="font-size:11px;color:#64748b;margin:0">Aap khud Islamic books add karenge - Admin panel se - Beautiful style me show hongi</p></div></div>
 <div id="historyGrid" class="hidden"><div id="historyDirectGrid" class="taleem-grid"></div></div>
 <div id="geographyGrid" class="hidden"><div id="geographyDirectGrid" class="taleem-grid"></div></div>
-<div id="grid" class="taleem-grid" style="margin-top:32px;border-top:1px solid var(--line);padding-top:24px"></div>
+<div id="grid" class="taleem-grid" style="margin-top:24px;border-top:1px solid var(--line);padding-top:20px"></div>
 </section>
-<footer class="footer"><div class="footer-grid"><div><b>📚 Study Ghar - Taleem360 Style</b><p style="color:#94a3b8;font-size:11px;line-height:1.5;margin:6px 0 0">PECTAA Official pectaa.edu.pk - School 1-10 Urdu English, College, Computer IT, History, Geography - Taleem360 style books with cover image, title, category, stars, Added by Admin. Islamic admin will add. Square categories + Taleem360 books.</p><small>© 2024-2026 Study Ghar. ah2129643@gmail.com</small></div><div><b>Categories</b><a onclick="showAllClasses()">School Square + Taleem360 Books</a><a onclick="showCollegeSection()">College Taleem360 Style</a><a onclick="showComputerSection()">Computer IT Taleem360</a><a onclick="showHistorySection()">History Taleem360</a><a onclick="showGeographySection()">Geography Taleem360</a><a onclick="showIslamicProper()">Islamic - Admin Add</a></div><div><b>Book Style - Taleem360</b><a>📖 Big Cover Image</a><a>📝 Title - PECTAA Text Book</a><a>📁 Category - 11th Class Books</a><a>⭐ Stars Rating</a><a>👁️ Added by Admin</a><a>🔴 Red Book Badge</a></div><div><b>Legal</b><a onclick="openPolicy('privacy')">Privacy Policy</a><a onclick="openPolicy('cookie')">Cookie Policy</a><a onclick="openPolicy('terms')">Terms</a><a onclick="openPolicy('copyright')">Copyright</a><a onclick="openAdmin()">🔐 Admin Login</a><a href="mailto:ah2129643@gmail.com" style="color:#fbbf24">ah2129643@gmail.com</a><small>PECTAA: pectaa.edu.pk/curriculum-compliance/</small></div></div></footer></main>
-<div id="reader" class="modal hidden"><div class="box reader"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta"></small></div><button onclick="closeReader()">✕</button></div><div class="pdf-content"><div style="font-size:36px">📚</div><h2 id="bookNameTitle">PECTAA Book</h2><p id="bookDesc">Taleem360 style - Cover + Title + Stars</p><div id="coverPreview" style="margin:10px auto;max-width:160px;border-radius:10px;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.12);display:none"><img id="coverPreviewImg" src="" style="width:100%;display:block"></div><div class="big-btn"><a id="officialBtn" href="#" target="_blank" class="primary">🏛️ Read - PECTAA Official - Taleem360 Style</a><a id="downloadBtn" href="#" target="_blank" class="secondary">⬇️ Download - PECTAA Official</a><button onclick="shareBook()" class="secondary" style="background:#7c3aed">🔗 Share</button></div></div></div></div>
-<div id="student" class="modal hidden"><div class="box"><div class="head"><b>👤 Student</b><button onclick="closeStudent()">✕</button></div><div id="studentAuth" class="form"><input id="studentName" placeholder="Full Name"><input id="studentEmail" type="email" placeholder="Email"><input id="studentPassword" type="password" placeholder="Password"><div style="display:flex;gap:6px"><button style="flex:1;padding:9px;background:#0f172a;color:#fff;border-radius:8px;font-weight:800" onclick="studentSignup()">Create</button><button style="flex:1;padding:9px;background:#16a34a;color:#fff;border-radius:8px;font-weight:800" onclick="studentLogin()">Login</button></div><div id="studentStatus" style="font-size:10px;color:#64748b"></div></div><div id="studentLogged" class="form hidden"><h3>Welcome <span id="studentNameView"></span> 👋</h3><button style="padding:9px;background:#dc2626;color:#fff;border-radius:8px;font-weight:800" onclick="studentLogout()">Logout</button></div></div></div>
-<div id="admin" class="modal hidden"><div class="box large"><div class="head"><b>🔐 Admin - Taleem360 Style Books - Cover Upload</b><button onclick="closeAdmin()">✕</button></div><div id="loginArea" class="form"><input id="email" type="email" placeholder="Admin email"><input id="password" type="password" placeholder="Password"><button style="padding:9px;background:#0f172a;color:#fff;border-radius:8px;font-weight:800" onclick="login()">Login</button><div id="loginStatus" style="font-size:10px"></div></div><div id="panel" class="hidden" style="overflow:auto"><div class="statgrid"><div class="stat"><b id="bookCount">0</b><small>Total Books</small></div><div class="stat"><b id="userCount">—</b><small>Students</small></div><div class="stat"><b>✓</b><small>Taleem360 Style</small></div></div><form class="form" onsubmit="uploadBook(event)"><h4 style="margin:0;font-size:12px;font-weight:800">📤 Upload Book - Taleem360 Style - Cover + Title + Stars</h4><input id="title" required placeholder="Book title - Example: 11th Class Computer Science PECTAA Text Book 2025-26 PDF"><input id="author" placeholder="Author - PECTAA"><select id="bookcat" required><option value="">Select Category</option><option>School Books</option><option>College Books</option><option>Computer & IT</option><option>History</option><option>Geography</option><option>Islamic - Quran</option><option>Islamic - Hadith</option><option>Islamic - Tafseer</option><option>Islamic - Seerat</option><option>Islamic - Fiqh</option><option>Islamic - Dua & Azkar</option><option>Islamic - Islamic History</option><option>Islamic - Islamic Studies</option><option>Other Books</option></select><label style="font-size:10px;font-weight:700">📸 Cover Image - Taleem360 Style - Big Cover Like Screenshot</label><input id="cover" type="file" accept="image/*"><label style="font-size:10px;font-weight:700">📄 PDF</label><input id="pdfFile" type="file" accept="application/pdf" required><input id="bookSource" placeholder="Source Link - https://pectaa.edu.pk/curriculum-compliance/"><button style="padding:10px;background:#16a34a;color:#fff;border-radius:8px;font-weight:800">📤 Upload - Taleem360 Style - Cover + Title + Stars + Added by Admin</button><div id="uploadStatus" style="font-size:10px"></div></form><div style="padding:12px;border-top:1px solid var(--line);background:#fef2f2"><div id="adminList"></div></div></div></div></div>
+
+<!-- FOOTER - EXACT LIKE SCREENSHOT -->
+<footer class="footer">
+<div class="footer-left">
+<div class="footer-logo">📚</div>
+<div><b>Study <span style="color:#60a5fa">Ghar</span></b><small>Learn Today, Build Tomorrow</small></div>
+</div>
+<div class="footer-nav">
+<a onclick="showHome()">Home</a><span></span><a onclick="showAllBooks()">All Books</a><span></span><a onclick="showCategories()">Categories</a><span></span><a onclick="openPolicy('about')">About</a>
+</div>
+<div class="footer-right">
+<a onclick="openPolicy('privacy')">Privacy Policy</a><span style="width:1px;height:12px;background:rgba(255,255,255,.15)"></span><a onclick="openPolicy('terms')">Terms & Conditions</a><span style="width:1px;height:12px;background:rgba(255,255,255,.15)"></span><a onclick="openPolicy('cookie')">Cookie Policy</a>
+<div class="footer-heart"><span>❤</span> Made for Students</div>
+<button class="login-btn" onclick="openStudent()">👤 Login</button>
+</div>
+</footer>
+
+<!-- MODALS -->
+<div id="reader" class="modal hidden"><div class="box reader"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta"></small></div><button onclick="closeReader()">✕</button></div><div class="pdf-content"><div style="font-size:36px">📚</div><h2 id="bookNameTitle">PECTAA Book</h2><p id="bookDesc">Official PECTAA book</p><div id="coverPreview" style="margin:10px auto;max-width:140px;border-radius:8px;overflow:hidden;display:none"><img id="coverPreviewImg" src="" style="width:100%;display:block"></div><div class="big-btn"><a id="officialBtn" href="#" target="_blank" class="primary">🏛️ Read - PECTAA Official</a><a id="downloadBtn" href="#" target="_blank" class="secondary">⬇️ Download - PECTAA Official</a><button onclick="shareBook()" class="secondary" style="background:#7c3aed">🔗 Share</button></div></div></div></div>
+<div id="student" class="modal hidden"><div class="box"><div class="head"><b>👤 Student - Register / Login</b><button onclick="closeStudent()">✕</button></div><div id="studentAuth" class="form"><input id="studentName" placeholder="Full Name"><input id="studentEmail" type="email" placeholder="Email"><input id="studentPassword" type="password" placeholder="Password"><div style="display:flex;gap:8px"><button style="flex:1;padding:9px;background:#0f172a;color:#fff;border-radius:8px;font-weight:800" onclick="studentSignup()">Create Account</button><button style="flex:1;padding:9px;background:#2563eb;color:#fff;border-radius:8px;font-weight:800" onclick="studentLogin()">Login</button></div><div id="studentStatus" style="font-size:10px;color:#64748b"></div></div><div id="studentLogged" class="form hidden"><h3>Welcome <span id="studentNameView"></span> 👋</h3><button style="padding:9px;background:#dc2626;color:#fff;border-radius:8px;font-weight:800" onclick="studentLogout()">Logout</button></div></div></div>
+<div id="admin" class="modal hidden"><div class="box large"><div class="head"><b>🔐 Admin - PECTAA Official Books Upload</b><button onclick="closeAdmin()">✕</button></div><div id="loginArea" class="form"><input id="email" type="email" placeholder="Admin email"><input id="password" type="password" placeholder="Password"><button style="padding:9px;background:#0f172a;color:#fff;border-radius:8px;font-weight:800" onclick="login()">Login</button><div id="loginStatus" style="font-size:10px"></div></div><div id="panel" class="hidden" style="overflow:auto"><div class="statgrid"><div class="stat"><b id="bookCount">0</b><small>Total Books</small></div><div class="stat"><b id="userCount">—</b><small>Students</small></div><div class="stat"><b>✓</b><small>Beautiful Design</small></div></div><form class="form" onsubmit="uploadBook(event)"><h4 style="margin:0;font-size:12px;font-weight:800">📤 Upload Book - Like Screenshot - Cover + Title + Read/Download</h4><input id="title" required placeholder="Book title - Example: Mathematics Class 10"><input id="author" placeholder="Author - Example: Punjab Textbook Board"><select id="bookcat" required><option value="">Select Category - School/College/Computer/Old Papers/Islamic/Other</option><option>School Books</option><option>College Books</option><option>Computer & IT</option><option>Computer Notes</option><option>Old Papers</option><option>History</option><option>Geography</option><option>Islamic - Quran</option><option>Islamic - Hadith</option><option>Islamic - Tafseer</option><option>Islamic - Seerat</option><option>Islamic - Fiqh</option><option>Islamic - Dua & Azkar</option><option>Islamic - Islamic History</option><option>Islamic - Islamic Studies</option><option>Other Books</option></select><label style="font-size:10px;font-weight:700">📸 Cover Image - Like Screenshot - Mathematics Class 10 Cover</label><input id="cover" type="file" accept="image/*"><label style="font-size:10px;font-weight:700">📄 PDF File</label><input id="pdfFile" type="file" accept="application/pdf" required><input id="bookSource" placeholder="Source Link - https://pectaa.edu.pk/curriculum-compliance/"><button style="padding:10px;background:#16a34a;color:#fff;border-radius:8px;font-weight:800">📤 Upload - Beautiful Design - Like Screenshot</button><div id="uploadStatus" style="font-size:10px"></div></form><div style="padding:12px;border-top:1px solid var(--line);background:#fef2f2"><div id="adminList"></div></div></div></div></div>
 <div id="policyModal" class="modal hidden"><div class="box large"><div class="head"><b id="policyTitle">Policy</b><button onclick="closePolicy()">✕</button></div><div id="policyContent" style="padding:16px;font-size:11px;line-height:1.5;overflow:auto;flex:1"></div></div></div>
+
 <script>
 const OFFICIAL_BOOKS_URL="https://pectaa.edu.pk/curriculum-compliance/";
 const SB_URL="https://ppjibzvskpmdufehkqvx.supabase.co";const SB_KEY="sb_publishable_IDS03s6m4fS50mYs5Uy7og_vE32749u";const db=supabase.createClient(SB_URL,SB_KEY);let books=[],isAdmin=false;db.auth.onAuthStateChange(()=>setTimeout(refreshStudent,0));
-function iconFor(s){if(s.includes("Computer"))return"💻";if(s.includes("Pak Study")||s.includes("Pakistan"))return"🇵🇰";if(s.includes("Math"))return"🔢";if(s.includes("Physics"))return"⚛️";if(s.includes("Chemistry"))return"🧪";if(s.includes("Biology"))return"🧬";if(s.includes("Quran"))return"📖";if(s.includes("Hadith"))return"📜";if(s.includes("Tafseer"))return"📚";if(s.includes("Seerat"))return"🕌";if(s.includes("Fiqh"))return"⚖️";if(s.includes("Dua"))return"🤲";if(s.includes("Urdu"))return"📚";if(s.includes("English"))return"📘";if(s.includes("Islamiat"))return"☪️";if(s.includes("History"))return"📜";if(s.includes("Geography"))return"🌍";return"📚";}
-function colorFor(s){if(s.includes("Computer"))return{accent:"#0891b2",iconBg:"linear-gradient(135deg,#0891b2,#06b6d4)"};if(s.includes("Pak Study"))return{accent:"#16a34a",iconBg:"linear-gradient(135deg,#16a34a,#22c55e)"};if(s.includes("Math"))return{accent:"#7c3aed",iconBg:"linear-gradient(135deg,#7c3aed,#8b5cf6)"};if(s.includes("Quran"))return{accent:"#047857",iconBg:"linear-gradient(135deg,#047857,#10b981)"};if(s.includes("Hadith"))return{accent:"#92400e",iconBg:"linear-gradient(135deg,#92400e,#f59e0b)"};if(s.includes("Urdu"))return{accent:"#16a34a",iconBg:"linear-gradient(135deg,#16a34a,#22c55e)"};if(s.includes("English"))return{accent:"#2563eb",iconBg:"linear-gradient(135deg,#2563eb,#3b82f6)"};return{accent:"#0f172a",iconBg:"linear-gradient(135deg,#0f172a,#334155)"};}
-const classData={1:{name:"Class 1",urdu:["Urdu - Urdu Medium","English - Class 1","Math - Urdu Medium","Islamiat - Urdu Medium","Waqfiyat Amma - Urdu Medium"],english:["Urdu - English Medium","English - Class 1","Mathematics - English Medium","Islamiat - English Medium"]},2:{name:"Class 2",urdu:["Urdu - Urdu Medium","English - Class 2","Math - Urdu Medium","Islamiat - Urdu Medium"],english:["Urdu - English Medium","English - Class 2","Mathematics - English Medium","Islamiat - English Medium"]},3:{name:"Class 3",urdu:["Urdu - Urdu Medium","English - Class 3","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium","Social Studies - Urdu Medium"],english:["Urdu - English Medium","English - Class 3","Mathematics - English Medium","Science - English Medium","Islamiat - English Medium"]},4:{name:"Class 4",urdu:["Urdu - Urdu Medium","English - Class 4","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium"],english:["Urdu - English Medium","English - Class 4","Mathematics - English Medium","Science - English Medium","Islamiat - English Medium"]},5:{name:"Class 5",urdu:["Urdu - Urdu Medium","English - Class 5","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium"],english:["Urdu - English Medium","English - Class 5","Mathematics - English Medium","Science - English Medium","Islamiat - English Medium"]},6:{name:"Class 6",urdu:["Urdu - Urdu Medium","English - Class 6","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium","History - Urdu Medium","Geography - Urdu Medium","Computer - Urdu Medium"],english:["Urdu - English Medium","English - Class 6","Mathematics - English Medium","General Science - English Medium","Islamiat - English Medium","History - English Medium","Geography - English Medium","Computer - English Medium"]},7:{name:"Class 7",urdu:["Urdu - Urdu Medium","English - Class 7","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium","History - Urdu Medium","Geography - Urdu Medium","Computer - Urdu Medium"],english:["Urdu - English Medium","English - Class 7","Mathematics - English Medium","General Science - English Medium","Islamiat - English Medium","History - English Medium","Geography - English Medium","Computer - English Medium"]},8:{name:"Class 8",urdu:["Urdu - Urdu Medium","English - Class 8","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium","History - Urdu Medium","Computer - Urdu Medium"],english:["Urdu - English Medium","English - Class 8","Mathematics - English Medium","General Science - English Medium","Islamiat - English Medium","History - English Medium","Computer - English Medium"]},9:{name:"Class 9",urdu:["Urdu - Urdu Medium","English - Class 9","Math - Urdu Medium","Physics - Urdu Medium","Chemistry - Urdu Medium","Biology - Urdu Medium","Computer - Urdu Medium","Islamiat - Urdu Medium","Pak Studies - Urdu Medium","Tarjuma Quran - Urdu Medium"],english:["Urdu - English Medium","English - Class 9","Mathematics - English Medium","Physics - English Medium","Chemistry - English Medium","Biology - English Medium","Computer - English Medium","Islamiat - English Medium","Pak Studies - English Medium","Tarjuma Quran - English Medium"]},10:{name:"Class 10",urdu:["Urdu - Urdu Medium","English - Class 10","Math - Urdu Medium","Physics - Urdu Medium","Chemistry - Urdu Medium","Biology - Urdu Medium","Computer - Urdu Medium","Islamiat - Urdu Medium","Pak Studies - Urdu Medium","Tarjuma Quran - Urdu Medium"],english:["Urdu - English Medium","English - Class 10","Mathematics - English Medium","Physics - English Medium","Chemistry - English Medium","Biology - English Medium","Computer - English Medium","Islamiat - English Medium","Pak Studies - English Medium","Tarjuma Quran - English Medium"]}};
-const collegeBooks=["FA Urdu Part 1 PECTAA Text Book","FA Urdu Part 2 PECTAA Text Book","FA English Part 1 PECTAA Text Book","FA English Part 2 PECTAA Text Book","11th Class Computer Science PECTAA Text Book 2025-26 PDF","12th Class Computer Science PECTAA Text Book PDF","Physics 11 PECTAA Text Book","Physics 12 PECTAA Text Book","Chemistry 11 PECTAA Text Book","Chemistry 12 PECTAA Text Book","Biology 11 PECTAA Text Book","Biology 12 PECTAA Text Book","Mathematics 11 PECTAA Text Book","Mathematics 12 PECTAA Text Book","PECTAA 2nd Year Mathematics New Text Book 2026-27 PDF"];const computerBooks=["11th Class Computer Science PECTAA Text Book 2025-26 PDF","12th Class Computer Science PECTAA Text Book PDF","Computer Fundamentals PECTAA","MS Word Complete","MS Excel Advanced","Python Programming","Java Programming","HTML5 & CSS3","Web Designing Pro","Database MySQL"];const historyBooks=["12th Class Pak Study New Book PDF (PECTAA)","History of Pakistan PECTAA Text Book","Pak Studies Class 9 PECTAA Text Book","Pak Studies Class 10 PECTAA Text Book","History Class 6 PECTAA Text Book","History Class 7 PECTAA Text Book"];const geographyBooks=["Geography Class 6 PECTAA Text Book","Geography Class 7 PECTAA Text Book","Geography Class 8 PECTAA Text Book","Physical Geography","World Geography","Pakistan Geography PECTAA"];
+
+function iconFor(s){if(s.includes("Mathematics")||s.includes("Math"))return"🔢";if(s.includes("Physics"))return"⚛️";if(s.includes("Chemistry"))return"🧪";if(s.includes("Biology"))return"🧬";if(s.includes("Computer")||s.includes("HTML")||s.includes("CSS"))return"💻";if(s.includes("Quran"))return"📖";if(s.includes("Hadith"))return"📜";if(s.includes("Tafseer"))return"📚";if(s.includes("Seerat"))return"🕌";if(s.includes("Fiqh"))return"⚖️";if(s.includes("Dua"))return"🤲";if(s.includes("Urdu"))return"📚";if(s.includes("English"))return"📘";if(s.includes("Islamiat")||s.includes("Past Papers")||s.includes("Past"))return"📝";if(s.includes("History"))return"📜";if(s.includes("Geography"))return"🌍";return"📚";}
+function colorFor(s){if(s.includes("Mathematics")||s.includes("Math"))return{accent:"#2563eb",iconBg:"linear-gradient(135deg,#1e40af,#3b82f6)",badge:"badge-school"};if(s.includes("Physics"))return{accent:"#7c3aed",iconBg:"linear-gradient(135deg,#5b21b6,#8b5cf6)",badge:"badge-college"};if(s.includes("Computer")||s.includes("HTML"))return{accent:"#0891b2",iconBg:"linear-gradient(135deg,#0891b2,#06b6d4)",badge:"badge-computer"};if(s.includes("Past Papers")||s.includes("Matric")||s.includes("BSE"))return{accent:"#d97706",iconBg:"linear-gradient(135deg,#d97706,#f59e0b)",badge:"badge-old"};if(s.includes("Quran"))return{accent:"#047857",iconBg:"linear-gradient(135deg,#047857,#10b981)",badge:"badge-islamic"};return{accent:"#0f172a",iconBg:"linear-gradient(135deg,#0f172a,#334155)",badge:"badge-other"};}
+
+const classData={1:{name:"Class 1",urdu:["Urdu - Urdu Medium","English - Class 1","Math - Urdu Medium","Islamiat - Urdu Medium"],english:["Urdu - English Medium","English - Class 1","Mathematics - English Medium","Islamiat - English Medium"]},2:{name:"Class 2",urdu:["Urdu - Urdu Medium","English - Class 2","Math - Urdu Medium","Islamiat - Urdu Medium"],english:["Urdu - English Medium","English - Class 2","Mathematics - English Medium","Islamiat - English Medium"]},3:{name:"Class 3",urdu:["Urdu - Urdu Medium","English - Class 3","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium"],english:["Urdu - English Medium","English - Class 3","Mathematics - English Medium","Science - English Medium","Islamiat - English Medium"]},4:{name:"Class 4",urdu:["Urdu - Urdu Medium","English - Class 4","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium"],english:["Urdu - English Medium","English - Class 4","Mathematics - English Medium","Science - English Medium","Islamiat - English Medium"]},5:{name:"Class 5",urdu:["Urdu - Urdu Medium","English - Class 5","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium"],english:["Urdu - English Medium","English - Class 5","Mathematics - English Medium","Science - English Medium","Islamiat - English Medium"]},6:{name:"Class 6",urdu:["Urdu - Urdu Medium","English - Class 6","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium","History - Urdu Medium","Geography - Urdu Medium","Computer - Urdu Medium"],english:["Urdu - English Medium","English - Class 6","Mathematics - English Medium","General Science - English Medium","Islamiat - English Medium","History - English Medium","Geography - English Medium","Computer - English Medium"]},7:{name:"Class 7",urdu:["Urdu - Urdu Medium","English - Class 7","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium","History - Urdu Medium","Geography - Urdu Medium","Computer - Urdu Medium"],english:["Urdu - English Medium","English - Class 7","Mathematics - English Medium","General Science - English Medium","Islamiat - English Medium","History - English Medium","Geography - English Medium","Computer - English Medium"]},8:{name:"Class 8",urdu:["Urdu - Urdu Medium","English - Class 8","Math - Urdu Medium","Science - Urdu Medium","Islamiat - Urdu Medium","History - Urdu Medium","Computer - Urdu Medium"],english:["Urdu - English Medium","English - Class 8","Mathematics - English Medium","General Science - English Medium","Islamiat - English Medium","History - English Medium","Computer - English Medium"]},9:{name:"Class 9",urdu:["Urdu - Urdu Medium","English - Class 9","Math - Urdu Medium","Physics - Urdu Medium","Chemistry - Urdu Medium","Biology - Urdu Medium","Computer - Urdu Medium","Islamiat - Urdu Medium","Pak Studies - Urdu Medium","Tarjuma Quran - Urdu Medium"],english:["Urdu - English Medium","English - Class 9","Mathematics - English Medium","Physics - English Medium","Chemistry - English Medium","Biology - English Medium","Computer - English Medium","Islamiat - English Medium","Pak Studies - English Medium","Tarjuma Quran - English Medium"]},10:{name:"Class 10",urdu:["Urdu - Urdu Medium","English - Class 10","Math - Urdu Medium","Physics - Urdu Medium","Chemistry - Urdu Medium","Biology - Urdu Medium","Computer - Urdu Medium","Islamiat - Urdu Medium","Pak Studies - Urdu Medium","Tarjuma Quran - Urdu Medium"],english:["Urdu - English Medium","English - Class 10","Mathematics - English Medium","Physics - English Medium","Chemistry - English Medium","Biology - English Medium","Computer - English Medium","Islamiat - English Medium","Pak Studies - English Medium","Tarjuma Quran - English Medium"]}};
+const collegeBooks=["Physics Part 1","Physics Part 2","Chemistry Part 1","Chemistry Part 2","Biology Part 1","Biology Part 2","Mathematics Part 1","Mathematics Part 2","FA Urdu Part 1","FA Urdu Part 2","FA English Part 1","FA English Part 2","Computer Part 1","Computer Part 2"];const computerBooks=["HTML & CSS Notes","Python Programming Notes","Java Programming Notes","C++ Programming Notes","Database MySQL Notes","Computer Fundamentals","Web Development Notes","Graphic Designing Notes","MS Word Notes","MS Excel Notes"];const historyBooks=["Matric Past Papers","Inter Past Papers","FA Past Papers","FSc Past Papers","BSE Past Papers","Punjab Board Past Papers","History of Pakistan","Pak Studies Past Papers"];const geographyBooks=["Geography Class 6","Geography Class 7","Geography Class 8","Physical Geography Notes","World Geography","Pakistan Geography"];
 const islamicStructure={"Quran":{icon:"📖",color:"#047857",books:[]},"Hadith":{icon:"📜",color:"#92400e",books:[]},"Tafseer":{icon:"📚",color:"#5b21b6",books:[]},"Seerat":{icon:"🕌",color:"#9d174d",books:[]},"Fiqh":{icon:"⚖️",color:"#9a3412",books:[]},"Dua & Azkar":{icon:"🤲",color:"#0c4a6e",books:[]},"Islamic History":{icon:"🏛️",color:"#334155",books:[]},"Islamic Studies":{icon:"☪️",color:"#047857",books:[]}};
 
-function createCategoryCard(title,subtitle,badges,accent,icon,actionText,onClick){
+// CREATE BEAUTIFUL BOOK CARD - LIKE SCREENSHOT
+function createPopularCard(title,author,category,className,subject,coverUrl,onClick){
   const colors=colorFor(title);
-  const badgeHtml=badges.map(b=>`<span class="badge ${b.class}">${b.text}</span>`).join("");
-  return `<article class="card" style="--card-accent:${accent||colors.accent}" onclick="${onClick}"><div class="card-header" style="background:${accent||colors.accent}"></div><div class="card-body"><div class="card-icon" style="background:${colors.iconBg}">${icon||iconFor(title)}</div><div class="card-content"><h3>${title}</h3><div class="subtitle">${subtitle}</div><div style="display:flex;flex-wrap:wrap;gap:5px">${badgeHtml}</div></div></div><div class="card-footer"><button class="card-action">${actionText} →</button></div></article>`;
+  const coverHtml=coverUrl?`<img src="${coverUrl}" alt="${title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div style="display:none;width:100%;height:100%;background:${colors.iconBg};color:#fff;align-items:center;justify-content:center;font-size:24px">${iconFor(title)}</div>`:`<div style="width:100%;height:100%;background:${colors.iconBg};color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px">${iconFor(title)}</div>`;
+  const badgeClass=category.includes("School")?"badge-school":category.includes("College")?"badge-college":category.includes("Computer")?"badge-computer":category.includes("Old")||category.includes("Past")?"badge-old":category.includes("Islamic")||category.includes("Quran")?"badge-islamic":"badge-other";
+  return `<article class="book-card" onclick="${onClick}">
+<div class="book-top">
+<div class="book-cover">${coverHtml}</div>
+<div class="book-info">
+<div style="display:flex;align-items:center;gap:6px"><span class="book-badge ${badgeClass}">${category.split(' ')[0]}</span><span class="book-heart">♡</span></div>
+<div class="book-title">${title}</div>
+<div class="book-author">${author||category}</div>
+<div class="book-tags"><span class="book-tag">${className||"Class 10"}</span><span class="book-tag">${subject||"Math"}</span></div>
+</div>
+</div>
+<div class="book-actions">
+<button class="btn-read" onclick="event.stopPropagation();${onClick}"><span>📖</span> Read</button>
+<button class="btn-download" onclick="event.stopPropagation();window.open('${OFFICIAL_BOOKS_URL}','_blank')"><span>⬇️</span> Download</button>
+</div>
+</article>`;
 }
 
-function createTaleemCard(title,category,coverUrl,onClick,showStars=true){
+function createTaleemCard(title,category,coverUrl,onClick){
   const colors=colorFor(title);
   const coverHtml=coverUrl?`<img src="${coverUrl}" alt="${title}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="taleem-placeholder" style="display:none;background:${colors.iconBg}">${iconFor(title)}</div>`:`<div class="taleem-placeholder" style="background:${colors.iconBg}">${iconFor(title)}</div>`;
-  const stars=showStars?`<div class="taleem-stars">★★★★★</div>`:`<div class="taleem-stars">★★★★☆</div>`;
-  const catText=category||"PECTAA Text Books";
-  return `<article class="taleem-card" onclick="${onClick}"><div class="taleem-img-wrap">${coverHtml}<span class="taleem-badge">📚</span></div><div class="taleem-body"><a class="taleem-title">${title}</a><div class="taleem-cat"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2h-8l-2-2z"/></svg> ${catText}</div>${stars}<div class="taleem-footer"><span class="eye">👁️</span> Added by Admin</div><div class="taleem-actions"><button class="primary" onclick="event.stopPropagation();${onClick}">📖 Read</button><button onclick="event.stopPropagation();window.open('${OFFICIAL_BOOKS_URL}','_blank')">⬇️ Download</button></div></div></article>`;
+  return `<article class="taleem-card" onclick="${onClick}"><div class="taleem-img-wrap">${coverHtml}<span class="taleem-badge">📚</span></div><div class="taleem-body"><div class="taleem-title">${title}</div><div class="taleem-cat">📁 ${category}</div><div class="taleem-stars">★★★★★</div><div class="taleem-footer">👁️ Added by Admin</div></div></article>`;
 }
 
 let allBooksList=[];
 function buildAllBooksList(){
   allBooksList=[];
-  Object.keys(classData).forEach(n=>{classData[n].urdu.forEach(s=>allBooksList.push({title:s,class:`Class ${n}`,category:`Class ${n} Text Books (Punjab)`,subcat:`Class ${n} Urdu`,accent:colorFor(s).accent}));classData[n].english.forEach(s=>allBooksList.push({title:s,class:`Class ${n}`,category:`Class ${n} Text Books (Punjab)`,subcat:`Class ${n} English`,accent:colorFor(s).accent}));});
-  collegeBooks.forEach(s=>allBooksList.push({title:s,class:"College",category:"College Text Books (Punjab)",subcat:"College",accent:"#7c3aed"}));
-  computerBooks.forEach(s=>allBooksList.push({title:s,class:"Computer & IT",category:"11th Class Text Books (Punjab)",subcat:"IT",accent:"#0891b2"}));
-  historyBooks.forEach(s=>allBooksList.push({title:s,class:"History",category:"12th Class Text Books (Punjab)",subcat:"History",accent:"#d97706"}));
-  geographyBooks.forEach(s=>allBooksList.push({title:s,class:"Geography",category:"Geography Text Books",subcat:"Geography",accent:"#0d9488"}));
+  Object.keys(classData).forEach(n=>{classData[n].urdu.forEach(s=>allBooksList.push({title:s,class:`Class ${n}`,category:"School Books",subcat:`Class ${n} Urdu`,accent:colorFor(s).accent,author:"PCTB"}));classData[n].english.forEach(s=>allBooksList.push({title:s,class:`Class ${n}`,category:"School Books",subcat:`Class ${n} English`,accent:colorFor(s).accent,author:"PCTB"}));});
+  collegeBooks.forEach(s=>allBooksList.push({title:s,class:"College",category:"College Books",subcat:"College",accent:"#7c3aed",author:"Fazal-ur-Rehman"}));
+  computerBooks.forEach(s=>allBooksList.push({title:s,class:"Computer",category:"Computer Notes",subcat:"IT",accent:"#0891b2",author:"Web Development"}));
+  historyBooks.forEach(s=>allBooksList.push({title:s,class:"Matric",category:"Old Papers",subcat:"Past Papers",accent:"#d97706",author:"BSE (Board Papers)"}));
+  geographyBooks.forEach(s=>allBooksList.push({title:s,class:"Geography",category:"Other Books",subcat:"Geography",accent:"#0d9488",author:"General Reading"}));
+}
+
+function renderPopularBooks(){
+  const grid=document.getElementById("popularGrid");
+  if(!grid) return;
+  // Like screenshot - 5 books
+  const popularData=[
+    {title:"Mathematics Class 10",author:"Punjab Textbook Board",category:"School",className:"Class 10",subject:"Math",cover:""},
+    {title:"Physics Part 1",author:"Fazal-ur-Rehman",category:"College",className:"FSc",subject:"Physics",cover:""},
+    {title:"HTML & CSS Notes",author:"Web Development",category:"Computer",className:"IT",subject:"Web",cover:""},
+    {title:"Matric Past Papers",author:"BSE (Board Papers)",category:"Old Papers",className:"Matric",subject:"Past Paper",cover:""},
+    {title:"Quran Translation",author:"Maulana Taqi Usmani",category:"Islamic",className:"Quran",subject:"Islamic",cover:""}
+  ];
+  // If uploaded books exist, use them for popular
+  let displayBooks=[];
+  if(books.length>=5){
+    displayBooks=books.slice(0,5).map(b=>({
+      title:b.title,
+      author:b.author||"PCTB",
+      category:b.category||"Other Books",
+      className:b.category?.split(' ')[0]||"Book",
+      subject:b.category?.split(' - ')[1]||"General",
+      cover:b.cover_path?db.storage.from('book-covers').getPublicUrl(b.cover_path).data.publicUrl:''
+    }));
+  } else {
+    displayBooks=popularData;
+  }
+  grid.innerHTML=displayBooks.map(b=>createPopularCard(b.title,b.author,b.category,b.className,b.subject,b.cover,`openSubject('${b.title.replace(/'/g,"\\'")}','${b.category}')`)).join("");
 }
 
 function handleMainSearch(q){
@@ -151,69 +382,153 @@ function handleMainSearch(q){
   const box=document.getElementById("searchResultsBox");
   const grid=document.getElementById("searchResultsGrid");
   const title=document.getElementById("searchResultsTitle");
-  if(!query||query.length<2){box.classList.remove("active");showAllClasses();return;}
-  const results=allBooksList.filter(b=>b.title.toLowerCase().includes(query)||b.class.toLowerCase().includes(query)||b.category.toLowerCase().includes(query)).slice(0,16);
-  if(results.length===0){title.textContent=`No books for "${q}"`;grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:20px">No books found</div>`;box.classList.add("active");return;}
-  title.textContent=`Found ${results.length} books for "${q}" - Taleem360 Style`;
-  grid.innerHTML=results.map(b=>createTaleemCard(b.title,b.category,'',`openSubject('${b.title.replace(/'/g,"\\'")}','${b.class} - ${b.category}')`)).join("");
+  if(!query||query.length<2){
+    box.classList.remove("active");
+    document.getElementById("browseSection").classList.remove("hidden");
+    document.getElementById("popularSection").classList.remove("hidden");
+    document.getElementById("detailSection").classList.add("hidden");
+    document.getElementById("heroSection").classList.remove("hidden");
+    document.getElementById("searchWrap").classList.remove("hidden");
+    return;
+  }
+  const results=allBooksList.filter(b=>b.title.toLowerCase().includes(query)||b.category.toLowerCase().includes(query)).slice(0,20);
+  const uploadedResults=books.filter(b=>`${b.title} ${b.category}`.toLowerCase().includes(query)).slice(0,10).map(b=>({
+    title:b.title,
+    author:b.author||"PCTB",
+    category:b.category||"Other",
+    className:"Book",
+    subject:b.category||"General",
+    cover:b.cover_path?db.storage.from('book-covers').getPublicUrl(b.cover_path).data.publicUrl:''
+  }));
+  const allResults=[...uploadedResults, ...results.slice(0,10)];
+  if(allResults.length===0){title.textContent=`No books for "${q}"`;grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:20px">No books found - Try Mathematics, Physics, Computer</div>`;box.classList.add("active");return;}
+  title.textContent=`Found ${allResults.length} books for "${q}" - Beautiful Design`;
+  grid.innerHTML=allResults.map(b=>createPopularCard(b.title,b.author||b.category,b.category||"School",b.className||"Class 10",b.subject||b.subcat||"Math",b.cover||'',`openSubject('${b.title.replace(/'/g,"\\'")}','${b.category||'Book'}')`)).join("");
   box.classList.add("active");
+  document.getElementById("browseSection").classList.add("hidden");
+  document.getElementById("popularSection").classList.add("hidden");
+  document.getElementById("detailSection").classList.add("hidden");
+}
+
+function handleCategoryFilter(cat){
+  if(cat==="All Categories"){showHome();return;}
+  if(cat.includes("School")) showUrduMedium();
+  else if(cat.includes("College")) showCollegeSection();
+  else if(cat.includes("Computer")) showComputerSection();
+  else if(cat.includes("Old")) showHistorySection();
+  else if(cat.includes("Islamic")) showIslamicProper();
+  else showAllBooks();
+}
+
+function showHome(){
+  document.getElementById("browseSection").classList.remove("hidden");
+  document.getElementById("popularSection").classList.remove("hidden");
+  document.getElementById("heroSection").classList.remove("hidden");
+  document.getElementById("searchWrap").classList.remove("hidden");
+  document.getElementById("detailSection").classList.add("hidden");
+  document.getElementById("searchResultsBox").classList.remove("active");
+  document.getElementById("mainSearch").value="";
+  renderPopularBooks();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+function showAllBooks(){
+  document.getElementById("browseSection").classList.add("hidden");
+  document.getElementById("popularSection").classList.add("hidden");
+  document.getElementById("heroSection").classList.add("hidden");
+  document.getElementById("searchWrap").classList.add("hidden");
+  document.getElementById("detailSection").classList.remove("hidden");
+  showAllClasses();
+}
+function showCategories(){
+  showHome();
+  document.getElementById("browseSection").scrollIntoView({behavior:"smooth"});
+}
+function hideAllDetails(){
   classGrid.classList.add('hidden');subjectView.classList.add('hidden');collegeGrid.classList.add('hidden');computerGrid.classList.add('hidden');islamicGrid.classList.add('hidden');historyGrid.classList.add('hidden');geographyGrid.classList.add('hidden');
 }
 
-function hideAll(){document.getElementById('homeDashboard')?.classList.add('hidden');document.querySelector('.hero')?.classList.remove('hidden');document.querySelector('.cats')?.classList.remove('hidden');document.querySelector('.wrap')?.classList.remove('hidden');classGrid.classList.add('hidden');subjectView.classList.add('hidden');collegeGrid.classList.add('hidden');computerGrid.classList.add('hidden');islamicGrid.classList.add('hidden');historyGrid.classList.add('hidden');geographyGrid.classList.add('hidden');document.getElementById("searchResultsBox").classList.remove("active");}
-
+function showAllClasses(){
+  hideAllDetails();
+  document.getElementById("detailSection").classList.remove("hidden");
+  document.getElementById("browseSection").classList.add("hidden");
+  document.getElementById("popularSection").classList.add("hidden");
+  document.getElementById("heroSection").classList.add("hidden");
+  document.getElementById("searchWrap").classList.add("hidden");
+  classGrid.classList.remove('hidden');
+  backBtn.classList.remove('hidden');
+  backBtn.onclick=()=>showHome();
+  renderClassGrid();
+  sectionTitle.textContent="All Classes - School Books - Beautiful Design Like Screenshot";
+  sectionDesc.textContent="School Classes 1-12 - Beautiful Design - Like Screenshot - Cover + Title + Read/Download";
+}
 function renderClassGrid(){
-  let html=`<div class="section-head"><h3>🏫 Urdu Medium - Class 1-10 - Square Type - Beautiful</h3></div><div class="grid">`;
-  html+=Object.keys(classData).map(n=>{const c=classData[n];return createCategoryCard(`Class ${n} - Urdu Medium`,`${c.urdu.length} books • Urdu Medium • Square Type Beautiful • Click to see Taleem360 style books`,[{text:`Class ${n}`,class:"badge-class"},{text:`${c.urdu.length} Books`,class:"badge-count"},{text:"Urdu Medium",class:"badge-urdu"},{text:"Square",class:"badge-class"}],"#16a34a","🏫",`Open Urdu Medium - Taleem360 Books`,`openClass(${n},'urdu')`);}).join("");
-  html+=`</div><div class="section-head" style="margin-top:24px"><h3>📘 English Medium - Class 1-10 - Square Type - Beautiful</h3></div><div class="grid">`;
-  html+=Object.keys(classData).map(n=>{const c=classData[n];return createCategoryCard(`Class ${n} - English Medium`,`${c.english.length} books • English Medium • Square Type Beautiful • Click to see Taleem360 style books`,[{text:`Class ${n}`,class:"badge-class"},{text:`${c.english.length} Books`,class:"badge-count"},{text:"English Medium",class:"badge-eng"},{text:"Square",class:"badge-class"}],"#2563eb","📘",`Open English Medium - Taleem360 Books`,`openClass(${n},'english')`);}).join("");
+  let html=`<div class="grid">`;
+  Object.keys(classData).forEach(n=>{
+    const c=classData[n];
+    html+=`<article class="book-card" style="padding:16px" onclick="openClass(${n},'urdu')"><div style="display:flex;gap:12px"><div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#1e40af,#3b82f6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px">🏫</div><div><b style="font-size:14px">Class ${n} - Urdu Medium</b><small style="display:block;color:#64748b;font-size:11px;margin-top:2px">${c.urdu.length} books • Urdu Medium</small><div style="margin-top:8px"><span style="padding:4px 8px;background:#f1f5f9;border-radius:999px;font-size:9px;font-weight:700">Class ${n}</span> <span style="padding:4px 8px;background:#dcfce7;color:#15803d;border-radius:999px;font-size:9px;font-weight:700">${c.urdu.length} Books</span></div></div></div><div style="margin-top:12px"><button style="width:100%;background:var(--navy);color:#fff;border-radius:8px;padding:8px;font-weight:700;font-size:11px">📚 Open Urdu Medium →</button></div></article>`;
+  });
+  Object.keys(classData).forEach(n=>{
+    const c=classData[n];
+    html+=`<article class="book-card" style="padding:16px" onclick="openClass(${n},'english')"><div style="display:flex;gap:12px"><div style="width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#2563eb,#3b82f6);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px">📘</div><div><b style="font-size:14px">Class ${n} - English Medium</b><small style="display:block;color:#64748b;font-size:11px;margin-top:2px">${c.english.length} books • English Medium</small><div style="margin-top:8px"><span style="padding:4px 8px;background:#f1f5f9;border-radius:999px;font-size:9px;font-weight:700">Class ${n}</span> <span style="padding:4px 8px;background:#dbeafe;color:#1d4ed8;border-radius:999px;font-size:9px;font-weight:700">${c.english.length} Books</span></div></div></div><div style="margin-top:12px"><button style="width:100%;background:var(--navy);color:#fff;border-radius:8px;padding:8px;font-weight:700;font-size:11px">📖 Open English Medium →</button></div></article>`;
+  });
   html+=`</div>`;
   classGrid.innerHTML=html;
-  classGrid.classList.remove('hidden');
 }
-
-function showHomeDashboard(){hideAll();document.getElementById('homeDashboard').classList.remove('hidden');document.querySelector('.hero').classList.add('hidden');document.querySelector('.cats').classList.add('hidden');document.querySelector('.wrap').classList.add('hidden');}
-function showAllClasses(){hideAll();classGrid.classList.remove('hidden');backBtn.classList.add('hidden');document.getElementById("searchResultsBox").classList.remove("active");const si=document.getElementById("mainSearch");if(si) si.value="";renderClassGrid();sectionTitle.textContent="🏫 School Classes - Square Type + Taleem360 Style Books - PECTAA Official";sectionDesc.textContent="Square type category boxes - Click any class to see Taleem360 style books with cover image, title, stars, Added by Admin - Like screenshot";}
 function openClass(num,medium){
   const d=classData[num];const list=medium==='urdu'?d.urdu:d.english;
-  hideAll();subjectView.classList.remove('hidden');classGrid.classList.remove('hidden');backBtn.classList.remove('hidden');
-  sectionTitle.textContent=`${d.name} - ${medium==='urdu'?'Urdu Medium':'English Medium'} - Taleem360 Style Books - PECTAA Official`;
-  sectionDesc.textContent=`${list.length} books - Taleem360 style - Cover image + PECTAA Text Book title + Category + Stars + Added by Admin - Like screenshot`;
-  let html=`<div class="section-head"><h3>${medium==='urdu'?'🏫':'📘'} ${d.name} - ${medium==='urdu'?'Urdu Medium':'English Medium'} - Taleem360 Style Books</h3></div><div class="taleem-grid">`;
+  hideAllDetails();subjectView.classList.remove('hidden');classGrid.classList.remove('hidden');
+  document.getElementById("detailSection").classList.remove("hidden");
+  backBtn.classList.remove('hidden');
+  backBtn.onclick=()=>showAllClasses();
+  sectionTitle.textContent=`${d.name} - ${medium==='urdu'?'Urdu Medium':'English Medium'} - Beautiful Design`;
+  sectionDesc.textContent=`${list.length} books - Beautiful Design Like Screenshot - Cover + Title + Read/Download`;
+  let html=`<div class="books-grid">`;
   html+=list.map(s=>{
-    const catText=`${d.name} Text Books (Punjab)`;
-    return createTaleemCard(s,catText,'',`openSubject('${s.replace(/'/g,"\\'")}','${d.name} - ${medium} - School Books')`);
+    const cat=medium==='urdu'?'School Books':'School Books';
+    const colors=colorFor(s);
+    return createPopularCard(s,`${d.name} • ${medium}`,cat,`Class ${num}`,medium==='urdu'?'Urdu':'English','',`openSubject('${s.replace(/'/g,"\\'")}','${d.name} - ${medium}')`);
   }).join("");
   html+=`</div>`;
   subjectView.innerHTML=html;
   classGrid.innerHTML="";
 }
-function showUrduMedium(){hideAll();classGrid.classList.remove('hidden');backBtn.classList.remove('hidden');sectionTitle.textContent="🏫 Urdu Medium - Taleem360 Style Books";sectionDesc.textContent="Urdu Medium 1-10 - Taleem360 style books";let html=`<div class="taleem-grid">`;Object.keys(classData).forEach(n=>{classData[n].urdu.forEach(s=>{html+=createTaleemCard(s,`Class ${n} Text Books (Punjab)`, '', `openSubject('${s.replace(/'/g,"\\'")}','Class ${n} Urdu')`);} );});html+=`</div>`;classGrid.innerHTML=html;subjectView.classList.add('hidden');}
-function showEnglishMedium(){hideAll();classGrid.classList.remove('hidden');backBtn.classList.remove('hidden');sectionTitle.textContent="📘 English Medium - Taleem360 Style Books";sectionDesc.textContent="English Medium 1-10 - Taleem360 style";let html=`<div class="taleem-grid">`;Object.keys(classData).forEach(n=>{classData[n].english.forEach(s=>{html+=createTaleemCard(s,`Class ${n} Text Books (Punjab)`, '', `openSubject('${s.replace(/'/g,"\\'")}','Class ${n} English')`);} );});html+=`</div>`;classGrid.innerHTML=html;subjectView.classList.add('hidden');}
-function showCollegeSection(){hideAll();collegeGrid.classList.remove('hidden');backBtn.classList.remove('hidden');sectionTitle.textContent="🎓 College Books - Taleem360 Style - Like Screenshot - 11th Class Computer Science PECTAA Text Book";sectionDesc.textContent="College Books - Taleem360 style - Cover + Title + Category + Stars + Added by Admin - Like screenshot";let html=`<div class="taleem-grid">`;html+=collegeBooks.map(s=>{const cat=s.includes("11th")?"11th Class Text Books (Punjab)": s.includes("12th")?"12th Class Text Books (Punjab)":"College Text Books"; return createTaleemCard(s,cat,'',`openSubject('${s.replace(/'/g,"\\'")}','College Books')`);}).join("");html+=`</div>`;collegeStreamGrid.innerHTML=html;}
-function showComputerSection(){hideAll();computerGrid.classList.remove('hidden');backBtn.classList.remove('hidden');sectionTitle.textContent="💻 Computer & IT - Taleem360 Style Books - Like Screenshot";sectionDesc.textContent="11th Class Computer Science PECTAA Text Book 2025-26 PDF, 12th Class Computer Science - Taleem360 style";let html=`<div class="taleem-grid">`;html+=computerBooks.map(s=>{const cat=s.includes("11th")?"11th Class Text Books (Punjab)": s.includes("12th")?"12th Class Text Books (Punjab)":"Computer Text Books"; return createTaleemCard(s,cat,'',`openSubject('${s.replace(/'/g,"\\'")}','Computer & IT')`);}).join("");html+=`</div>`;computerDirectGrid.innerHTML=html;}
-function showHistorySection(){hideAll();historyGrid.classList.remove('hidden');backBtn.classList.remove('hidden');sectionTitle.textContent="📜 History - Taleem360 Style - 12th Class Pak Study New Book PDF (PECTAA)";sectionDesc.textContent="History books Taleem360 style - Like screenshot - 12th Class Pak Study New Book PDF (PECTAA)";let html=`<div class="taleem-grid">`;html+=historyBooks.map(s=>{const cat=s.includes("12th")?"12th Class Text Books (Punjab)":"History Text Books"; return createTaleemCard(s,cat,'',`openSubject('${s.replace(/'/g,"\\'")}','History')`);}).join("");html+=`</div>`;historyDirectGrid.innerHTML=html;}
-function showGeographySection(){hideAll();geographyGrid.classList.remove('hidden');backBtn.classList.remove('hidden');sectionTitle.textContent="🌍 Geography - Taleem360 Style Books";sectionDesc.textContent="Geography - Taleem360 style - Cover + Title + Category + Stars";let html=`<div class="taleem-grid">`;html+=geographyBooks.map(s=>createTaleemCard(s,"Geography Text Books",'',`openSubject('${s.replace(/'/g,"\\'")}','Geography')`)).join("");html+=`</div>`;geographyDirectGrid.innerHTML=html;}
-function renderIslamicSubCats(){const el=document.getElementById("islamicSubCatGrid");if(!el) return;el.innerHTML=Object.keys(islamicStructure).map(k=>{const d=islamicStructure[k];return `<button onclick="openIslamicSubCat('${k}')" style="border:1px solid ${d.color}20;background:${d.color}12;border-radius:12px;padding:12px;text-align:left"><div style="font-size:18px">${d.icon}</div><div style="font-size:11px;font-weight:800;color:${d.color};margin-top:4px">${k}</div><div style="font-size:9px;color:#64748b">Admin Will Add • Taleem360 Style</div></button>`;}).join("");}
-function showIslamicProper(){hideAll();islamicGrid.classList.remove('hidden');backBtn.classList.remove('hidden');renderIslamicSubCats();openIslamicSubCat('all');sectionTitle.textContent="☪️ Islamic Library - Admin Will Add Books - Taleem360 Style";sectionDesc.textContent="Islamic books admin khud add karega - Taleem360 style me show hongi - Cover + Title + Category + Stars + Added by Admin";}
+function showUrduMedium(){showAllBooks();let html=`<div class="books-grid">`;Object.keys(classData).forEach(n=>{classData[n].urdu.forEach(s=>{html+=createPopularCard(s,`Class ${n} • Urdu Medium`,"School Books",`Class ${n}`,"Urdu Medium",'',`openSubject('${s.replace(/'/g,"\\'")}','Class ${n} Urdu')`);} );});html+=`</div>`;classGrid.innerHTML=html;subjectView.classList.add('hidden');sectionTitle.textContent="Urdu Medium - Class 1-10 - Beautiful Design Like Screenshot";sectionDesc.textContent="Urdu Medium - Beautiful Design - Cover + Title + Read/Download";}
+function showEnglishMedium(){showAllBooks();let html=`<div class="books-grid">`;Object.keys(classData).forEach(n=>{classData[n].english.forEach(s=>{html+=createPopularCard(s,`Class ${n} • English Medium`,"School Books",`Class ${n}`,"English Medium",'',`openSubject('${s.replace(/'/g,"\\'")}','Class ${n} English')`);} );});html+=`</div>`;classGrid.innerHTML=html;subjectView.classList.add('hidden');sectionTitle.textContent="English Medium - Class 1-10 - Beautiful Design";sectionDesc.textContent="English Medium - Beautiful Design Like Screenshot";}
+function showCollegeSection(){showAllBooks();hideAllDetails();collegeGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();sectionTitle.textContent="College Books - Beautiful Design Like Screenshot";sectionDesc.textContent="College Books FA FSc ICS - Cover + Title + Read/Download - Like Screenshot";let html=`<div class="books-grid">`;html+=collegeBooks.map(s=>createPopularCard(s,"Fazal-ur-Rehman","College Books","FSc","College",'',`openSubject('${s.replace(/'/g,"\\'")}','College Books')`)).join("");html+=`</div>`;collegeStreamGrid.innerHTML=html;}
+function showComputerSection(){showAllBooks();hideAllDetails();computerGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();sectionTitle.textContent="Computer Notes - IT & Programming - Beautiful Design";sectionDesc.textContent="Computer Notes - Web Development - Beautiful Design Like Screenshot";let html=`<div class="books-grid">`;html+=computerBooks.map(s=>createPopularCard(s,"Web Development","Computer Notes","IT","Web",'',`openSubject('${s.replace(/'/g,"\\'")}','Computer Notes')`)).join("");html+=`</div>`;computerDirectGrid.innerHTML=html;}
+function showHistorySection(){showAllBooks();hideAllDetails();historyGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();sectionTitle.textContent="Old Papers - Past Exams - Beautiful Design";sectionDesc.textContent="Matric Past Papers, BSE Board Papers - Beautiful Design Like Screenshot";let html=`<div class="books-grid">`;html+=historyBooks.map(s=>createPopularCard(s,"BSE (Board Papers)","Old Papers","Matric","Past Paper",'',`openSubject('${s.replace(/'/g,"\\'")}','Old Papers')`)).join("");html+=`</div>`;historyDirectGrid.innerHTML=html;}
+function showGeographySection(){showAllBooks();hideAllDetails();geographyGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();sectionTitle.textContent="Other Books - General Reading - Beautiful Design";sectionDesc.textContent="Other Books - General Reading - Beautiful Design";let html=`<div class="books-grid">`;html+=geographyBooks.map(s=>createPopularCard(s,"General Reading","Other Books","General","Reading",'',`openSubject('${s.replace(/'/g,"\\'")}','Other Books')`)).join("");html+=`</div>`;geographyDirectGrid.innerHTML=html;}
+function renderIslamicSubCats(){const el=document.getElementById("islamicSubCatGrid");if(!el) return;el.innerHTML=Object.keys(islamicStructure).map(k=>{const d=islamicStructure[k];return `<button onclick="openIslamicSubCat('${k}')" style="border:1px solid ${d.color}20;background:${d.color}12;border-radius:12px;padding:12px;text-align:left"><div style="font-size:18px">${d.icon}</div><div style="font-size:11px;font-weight:800;color:${d.color};margin-top:4px">${k}</div><div style="font-size:9px;color:#64748b">Admin Will Add</div></button>`;}).join("");}
+function showIslamicProper(){showAllBooks();hideAllDetails();islamicGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();renderIslamicSubCats();openIslamicSubCat('all');sectionTitle.textContent="Islamic Books - Quran • Hadith - Admin Will Add - Beautiful Design";sectionDesc.textContent="Islamic Books - Admin khud add karega - Beautiful Design Like Screenshot";}
 function openIslamicSubCat(subCat){
   const grid=document.getElementById("islamicDirectGrid");
   const adminBooks=books.filter(b=>b.category&&b.category.toLowerCase().includes('islamic'));
   if(adminBooks.length===0){
-    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:32px;background:#fff;border:1px solid var(--line);border-radius:12px"><div style="font-size:36px">☪️</div><h3 style="margin:12px 0 6px">No Islamic Books Yet - Admin Will Add</h3><p style="color:#64748b;font-size:12px">Aap admin panel se Islamic books add karenge - Taleem360 style me show hongi<br>Cover image + Title + Category + Stars + Added by Admin</p></div>`;
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:32px;background:#fff;border:1px solid var(--line);border-radius:12px"><div style="font-size:36px">☪️</div><h3 style="margin:12px 0 6px">No Islamic Books Yet - Admin Will Add</h3><p style="color:#64748b;font-size:12px">Aap admin panel se Islamic books add karenge - Beautiful Design Like Screenshot me show hongi<br>Cover + Title + Quran Translation + Islamic + Read + Download</p></div>`;
     return;
   }
   grid.innerHTML=adminBooks.map(b=>{
     const coverUrl=b.cover_path?db.storage.from('book-covers').getPublicUrl(b.cover_path).data.publicUrl:'';
     const pdfUrl=b.pdf_path?db.storage.from('book-pdfs').getPublicUrl(b.pdf_path).data.publicUrl:OFFICIAL_BOOKS_URL;
     const source=b.source_link||pdfUrl||OFFICIAL_BOOKS_URL;
-    return createTaleemCard(b.title,b.category,coverUrl,`openSubject('${b.title.replace(/'/g,"\\'")}','${b.category} - Islamic','${coverUrl}','${source}')`);
+    return createPopularCard(b.title,b.author||"Islamic Book","Islamic Books","Quran","Islamic",coverUrl,`openSubject('${b.title.replace(/'/g,"\\'")}','${b.category}','${coverUrl}','${source}')`);
   }).join("");
 }
-function openSubject(s,c,coverUrl,sourceLink){const finalSource=sourceLink||OFFICIAL_BOOKS_URL;readerTitle.textContent=s;document.getElementById("readerMeta").textContent=`${c} • Taleem360 Style • Original Cover • Source Link`;document.getElementById("bookNameTitle").textContent=s;document.getElementById("bookDesc").textContent=`${s} - ${c} - PECTAA Official ${OFFICIAL_BOOKS_URL} - Taleem360 style - Cover + Title + Category + Stars + Added by Admin - Like screenshot`;const coverPrev=document.getElementById("coverPreview");const coverImg=document.getElementById("coverPreviewImg");if(coverUrl){coverImg.src=coverUrl;coverPrev.style.display="block";}else{coverPrev.style.display="none";}document.getElementById("officialBtn").href=finalSource;document.getElementById("downloadBtn").href=finalSource;document.getElementById("reader").classList.remove("hidden");window.currentBookForShare={title:s,category:c,source:finalSource,cover:coverUrl};setTimeout(()=>{window.open(finalSource,'_blank');},500);}
+function openSubject(s,c,coverUrl,sourceLink){const finalSource=sourceLink||OFFICIAL_BOOKS_URL;readerTitle.textContent=s;document.getElementById("readerMeta").textContent=`${c} • Beautiful Design Like Screenshot • Original Cover`;document.getElementById("bookNameTitle").textContent=s;document.getElementById("bookDesc").textContent=`${s} - ${c} - PECTAA Official ${OFFICIAL_BOOKS_URL} - Beautiful Design Like Screenshot - Cover + Title + Author + Read + Download`;const coverPrev=document.getElementById("coverPreview");const coverImg=document.getElementById("coverPreviewImg");if(coverUrl){coverImg.src=coverUrl;coverPrev.style.display="block";}else{coverPrev.style.display="none";}document.getElementById("officialBtn").href=finalSource;document.getElementById("downloadBtn").href=finalSource;document.getElementById("reader").classList.remove("hidden");window.currentBookForShare={title:s,category:c,source:finalSource,cover:coverUrl};setTimeout(()=>{window.open(finalSource,'_blank');},500);}
 function shareBook(){const b=window.currentBookForShare;if(!b) return;const text=`${b.title} - ${b.category} - PECTAA Official ${b.source} Study Ghar ah2129643@gmail.com`;if(navigator.share){navigator.share({title:b.title,text:text,url:b.source});}else{navigator.clipboard.writeText(text).then(()=>alert('Copied'));} }
-function openPolicy(type){const modal=document.getElementById("policyModal");const title=document.getElementById("policyTitle");const content=document.getElementById("policyContent");const policies={privacy:{title:"Privacy Policy",content:"<h3>Privacy Policy</h3><p>Study Ghar collects email name via Supabase Auth. No sale. Contact ah2129643@gmail.com</p>"},cookie:{title:"Cookie Policy",content:"<h3>Cookie Policy</h3><p>Essential cookies for auth. No tracking.</p>"},terms:{title:"Terms",content:"<h3>Terms</h3><p>Educational purpose PECTAA official pectaa.edu.pk</p>"},copyright:{title:"Copyright / Removal",content:"<h3>Copyright</h3><p>Official PECTAA https://pectaa.edu.pk/curriculum-compliance/ Original covers source links. Contact ah2129643@gmail.com 48h removal</p>"}};const p=policies[type];if(!p) return;title.textContent=p.title;content.innerHTML=p.content;modal.classList.remove("hidden");}function closePolicy(){document.getElementById("policyModal").classList.add("hidden");}
-async function loadBooks(){try{const r=await db.from('books').select('*').order('created_at',{ascending:false});books=r.data||[];bookCount.textContent=books.length;renderBooks();if(document.getElementById("islamicGrid")&&!document.getElementById("islamicGrid").classList.contains("hidden")){openIslamicSubCat('all');}}catch(e){books=[];}}
+function openPolicy(type){
+  const modal=document.getElementById("policyModal");const title=document.getElementById("policyTitle");const content=document.getElementById("policyContent");
+  const policies={
+    about:{title:"About - Study Ghar",content:"<h3>About Study Ghar</h3><p>Study Ghar - Learn Today, Build Tomorrow. Free Online Study Resources - Books, notes and past papers organized for students and learners in one beautiful place. PECTAA Official pectaa.edu.pk/curriculum-compliance/. Contact ah2129643@gmail.com</p><h3>Design</h3><p>Exact like screenshot you provided - Header, Hero with Learn Read Grow, Search, Browse by Category, Popular Books with Cover + Title + Read/Download, Footer. Beautiful, modern, Vercel ready, mobile responsive, SEO ready.</p>"},
+    privacy:{title:"Privacy Policy",content:"<h3>Privacy Policy - Study Ghar</h3><p>We collect email name for student accounts via Supabase Auth. Books stored securely. No sale. Contact ah2129643@gmail.com</p>"},
+    cookie:{title:"Cookie Policy",content:"<h3>Cookie Policy</h3><p>Essential cookies for auth preferences. No tracking.</p>"},
+    terms:{title:"Terms & Conditions",content:"<h3>Terms & Conditions</h3><p>Educational purpose - PECTAA Official pectaa.edu.pk/curriculum-compliance/ - Original covers source links. Contact ah2129643@gmail.com</p>"},
+    copyright:{title:"Copyright / Removal",content:"<h3>Copyright / Removal</h3><p>Official PECTAA https://pectaa.edu.pk/curriculum-compliance/ Original covers source links. Har book apni category me. Contact ah2129643@gmail.com 48h removal</p>"}
+  };
+  const p=policies[type];if(!p) return;title.textContent=p.title;content.innerHTML=p.content;modal.classList.remove("hidden");
+}
+function closePolicy(){document.getElementById("policyModal").classList.add("hidden");}
+async function loadBooks(){try{const r=await db.from('books').select('*').order('created_at',{ascending:false});books=r.data||[];document.getElementById("bookCount").textContent=books.length;renderPopularBooks();renderBooks();}catch(e){books=[];renderPopularBooks();}}
 function renderBooks(){
   const grid=document.getElementById("grid");
   if(!grid) return;
@@ -222,34 +537,25 @@ function renderBooks(){
     const coverUrl=b.cover_path?db.storage.from('book-covers').getPublicUrl(b.cover_path).data.publicUrl:'';
     const pdfUrl=b.pdf_path?db.storage.from('book-pdfs').getPublicUrl(b.pdf_path).data.publicUrl:OFFICIAL_BOOKS_URL;
     const source=b.source_link||pdfUrl||OFFICIAL_BOOKS_URL;
-    const cat=b.category||"Other Books";
-    // Taleem360 style for uploaded books
-    return createTaleemCard(b.title,cat,coverUrl,`openSubject('${b.title.replace(/'/g,"\\'")}','${cat}','${coverUrl}','${source}')`);
+    return createPopularCard(b.title,b.author||"PCTB",b.category||"Other Books",b.category?.split(' ')[0]||"Book",b.category?.split(' - ')[1]||"General",coverUrl,`openSubject('${b.title.replace(/'/g,"\\'")}','${b.category}','${coverUrl}','${source}')`);
   }).join('');
 }
-function renderAdminList(){const adminList=document.getElementById("adminList");if(!adminList) return;if(books.length===0){adminList.innerHTML='<p style="font-size:11px;color:#64748b">No books yet - Upload karo - Taleem360 style me show honge</p>';return;}adminList.innerHTML=books.map(b=>`<div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #f1f5f9;padding:10px 0;font-size:12px"><span><b>${esc(b.title)}</b><small style="display:block;color:#64748b">${esc(b.category)} • ${esc(b.author||'')}</small><small style="display:block;color:#16a34a;font-size:9px">Taleem360 Style • Cover + Title + Stars</small></span><button style="background:#dc2626;color:#fff;border-radius:6px;padding:6px 10px;font-weight:700;font-size:10px" onclick="deleteBook('${b.id}')">Delete</button></div>`).join('');}
-async function refreshStudent(){const r=await db.auth.getUser();const u=r.data.user||null;if(u){studentAuth.classList.add('hidden');studentLogged.classList.remove('hidden');studentNameView.textContent=u.user_metadata?.full_name||u.email.split('@')[0];studentLabel.textContent=u.email.split('@')[0];}else{studentAuth.classList.remove('hidden');studentLogged.classList.add('hidden');studentLabel.textContent='Register';}}
+function renderAdminList(){const adminList=document.getElementById("adminList");if(!adminList) return;if(books.length===0){adminList.innerHTML='<p style="font-size:11px;color:#64748b">No books yet - Upload karo - Like screenshot style me show honge - Cover + Title + Read/Download</p>';return;}adminList.innerHTML=books.map(b=>`<div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid #f1f5f9;padding:10px 0;font-size:12px"><span><b>${esc(b.title)}</b><small style="display:block;color:#64748b">${esc(b.category)} • ${esc(b.author||'')}</small><small style="display:block;color:#16a34a;font-size:9px">Like Screenshot - Cover + Title + Read/Download</small></span><button style="background:#dc2626;color:#fff;border-radius:6px;padding:6px 10px;font-weight:700;font-size:10px" onclick="deleteBook('${b.id}')">Delete</button></div>`).join('');}
+async function refreshStudent(){const r=await db.auth.getUser();const u=r.data.user||null;if(u){studentAuth.classList.add('hidden');studentLogged.classList.remove('hidden');studentNameView.textContent=u.user_metadata?.full_name||u.email.split('@')[0];studentLabel.textContent=u.email.split('@')[0];}else{studentAuth.classList.remove('hidden');studentLogged.classList.add('hidden');studentLabel.textContent='Login';}}
 function openStudent(){student.classList.remove('hidden');refreshStudent()}function closeStudent(){student.classList.add('hidden')}
 async function studentSignup(){const n=studentName.value.trim(),e=studentEmail.value.trim(),p=studentPassword.value;if(!n||!e||p.length<6){studentStatus.textContent='Name email 6+ chars';return}studentStatus.textContent='Creating...';const{error}=await db.auth.signUp({email:e,password:p,options:{data:{full_name:n}}});if(error){studentStatus.textContent=error.message;return}studentStatus.textContent='Created login now';}
 async function studentLogin(){const e=studentEmail.value.trim(),p=studentPassword.value;studentStatus.textContent='Signing...';const{error}=await db.auth.signInWithPassword({email:e,password:p});if(error){studentStatus.textContent=error.message;return}await refreshStudent();closeStudent();}
 async function studentLogout(){await db.auth.signOut();await refreshStudent();}
 function openAdmin(){admin.classList.remove('hidden')}function closeAdmin(){admin.classList.add('hidden')}
 async function login(){loginStatus.textContent='Signing...';const{data,error}=await db.auth.signInWithPassword({email:email.value.trim(),password:password.value});if(error){loginStatus.textContent=error.message;return}const p=await db.from('profiles').select('role').eq('id',data.user.id).single();if(p.data?.role!=='admin'){await db.auth.signOut();loginStatus.textContent='Not admin';return}isAdmin=true;loginArea.classList.add('hidden');panel.classList.remove('hidden');await loadBooks();}
-async function uploadBook(e){e.preventDefault();if(!isAdmin){uploadStatus.textContent='Only admin';return}const p=pdfFile.files[0],c=cover.files[0],s=uploadStatus,source=bookSource.value.trim()||OFFICIAL_BOOKS_URL;if(!p||p.type!=='application/pdf'){s.textContent='PDF required';return}const u=(await db.auth.getUser()).data.user;if(!u){s.textContent='Login first';return}s.textContent='Uploading... Taleem360 Style...';const id=crypto.randomUUID(),safe=x=>x.replace(/[^a-z0-9._-]/gi,'_'),pp=`${u.id}/${id}-${safe(p.name)}`;let cp='';if(c){cp=`${u.id}/${id}-${safe(c.name)}`;const r=await db.storage.from('book-covers').upload(cp,c);if(r.error){s.textContent=r.error.message;return}}let r=await db.storage.from('book-pdfs').upload(pp,p,{contentType:'application/pdf'});if(r.error){s.textContent=r.error.message;return}let ins={title:title.value,author:author.value,category:bookcat.value,cover_path:cp,pdf_path:pp};try{let t={...ins,source_link:source};r=await db.from('books').insert(t);if(r.error&&r.error.message.includes('source_link')){r=await db.from('books').insert(ins);}}catch(err){r=await db.from('books').insert(ins);}if(r.error){s.textContent=r.error.message;return}e.target.reset();s.textContent='✅ Uploaded - Taleem360 Style - Cover + Title + Stars + Added by Admin';await loadBooks();}
+async function uploadBook(e){e.preventDefault();if(!isAdmin){uploadStatus.textContent='Only admin';return}const p=pdfFile.files[0],c=cover.files[0],s=uploadStatus,source=bookSource.value.trim()||OFFICIAL_BOOKS_URL;if(!p||p.type!=='application/pdf'){s.textContent='PDF required';return}const u=(await db.auth.getUser()).data.user;if(!u){s.textContent='Login first';return}s.textContent='Uploading... Beautiful Design Like Screenshot...';const id=crypto.randomUUID(),safe=x=>x.replace(/[^a-z0-9._-]/gi,'_'),pp=`${u.id}/${id}-${safe(p.name)}`;let cp='';if(c){cp=`${u.id}/${id}-${safe(c.name)}`;const r=await db.storage.from('book-covers').upload(cp,c);if(r.error){s.textContent=r.error.message;return}}let r=await db.storage.from('book-pdfs').upload(pp,p,{contentType:'application/pdf'});if(r.error){s.textContent=r.error.message;return}let ins={title:title.value,author:author.value,category:bookcat.value,cover_path:cp,pdf_path:pp};try{let t={...ins,source_link:source};r=await db.from('books').insert(t);if(r.error&&r.error.message.includes('source_link')){r=await db.from('books').insert(ins);}}catch(err){r=await db.from('books').insert(ins);}if(r.error){s.textContent=r.error.message;return}e.target.reset();s.textContent='✅ Uploaded - Beautiful Design Like Screenshot - Cover + Title + Read/Download';await loadBooks();}
 async function deleteBook(id){if(!isAdmin){alert('Only admin');return}const b=books.find(x=>x.id===id);if(!b||!confirm('Delete?'))return;await db.storage.from('book-pdfs').remove([b.pdf_path]);if(b.cover_path)await db.storage.from('book-covers').remove([b.cover_path]);const r=await db.from('books').delete().eq('id',id);if(r.error){alert(r.error.message);return}await loadBooks();}
 function closeReader(){reader.classList.add('hidden');}function esc(x){return String(x||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 
-function renderPopularBooks(){
- const grid=document.getElementById('popularBooksGrid'); if(!grid)return;
- const items=[
-  ['Mathematics Class 10','School','Punjab Textbook Board','MATHEMATICS','#1769aa'],
-  ['Physics Part 1','College','Fazal-ur-Rehman','PHYSICS','#163b68'],
-  ['HTML & CSS Notes','Computer','Web Development','HTML & CSS','#3b2b78'],
-  ['Matric Past Papers','Old Papers','BSE Board Papers','PAST PAPERS','#c56b16'],
-  ['Quran Translation','Islamic','Maulana Taqi Usmani','QURAN','#284a32']
- ];
- grid.innerHTML=items.map((x,i)=>`<article class="popular-card"><div class="popular-cover"><div class="fake-book" style="background:${x[4]}"><span>STUDY GHAR</span><strong>${x[3]}</strong><span>EDUCATIONAL BOOK</span></div></div><div class="popular-info"><span class="popular-badge">${x[1]}</span><h3>${x[0]}</h3><p>${x[2]}</p><div class="popular-actions"><button class="read" onclick="openSubject('${x[0]}','${x[1]}')">▣ Read</button><button onclick="openSubject('${x[0]}','${x[1]}')">⇩ Download</button></div></div></article>`).join('');
-}
-
-async function enterLibrary(){welcome.classList.add('hidden');library.classList.remove('hidden');buildAllBooksList();renderIslamicSubCats();renderPopularBooks();await loadBooks();showHomeDashboard();}
-</script></body></html>
+// INIT - SHOW HOME LIKE SCREENSHOT
+buildAllBooksList();
+renderPopularBooks();
+loadBooks();
+</script>
+</body>
+</html>
