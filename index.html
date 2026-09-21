@@ -125,9 +125,43 @@
 .modal{position:fixed;inset:0;background:rgba(15,23,42,.88);backdrop-filter:blur(12px);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}.box{background:#fff;border-radius:16px;width:min(640px,96vw);max-height:92vh;overflow:hidden;display:flex;flex-direction:column}.box.large{width:min(860px,96vw);height:min(90vh,840px)}.box.reader{width:min(560px,96vw)}.head{display:flex;justify-content:space-between;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line)}.head b{font-size:13px;font-weight:800}.head button{background:#f1f5f9;border-radius:8px;padding:6px 10px;font-weight:700}.pdf-content{padding:20px;text-align:center;flex:1;overflow:auto}.big-btn{display:flex;flex-direction:column;gap:8px;margin-top:14px}.big-btn a,.big-btn button{padding:11px 14px;border-radius:8px;font-weight:800;font-size:12px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:6px;border:0}.big-btn a.primary{background:var(--green);color:#fff}.big-btn a.secondary{background:var(--navy);color:#fff}.form{padding:16px;display:grid;gap:9px}.form input,.form select{padding:10px 12px;border:1px solid var(--line);border-radius:8px;font-size:12px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px}.stat{border:1px solid var(--line);border-radius:10px;padding:12px;background:#f8fafc;text-align:center}.stat b{font-size:18px;font-weight:900}
 @media(max-width:1200px){.cat-grid{grid-template-columns:repeat(3,1fr)}.books-grid{grid-template-columns:repeat(3,1fr)}.taleem-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:700px){.header{padding:0 16px}.header-nav{display:none}.hero{height:360px}.hero h1{font-size:36px}.hero-books{display:none}.search-wrap{padding:0 16px}.search-bar{flex-direction:column;align-items:stretch;padding:12px;gap:10px;border-radius:16px}.search-divider{display:none}.search-cat{border-top:1px solid #f1f5f9;padding-top:10px}.browse{padding:28px 16px 20px}.popular{padding:12px 16px 32px}.cat-grid{grid-template-columns:repeat(2,1fr)}.books-grid{grid-template-columns:repeat(2,1fr)}.footer{flex-direction:column;align-items:flex-start;padding:16px}}
+
+/* WELCOME - ENTER LIBRARY SYSTEM - RESTORED */
+.welcome{position:relative;min-height:100vh;background:#0f172a;color:#fff;overflow:hidden}
+.welcome-bg{position:absolute;inset:0;background:url('Cozy_Bookstore_Scene') center/cover no-repeat,url('Cozy_Bookstore_Scene.jpg') center/cover no-repeat,url('welcome-hero.png') center/cover no-repeat;background-size:cover}
+.welcome-overlay{position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,23,42,.92) 0%,rgba(15,23,42,.80) 45%,rgba(15,23,42,.45) 75%,rgba(15,23,42,.20) 100%)}
+.wc{position:relative;z-index:2;min-height:100vh;max-width:1320px;margin:0 auto;padding:28px 48px 32px;display:flex;flex-direction:column}
+.wtop{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:900;font-size:24px;letter-spacing:-.5px}.brand span{color:var(--gold)}.admin-pill{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;border-radius:999px;padding:11px 22px;font-weight:700;backdrop-filter:blur(12px);cursor:pointer}
+.wmain{max-width:720px;margin:auto 0;padding:48px 0 36px}.eyebrow{display:inline-flex;gap:8px;background:rgba(22,163,74,.18);border:1px solid rgba(34,197,94,.3);color:#86efac;font-size:11px;font-weight:800;padding:8px 16px;border-radius:999px;letter-spacing:1px}
+.wmain h1{font:900 clamp(52px,7vw,86px)/.88 sans-serif;margin:20px 0 0;letter-spacing:-3px}.wmain h1 span{color:var(--gold)}.site{font-size:12px;font-weight:800;letter-spacing:9px;margin-top:12px;color:#fde68a;opacity:.85}.tagline{font-size:20px;font-weight:700;margin:20px 0 12px}.desc{color:#e2e8f0;line-height:1.6;font-size:14px;max-width:620px}.chips{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0}.chips span{padding:10px 16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;font-size:12px;font-weight:600}
+.enter{background:linear-gradient(135deg,var(--gold),#f59e0b);color:#0f172a;border-radius:14px;padding:16px 32px;font-weight:900;font-size:15px;display:inline-flex;gap:10px;margin-top:18px;box-shadow:0 12px 32px rgba(251,191,36,.3);cursor:pointer;border:0}
+.wfeat{display:flex;gap:18px;margin-top:28px;font-size:13px;color:#e2e8f0;flex-wrap:wrap}.wfeat i{width:1px;height:16px;background:rgba(255,255,255,.18)}.wfoot{text-align:center;color:#fde68a;letter-spacing:6px;font-size:10px;font-weight:800;margin-top:auto;padding-top:28px;opacity:.6}
+
 </style>
 </head>
 <body>
+
+<!-- WELCOME - ENTER LIBRARY SYSTEM - RESTORED - FRONT PAGE -->
+<section id="welcome" class="welcome">
+<div class="welcome-bg"></div>
+<div class="welcome-overlay"></div>
+<div class="wc">
+<div class="wtop"><div class="brand">📚 Study <span>Ghar</span></div><button class="admin-pill" onclick="openAdmin()">🔐 Admin Login</button></div>
+<div class="wmain">
+<div class="eyebrow">🏛️ PECTAA OFFICIAL • pectaa.edu.pk/curriculum-compliance/ • ENTER LIBRARY SYSTEM</div>
+<h1>Study <span>Ghar</span></h1>
+<div class="site">DIGITAL LIBRARY</div>
+<div class="tagline">Learn Today, Build Tomorrow - PECTAA Official</div>
+<div class="desc">Official PECTAA Books from <b>pectaa.edu.pk/curriculum-compliance/</b> - School Class 1-10 Urdu English, College, Computer IT, History, Geography, Islamic Library. Front page with Enter Library system - Cozy Bookstore image - Beautiful design like screenshot later.</div>
+<div class="chips"><span>🏫 School 1-10</span><span>📘 Urdu English</span><span>🎓 College</span><span>💻 Computer IT</span><span>📜 History</span><span>🌍 Geography</span><span>☪️ Islamic</span></div>
+<button class="enter" onclick="enterLibrary()">📚 Enter Library <span>→</span></button>
+<div class="wfeat"><span>🏛️ PECTAA Official</span><i></i><span>📚 Enter Library System</span><i></i><span>📸 Cozy Front</span><i></i><span>📱 Mobile</span></div>
+</div>
+<div class="wfoot">PECTAA OFFICIAL • ENTER LIBRARY SYSTEM • FRONT PAGE RESTORED • COZY BOOKSTORE • VERCEL READY</div>
+</div>
+</section>
+<main id="library" class="hidden">
+
 <!-- HEADER - EXACT LIKE SCREENSHOT -->
 <header class="header">
 <div class="header-left">
@@ -295,6 +329,7 @@ Search
 </footer>
 
 <!-- MODALS -->
+</main>
 <div id="reader" class="modal hidden"><div class="box reader"><div class="head"><div><b id="readerTitle"></b><small id="readerMeta"></small></div><button onclick="closeReader()">✕</button></div><div class="pdf-content"><div style="font-size:36px">📚</div><h2 id="bookNameTitle">PECTAA Book</h2><p id="bookDesc">Official PECTAA book</p><div id="coverPreview" style="margin:10px auto;max-width:140px;border-radius:8px;overflow:hidden;display:none"><img id="coverPreviewImg" src="" style="width:100%;display:block"></div><div class="big-btn"><a id="officialBtn" href="#" target="_blank" class="primary">🏛️ Read - PECTAA Official</a><a id="downloadBtn" href="#" target="_blank" class="secondary">⬇️ Download - PECTAA Official</a><button onclick="shareBook()" class="secondary" style="background:#7c3aed">🔗 Share</button></div></div></div></div>
 <div id="student" class="modal hidden"><div class="box"><div class="head"><b>👤 Student - Register / Login</b><button onclick="closeStudent()">✕</button></div><div id="studentAuth" class="form"><input id="studentName" placeholder="Full Name"><input id="studentEmail" type="email" placeholder="Email"><input id="studentPassword" type="password" placeholder="Password"><div style="display:flex;gap:8px"><button style="flex:1;padding:9px;background:#0f172a;color:#fff;border-radius:8px;font-weight:800" onclick="studentSignup()">Create Account</button><button style="flex:1;padding:9px;background:#2563eb;color:#fff;border-radius:8px;font-weight:800" onclick="studentLogin()">Login</button></div><div id="studentStatus" style="font-size:10px;color:#64748b"></div></div><div id="studentLogged" class="form hidden"><h3>Welcome <span id="studentNameView"></span> 👋</h3><button style="padding:9px;background:#dc2626;color:#fff;border-radius:8px;font-weight:800" onclick="studentLogout()">Logout</button></div></div></div>
 <div id="admin" class="modal hidden"><div class="box large"><div class="head"><b>🔐 Admin - PECTAA Official Books Upload</b><button onclick="closeAdmin()">✕</button></div><div id="loginArea" class="form"><input id="email" type="email" placeholder="Admin email"><input id="password" type="password" placeholder="Password"><button style="padding:9px;background:#0f172a;color:#fff;border-radius:8px;font-weight:800" onclick="login()">Login</button><div id="loginStatus" style="font-size:10px"></div></div><div id="panel" class="hidden" style="overflow:auto"><div class="statgrid"><div class="stat"><b id="bookCount">0</b><small>Total Books</small></div><div class="stat"><b id="userCount">—</b><small>Students</small></div><div class="stat"><b>✓</b><small>Beautiful Design</small></div></div><form class="form" onsubmit="uploadBook(event)"><h4 style="margin:0;font-size:12px;font-weight:800">📤 Upload Book - Like Screenshot - Cover + Title + Read/Download</h4><input id="title" required placeholder="Book title - Example: Mathematics Class 10"><input id="author" placeholder="Author - Example: Punjab Textbook Board"><select id="bookcat" required><option value="">Select Category - School/College/Computer/Old Papers/Islamic/Other</option><option>School Books</option><option>College Books</option><option>Computer & IT</option><option>Computer Notes</option><option>Old Papers</option><option>History</option><option>Geography</option><option>Islamic - Quran</option><option>Islamic - Hadith</option><option>Islamic - Tafseer</option><option>Islamic - Seerat</option><option>Islamic - Fiqh</option><option>Islamic - Dua & Azkar</option><option>Islamic - Islamic History</option><option>Islamic - Islamic Studies</option><option>Other Books</option></select><label style="font-size:10px;font-weight:700">📸 Cover Image - Like Screenshot - Mathematics Class 10 Cover</label><input id="cover" type="file" accept="image/*"><label style="font-size:10px;font-weight:700">📄 PDF File</label><input id="pdfFile" type="file" accept="application/pdf" required><input id="bookSource" placeholder="Source Link - https://pectaa.edu.pk/curriculum-compliance/"><button style="padding:10px;background:#16a34a;color:#fff;border-radius:8px;font-weight:800">📤 Upload - Beautiful Design - Like Screenshot</button><div id="uploadStatus" style="font-size:10px"></div></form><div style="padding:12px;border-top:1px solid var(--line);background:#fef2f2"><div id="adminList"></div></div></div></div></div>
@@ -552,10 +587,33 @@ async function uploadBook(e){e.preventDefault();if(!isAdmin){uploadStatus.textCo
 async function deleteBook(id){if(!isAdmin){alert('Only admin');return}const b=books.find(x=>x.id===id);if(!b||!confirm('Delete?'))return;await db.storage.from('book-pdfs').remove([b.pdf_path]);if(b.cover_path)await db.storage.from('book-covers').remove([b.cover_path]);const r=await db.from('books').delete().eq('id',id);if(r.error){alert(r.error.message);return}await loadBooks();}
 function closeReader(){reader.classList.add('hidden');}function esc(x){return String(x||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 
-// INIT - SHOW HOME LIKE SCREENSHOT
-buildAllBooksList();
-renderPopularBooks();
-loadBooks();
+
+// ENTER LIBRARY SYSTEM - RESTORED - FRONT PAGE
+function enterLibrary(){
+  const welcome = document.getElementById('welcome');
+  const library = document.getElementById('library');
+  if(welcome) welcome.classList.add('hidden');
+  if(library) library.classList.remove('hidden');
+  // Scroll to top
+  window.scrollTo(0,0);
+  // Load books
+  try{
+    buildAllBooksList();
+    renderPopularBooks();
+    loadBooks();
+  }catch(e){console.log('enterLibrary load', e)}
+}
+
+// INIT - KEEP WELCOME VISIBLE - ENTER LIBRARY SYSTEM RESTORED
+// Welcome screen is visible initially - library hidden
+// Books will load when Enter Library clicked
+// Pre-build for search but keep hidden
+try{
+  buildAllBooksList();
+  renderPopularBooks();
+  loadBooks();
+}catch(e){}
+
 </script>
 </body>
 </html>
