@@ -337,6 +337,15 @@ Search
 
 <script>
 const OFFICIAL_BOOKS_URL="https://pectaa.edu.pk/curriculum-compliance/";
+
+const EXTERNAL_LINKS = {
+  islamic: "https://alhamdolillah.com/downloads/",
+  pakistanHistory: "https://ur.wikipedia.org/wiki/%D8%AA%D8%A7%D8%B1%DB%8C%D8%AE_%D9%BE%D8%A7%DA%A9%D8%B3%D8%AA%D8%A7%D9%86",
+  computerIT: "https://www.geeksforgeeks.org/computer-science-fundamentals/computer-shortcut-keys/",
+  oldPaper: "https://schools.aglasem.com/punjab-board-question-papers/",
+  pectaaOfficial: "https://pectaa.edu.pk/curriculum-compliance/"
+};
+
 const SB_URL="https://ppjibzvskpmdufehkqvx.supabase.co";const SB_KEY="sb_publishable_IDS03s6m4fS50mYs5Uy7og_vE32749u";const db=supabase.createClient(SB_URL,SB_KEY);let books=[],isAdmin=false;db.auth.onAuthStateChange(()=>setTimeout(refreshStudent,0));
 
 function iconFor(s){if(s.includes("Mathematics")||s.includes("Math"))return"🔢";if(s.includes("Physics"))return"⚛️";if(s.includes("Chemistry"))return"🧪";if(s.includes("Biology"))return"🧬";if(s.includes("Computer")||s.includes("HTML")||s.includes("CSS"))return"💻";if(s.includes("Quran"))return"📖";if(s.includes("Hadith"))return"📜";if(s.includes("Tafseer"))return"📚";if(s.includes("Seerat"))return"🕌";if(s.includes("Fiqh"))return"⚖️";if(s.includes("Dua"))return"🤲";if(s.includes("Urdu"))return"📚";if(s.includes("English"))return"📘";if(s.includes("Islamiat")||s.includes("Past Papers")||s.includes("Past"))return"📝";if(s.includes("History"))return"📜";if(s.includes("Geography"))return"🌍";return"📚";}
@@ -530,11 +539,38 @@ function openClass(num,medium){
 function showUrduMedium(){showAllBooks();let html=`<div class="books-grid">`;Object.keys(classData).forEach(n=>{classData[n].urdu.forEach(s=>{html+=createPopularCard(s,`Class ${n} • Urdu Medium`,"School Books",`Class ${n}`,"Urdu Medium",'',`openSubject('${s.replace(/'/g,"\\'")}','Class ${n} Urdu')`);} );});html+=`</div>`;classGrid.innerHTML=html;subjectView.classList.add('hidden');sectionTitle.textContent="Urdu Medium - Class 1-10 - Beautiful Design Like Screenshot";sectionDesc.textContent="Urdu Medium - Beautiful Design - Cover + Title + Read/Download";}
 function showEnglishMedium(){showAllBooks();let html=`<div class="books-grid">`;Object.keys(classData).forEach(n=>{classData[n].english.forEach(s=>{html+=createPopularCard(s,`Class ${n} • English Medium`,"School Books",`Class ${n}`,"English Medium",'',`openSubject('${s.replace(/'/g,"\\'")}','Class ${n} English')`);} );});html+=`</div>`;classGrid.innerHTML=html;subjectView.classList.add('hidden');sectionTitle.textContent="English Medium - Class 1-10 - Beautiful Design";sectionDesc.textContent="English Medium - Beautiful Design Like Screenshot";}
 function showCollegeSection(){showAllBooks();hideAllDetails();collegeGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();sectionTitle.textContent="College Books - Beautiful Design Like Screenshot";sectionDesc.textContent="College Books FA FSc ICS - Cover + Title + Read/Download - Like Screenshot";let html=`<div class="books-grid">`;html+=collegeBooks.map(s=>createPopularCard(s,"Fazal-ur-Rehman","College Books","FSc","College",'',`openSubject('${s.replace(/'/g,"\\'")}','College Books')`)).join("");html+=`</div>`;collegeStreamGrid.innerHTML=html;}
-function showComputerSection(){showAllBooks();hideAllDetails();computerGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();sectionTitle.textContent="Computer Notes - IT & Programming - Beautiful Design";sectionDesc.textContent="Computer Notes - Web Development - Beautiful Design Like Screenshot";let html=`<div class="books-grid">`;html+=computerBooks.map(s=>createPopularCard(s,"Web Development","Computer Notes","IT","Web",'',`openSubject('${s.replace(/'/g,"\\'")}','Computer Notes')`)).join("");html+=`</div>`;computerDirectGrid.innerHTML=html;}
-function showHistorySection(){showAllBooks();hideAllDetails();historyGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();sectionTitle.textContent="Old Papers - Past Exams - Beautiful Design";sectionDesc.textContent="Matric Past Papers, BSE Board Papers - Beautiful Design Like Screenshot";let html=`<div class="books-grid">`;html+=historyBooks.map(s=>createPopularCard(s,"BSE (Board Papers)","Old Papers","Matric","Past Paper",'',`openSubject('${s.replace(/'/g,"\\'")}','Old Papers')`)).join("");html+=`</div>`;historyDirectGrid.innerHTML=html;}
+function showComputerSection(){
+  showAllBooks();hideAllDetails();computerGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();
+  sectionTitle.textContent="Computer Notes - IT & Programming - GeeksforGeeks Computer Shortcut Keys";
+  sectionDesc.innerHTML='Computer IT - Source: <a href="'+EXTERNAL_LINKS.computerIT+'" target="_blank" style="color:#2563eb;font-weight:700;text-decoration:underline">'+EXTERNAL_LINKS.computerIT+'</a> - Shortcut Keys, Fundamentals - Beautiful Design';
+let html=`<div class="books-grid">`;html+=computerBooks.map(s=>createPopularCard(s,"Web Development","Computer Notes","IT","Web",'',`openSubject('${s.replace(/'/g,"\\'")}','Computer Notes')`)).join("");html+=`</div>`;computerDirectGrid.innerHTML=html;}
+function showHistorySection(){
+  showAllBooks();hideAllDetails();historyGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();
+  sectionTitle.textContent="Old Papers - Punjab Board Question Papers - Aglasem";
+  sectionDesc.innerHTML='Old Papers Past Exams - Source: <a href="'+EXTERNAL_LINKS.oldPaper+'" target="_blank" style="color:#d97706;font-weight:700;text-decoration:underline">'+EXTERNAL_LINKS.oldPaper+'</a> + Pakistan History Wikipedia - Beautiful Design';
+let html=`<div class="books-grid">`;html+=historyBooks.map(s=>createPopularCard(s,"BSE (Board Papers)","Old Papers","Matric","Past Paper",'',`openSubject('${s.replace(/'/g,"\\'")}','Old Papers')`)).join("");html+=`</div>`;historyDirectGrid.innerHTML=html;}
+
+function showPakistanHistorySection(){
+  showAllBooks();hideAllDetails();historyGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();
+  sectionTitle.textContent="Pakistan History - Tareekh Pakistan - Wikipedia Urdu";
+  sectionDesc.innerHTML='Pakistan History - Source: <a href="'+EXTERNAL_LINKS.pakistanHistory+'" target="_blank" style="color:#16a34a;font-weight:700;text-decoration:underline">Urdu Wikipedia - Tareekh Pakistan</a> - Beautiful Design';
+  let html=`<div class="books-grid">`;
+  html+=createPopularCard('Tareekh Pakistan - History of Pakistan','Urdu Wikipedia','History Books','History','Pakistan History','',`openSubject('Tareekh Pakistan - History of Pakistan','History - Pakistan History','','${EXTERNAL_LINKS.pakistanHistory}')`);
+  html+=createPopularCard('History of Pakistan - PECTAA Text Book','Punjab Textbook Board','History Books','Class 12','Pak Study','',`openSubject('History of Pakistan','History - Pakistan History','','${EXTERNAL_LINKS.pakistanHistory}')`);
+  html+=createPopularCard('12th Class Pak Study New Book PDF (PECTAA)','PECTAA Official','Old Papers','Class 12','Pak Study','',`openSubject('12th Class Pak Study New Book PDF (PECTAA)','Old Papers - Pak Study','','${EXTERNAL_LINKS.pakistanHistory}')`);
+  html+=`</div>`;
+  document.getElementById('historyDirectGrid').innerHTML=html;
+}
+
 function showGeographySection(){showAllBooks();hideAllDetails();geographyGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();sectionTitle.textContent="Other Books - General Reading - Beautiful Design";sectionDesc.textContent="Other Books - General Reading - Beautiful Design";let html=`<div class="books-grid">`;html+=geographyBooks.map(s=>createPopularCard(s,"General Reading","Other Books","General","Reading",'',`openSubject('${s.replace(/'/g,"\\'")}','Other Books')`)).join("");html+=`</div>`;geographyDirectGrid.innerHTML=html;}
 function renderIslamicSubCats(){const el=document.getElementById("islamicSubCatGrid");if(!el) return;el.innerHTML=Object.keys(islamicStructure).map(k=>{const d=islamicStructure[k];return `<button onclick="openIslamicSubCat('${k}')" style="border:1px solid ${d.color}20;background:${d.color}12;border-radius:12px;padding:12px;text-align:left"><div style="font-size:18px">${d.icon}</div><div style="font-size:11px;font-weight:800;color:${d.color};margin-top:4px">${k}</div><div style="font-size:9px;color:#64748b">Admin Will Add</div></button>`;}).join("");}
-function showIslamicProper(){showAllBooks();hideAllDetails();islamicGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();renderIslamicSubCats();openIslamicSubCat('all');sectionTitle.textContent="Islamic Books - Quran • Hadith - Admin Will Add - Beautiful Design";sectionDesc.textContent="Islamic Books - Admin khud add karega - Beautiful Design Like Screenshot";}
+function showIslamicProper(){
+  showAllBooks();hideAllDetails();islamicGrid.classList.remove('hidden');backBtn.classList.remove('hidden');backBtn.onclick=()=>showHome();renderIslamicSubCats();openIslamicSubCat('all');
+  sectionTitle.textContent="Islamic Books - Quran • Hadith - Alhamdolillah.com/downloads/";
+  sectionDesc.innerHTML='Islamic Books - Source: <a href="'+EXTERNAL_LINKS.islamic+'" target="_blank" style="color:#16a34a;font-weight:700;text-decoration:underline">'+EXTERNAL_LINKS.islamic+'</a> - Admin bhi add karega - Beautiful Design';
+  // Auto open external link badge
+  setTimeout(()=>{ console.log('Islamic external:', EXTERNAL_LINKS.islamic); }, 100);
+}
 function openIslamicSubCat(subCat){
   const grid=document.getElementById("islamicDirectGrid");
   const adminBooks=books.filter(b=>b.category&&b.category.toLowerCase().includes('islamic'));
@@ -549,7 +585,32 @@ function openIslamicSubCat(subCat){
     return createPopularCard(b.title,b.author||"Islamic Book","Islamic Books","Quran","Islamic",coverUrl,`openSubject('${b.title.replace(/'/g,"\\'")}','${b.category}','${coverUrl}','${source}')`);
   }).join("");
 }
-function openSubject(s,c,coverUrl,sourceLink){const finalSource=sourceLink||OFFICIAL_BOOKS_URL;readerTitle.textContent=s;document.getElementById("readerMeta").textContent=`${c} • Beautiful Design Like Screenshot • Original Cover`;document.getElementById("bookNameTitle").textContent=s;document.getElementById("bookDesc").textContent=`${s} - ${c} - PECTAA Official ${OFFICIAL_BOOKS_URL} - Beautiful Design Like Screenshot - Cover + Title + Author + Read + Download`;const coverPrev=document.getElementById("coverPreview");const coverImg=document.getElementById("coverPreviewImg");if(coverUrl){coverImg.src=coverUrl;coverPrev.style.display="block";}else{coverPrev.style.display="none";}document.getElementById("officialBtn").href=finalSource;document.getElementById("downloadBtn").href=finalSource;document.getElementById("reader").classList.remove("hidden");window.currentBookForShare={title:s,category:c,source:finalSource,cover:coverUrl};setTimeout(()=>{window.open(finalSource,'_blank');},500);}
+function openSubject(s,c,coverUrl,sourceLink){
+  // Category-specific external links provided by user
+  let categoryLink = OFFICIAL_BOOKS_URL;
+  const catLower = (c||"").toLowerCase();
+  if(catLower.includes("islamic") || catLower.includes("quran") || catLower.includes("hadith") || catLower.includes("taqseer") || catLower.includes("tafseer") || catLower.includes("fiqh") || catLower.includes("seerat")){
+    categoryLink = EXTERNAL_LINKS.islamic;
+  } else if(catLower.includes("pakistan") || catLower.includes("history") || catLower.includes("pak study") || catLower.includes("old papers") === false && catLower.includes("history")){
+    // Pakistan history
+    if(s.toLowerCase().includes("pakistan") || c.toLowerCase().includes("pakistan") || s.toLowerCase().includes("pak study") || s.toLowerCase().includes("history")){
+      categoryLink = EXTERNAL_LINKS.pakistanHistory;
+    }
+  }
+  if(catLower.includes("computer") || catLower.includes("it &") || catLower.includes("programming") || catLower.includes("html") || catLower.includes("css") || catLower.includes("web")){
+    categoryLink = EXTERNAL_LINKS.computerIT;
+  }
+  if(catLower.includes("old papers") || catLower.includes("past papers") || catLower.includes("past") || catLower.includes("matric past") || catLower.includes("bse")){
+    categoryLink = EXTERNAL_LINKS.oldPaper;
+  }
+  // Special override for exact categories
+  if(c === "Islamic Books" || c.includes("Islamic")) categoryLink = EXTERNAL_LINKS.islamic;
+  if(c === "Old Papers" || c === "Past Papers") categoryLink = EXTERNAL_LINKS.oldPaper;
+  if(c === "Computer Notes" || c === "Computer & IT" || c.includes("Computer")) {
+    // Keep computer link for computer notes, but for school computer keep PECTAA as primary
+    if(catLower.includes("notes") || catLower.includes("it & programming")) categoryLink = EXTERNAL_LINKS.computerIT;
+  }
+  const finalSource=sourceLink||categoryLink||OFFICIAL_BOOKS_URL;readerTitle.textContent=s;document.getElementById("readerMeta").textContent=`${c} • Beautiful Design Like Screenshot • Original Cover`;document.getElementById("bookNameTitle").textContent=s;document.getElementById("bookDesc").textContent=`${s} - ${c} - PECTAA Official ${OFFICIAL_BOOKS_URL} - Beautiful Design Like Screenshot - Cover + Title + Author + Read + Download`;const coverPrev=document.getElementById("coverPreview");const coverImg=document.getElementById("coverPreviewImg");if(coverUrl){coverImg.src=coverUrl;coverPrev.style.display="block";}else{coverPrev.style.display="none";}document.getElementById("officialBtn").href=finalSource;document.getElementById("downloadBtn").href=finalSource;document.getElementById("reader").classList.remove("hidden");window.currentBookForShare={title:s,category:c,source:finalSource,cover:coverUrl};setTimeout(()=>{window.open(finalSource,'_blank');},500);}
 function shareBook(){const b=window.currentBookForShare;if(!b) return;const text=`${b.title} - ${b.category} - PECTAA Official ${b.source} Study Ghar ah2129643@gmail.com`;if(navigator.share){navigator.share({title:b.title,text:text,url:b.source});}else{navigator.clipboard.writeText(text).then(()=>alert('Copied'));} }
 function openPolicy(type){
   const modal=document.getElementById("policyModal");const title=document.getElementById("policyTitle");const content=document.getElementById("policyContent");
@@ -587,6 +648,13 @@ async function uploadBook(e){e.preventDefault();if(!isAdmin){uploadStatus.textCo
 async function deleteBook(id){if(!isAdmin){alert('Only admin');return}const b=books.find(x=>x.id===id);if(!b||!confirm('Delete?'))return;await db.storage.from('book-pdfs').remove([b.pdf_path]);if(b.cover_path)await db.storage.from('book-covers').remove([b.cover_path]);const r=await db.from('books').delete().eq('id',id);if(r.error){alert(r.error.message);return}await loadBooks();}
 function closeReader(){reader.classList.add('hidden');}function esc(x){return String(x||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
 
+
+
+// OPEN EXTERNAL LINKS - PROVIDED BY USER - FOR CATEGORIES
+function openIslamicExternal(){ window.open(EXTERNAL_LINKS.islamic, '_blank'); openSubject('Islamic Books - Alhamdolillah Downloads', 'Islamic Books', '', EXTERNAL_LINKS.islamic); }
+function openPakistanHistoryExternal(){ window.open(EXTERNAL_LINKS.pakistanHistory, '_blank'); openSubject('Tareekh Pakistan - Pakistan History', 'History - Pakistan History', '', EXTERNAL_LINKS.pakistanHistory); }
+function openComputerITExternal(){ window.open(EXTERNAL_LINKS.computerIT, '_blank'); openSubject('Computer Shortcut Keys - GeeksforGeeks', 'Computer Notes - IT & Programming', '', EXTERNAL_LINKS.computerIT); }
+function openOldPaperExternal(){ window.open(EXTERNAL_LINKS.oldPaper, '_blank'); openSubject('Punjab Board Question Papers - Old Papers', 'Old Papers - Past Exams', '', EXTERNAL_LINKS.oldPaper); }
 
 // ENTER LIBRARY SYSTEM - RESTORED - FRONT PAGE
 function enterLibrary(){
